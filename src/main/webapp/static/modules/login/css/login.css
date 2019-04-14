@@ -1,0 +1,134 @@
+﻿body{background-color: #000000;}
+.box{
+	width: 980px;
+	height: 500px;
+	margin: 10px auto;
+	text-align: center;
+}
+.top{
+	color: blue;
+	font-family: "华文新魏";
+	font-size: 50px;
+	font-weight: 600;
+	margin-top:50px;
+	margin-bottom: 50px;
+}
+.login{
+	height: 450px;
+	background: url(../img/back.gif) rgb(137,137,137) no-repeat center center;
+	padding: 10px 0 10px;
+}
+.login_top{
+	width: 98%;
+	height: 50px;
+	line-height: 50px;
+	font-size: 20px;
+	background-color: rgba(130,130,130,2);
+	margin: 0 auto;
+	margin-bottom: 60px;
+}
+.login_bottom,.bottom_top{
+	margin-bottom: 50px;
+}
+.login_bottom input{
+	width: 250px;
+	height: 40px;
+	padding-left: 30px;
+	font-size: 18px;
+	border:2px solid darkslategrey;
+}
+#user{
+	background: url(../img/user.png) white no-repeat;
+	margin-bottom: 10px;
+}
+#pwd{
+	background: url(../img/pwd.png) white no-repeat left center;
+}
+.bottom_top input{
+	width: 250px;
+	height: 40px;
+	line-height: 40px;
+	font-size: 25px;
+	border:none;
+	border-radius: 25px;
+	color: white;
+}
+#submit{
+	margin-right: 100px;
+	background-color: blue;
+	}
+#submit:active,#reset:active{
+	font-size: 20px;
+}
+#reset{
+	background-color: chocolate;
+}
+a{text-decoration: none;color: black;}
+a:hover{color: blue;}
+/*注册部分*/
+#register{
+	width: 500px;
+	height: 550px;
+	margin: 0 auto;
+	color: blue;
+	background: rgba(26,68,144,0.8) url(../img/register_background.jpg) no-repeat center;
+	background-size:600px;
+	position: absolute;
+	top:50%; left:50%;
+	margin-top:-225px; /*元素高度的一半*/
+	margin-left:-250px; /*元素宽度的一半*/
+	/*display: none;*/
+}
+#register span{
+	display: inline-block;
+}
+#register span:first-child{
+	font-size: 30px;
+}
+#register #close{
+	font-size: 30px;
+	color: white;
+	position: absolute;
+	right: 10px;
+	cursor: pointer;
+}
+#register #close:hover{
+	color: blue;
+}
+#register .register_form{
+	width: 355px;
+	text-align: right;
+	margin: 0 auto;
+}
+#register .register_form input{
+	width: 250px;
+	height: 25px;
+	font-size: 18px;
+	margin: 10px 0;
+}
+#register .register_form select{
+	width: 84px;
+	height: 25px;
+	margin: 10px 0;
+}
+#register .register_form .eye input{
+	width: 150px;
+	height: 40px;
+	line-height: 40px;
+	font-size: 25px;
+	border:none;
+	border-radius: 25px;
+	color: white;
+}
+#register .register_form .eye{
+	text-align: center;
+}
+#register .register_form .eye #register_submit{
+	background-color: blue;
+}
+#register .register_form .eye #register_reset{
+	background-color: chocolate;
+}
+#register_submit:active,#register_reset:active{
+	font-size: 20px;
+}
