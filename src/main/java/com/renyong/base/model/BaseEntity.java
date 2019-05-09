@@ -1,6 +1,7 @@
 package com.renyong.base.model;
 
 import com.renyong.base.util.generateUtil;
+import com.renyong.modules.user.model.UserBean;
 
 import java.util.Date;
 
@@ -13,9 +14,9 @@ public abstract class BaseEntity<T>{
     private static final long serialVersionUID = 1L;
     protected String id;//主键
     protected String remarks;//备注
-//    protected SysUserBean createUser;
+    protected UserBean createUser;//创建人
     protected Date createDate;//创建时间
-//    protected SysUserBean lastUpdateUser;
+    protected UserBean lastUpdateUser;//更新人
     protected Date lastUpdateDate;//最后更新时间
     protected String delFlag = "0";//删除标记
 
@@ -59,6 +60,22 @@ public abstract class BaseEntity<T>{
         return delFlag;
     }
 
+    public UserBean getCreateUser() {
+        return createUser;
+    }
+
+    public void setCreateUser(UserBean createUser) {
+        this.createUser = createUser;
+    }
+
+    public UserBean getLastUpdateUser() {
+        return lastUpdateUser;
+    }
+
+    public void setLastUpdateUser(UserBean lastUpdateUser) {
+        this.lastUpdateUser = lastUpdateUser;
+    }
+
     public void setDelFlag(String delFlag) {
         this.delFlag = delFlag;
     }
@@ -67,7 +84,7 @@ public abstract class BaseEntity<T>{
         this.lastUpdateDate = new Date();//最后更新时间
         this.createDate = this.lastUpdateDate;
         this.delFlag = "0";
-//        SysUserBean user = UserUtils.getUser();
+//        UserBean user = UserUtils.getUser();
     }
     public void preUpdate(){
         this.lastUpdateDate = new Date();//最后更新时间

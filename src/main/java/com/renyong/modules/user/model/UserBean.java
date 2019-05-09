@@ -20,7 +20,7 @@ public class UserBean extends BaseEntity<UserBean> {
     private String sex;//性别
     private String phone;//电话
     private String headPortrait;//头像
-
+    //集合属性
     private List<Car> carList;//名下车辆
     private List<RoleBean> roleBeanList;//拥有角色
 

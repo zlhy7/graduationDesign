@@ -5,7 +5,6 @@ import com.renyong.base.model.BaseEntity;
 import com.renyong.base.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 
 /**

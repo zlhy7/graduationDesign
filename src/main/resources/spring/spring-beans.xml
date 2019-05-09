@@ -3,8 +3,10 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
-       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
   <!-- Spring中引入其他配置文件 -->
   <!--<import resource="classpath*:/spring/spring-mvc.xml" />-->
@@ -44,6 +46,21 @@
     <!-- 注入数据库连接池 -->
     <property name="dataSource" ref="ds" />
   </bean>
+  <!--切面类-->
+  <!--<bean id="aopAspect" class="com.renyong.base.model.BaseEntity"/>-->
+  <!--aop配置-->
+  <!--<aop:config>
+    <aop:aspect ref="aopAspect">
+      &lt;!&ndash;切点的配置  匹配那些类和那些方法需要aop拦截&ndash;&gt;
+      <aop:pointcut expression="execution (* com.lilin.maven.service.aop.UserService.addUser(..))" id="pointCut"/>
+      &lt;!&ndash;各个不同的advice的配置对应的执行方法&ndash;&gt;
+      <aop:before  pointcut-ref="pointCut" method="doBefore"/>
+      <aop:after-returning pointcut-ref="pointCut" method="doAferReturning"/>
+      <aop:after-throwing  pointcut-ref="pointCut" method="doAferThrowing"/>
+      <aop:after pointcut-ref="pointCut" method="doAfter"/>
+      <aop:around pointcut-ref="pointCut" method="doAround"/>
+    </aop:aspect>
+  </aop:config>-->
   <!-- 配置基于注解的声明式事务 -->
   <tx:annotation-driven transaction-manager="transactionManager" />
 </beans>
