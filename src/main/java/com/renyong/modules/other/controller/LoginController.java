@@ -1,5 +1,6 @@
 package com.renyong.modules.other.controller;
 
+import com.renyong.modules.car.service.CarService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class LoginController{
     @RequestMapping("/toLogin")
     public String toLoginPage(){//去登陆页面
+//        CarService carService = new CarService();
+//        carService.findAll();
         return "login";
     }
 }

@@ -1,5 +1,6 @@
 package com.renyong.modules.car.model;
 
+import com.renyong.base.annotation.TableNote;
 import com.renyong.base.model.BaseEntity;
 
 /**
@@ -7,6 +8,7 @@ import com.renyong.base.model.BaseEntity;
  * @Date: 2019/5/7 14:29
  * @Description: 汽车
  */
+@TableNote("汽车")
 public class Car extends BaseEntity<Car> {
     private String carCd;//车辆编码
     private String carBrand;//品牌

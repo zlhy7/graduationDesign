@@ -25,10 +25,10 @@ public class BaseService<D extends BaseDao<T>, T extends BaseEntity<T>>{
     @Transactional(readOnly = false)
     public void insert(T entity) {
         if (StringUtil.isBlank(entity.getId())) {
-//            entity.preInsert();
+            entity.preInsert();
             this.dao.insert(entity);
         } else {
-//            entity.preUpdate();
+            entity.preUpdate();
             this.dao.update(entity);
         }
     }
@@ -44,7 +44,7 @@ public class BaseService<D extends BaseDao<T>, T extends BaseEntity<T>>{
 
     @Transactional(readOnly = false)
     public void update(T entity) {
-//        entity.preUpdate();
+        entity.preUpdate();
         this.dao.update(entity);
     }
 
