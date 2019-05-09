@@ -22,9 +22,9 @@ public class LoginInterceptor implements HandlerInterceptor {
         String uri = request.getRequestURI(); // 获取登录的uri，这个是不进行拦截的
         if(uri.contains("toLoginPage")){
             flag = true;
-        }else if(session.getAttribute("sysUser")==null) {
+        }else if(session.getAttribute("userBean")==null) {
             // 拦截后进入登录页面
-            response.sendRedirect(request.getContextPath()+"/car/toLoginPage");
+            response.sendRedirect(request.getContextPath()+"/toLogin");
             flag = false;
         }
         return flag;

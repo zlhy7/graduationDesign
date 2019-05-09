@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @RequestMapping("/car/")
-public class CarController {
+public class CarController{
     @RequestMapping("list")
     public String list(){
         return "index";
