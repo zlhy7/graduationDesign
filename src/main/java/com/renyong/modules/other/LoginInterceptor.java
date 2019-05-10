@@ -20,13 +20,13 @@ public class LoginInterceptor implements HandlerInterceptor {
         // 返回false则不执行拦截
         HttpSession session = request.getSession();
         String uri = request.getRequestURI(); // 获取登录的uri，这个是不进行拦截的
-        if(uri.contains("toLoginPage")){
+        /*if(uri.contains("toLoginPage")){
             flag = true;
         }else if(session.getAttribute("userBean")==null) {
             // 拦截后进入登录页面
             response.sendRedirect(request.getContextPath()+"/toLogin");
             flag = false;
-        }
+        }*/
         return flag;
     }
 
