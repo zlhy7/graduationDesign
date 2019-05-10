@@ -1,5 +1,6 @@
 package com.renyong.modules.car.dao;
 
+import com.renyong.base.annotation.MybatisDao;
 import com.renyong.base.dao.BaseDao;
 import com.renyong.modules.car.model.Car;
 
@@ -8,5 +9,6 @@ import com.renyong.modules.car.model.Car;
  * @Date: 2019/4/12 14:09
  * @Description:
  */
+@MybatisDao
 public interface CarDao extends BaseDao<Car> {
 }
