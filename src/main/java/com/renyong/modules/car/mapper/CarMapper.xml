@@ -23,45 +23,46 @@
     <!--查询多个-->
     <select id="findAll" resultMap="BaseResultMap">
         SELECT * from CAR WHERE del_flag = '0'
-        <if test="car_id !=null and car_id!=''">
-            AND car_id = #{carId}
+        <if test="id !=null and id!=''">
+            AND car_id = #{id}
         </if>
-        <if test="car_cd !=null and car_cd!=''">
+        <if test="carCd !=null and carCd!=''">
             AND car_cd = #{carCd}
         </if>
-        <if test="car_brand !=null and car_brand!=''">
+        <if test="carBrand !=null and carBrand!=''">
             AND car_brand = #{carBrand}
         </if>
-        <if test="car_model !=null and car_model!=''">
+        <if test="carModel !=null and carModel!=''">
             AND car_model = #{carModel}
         </if>
-        <if test="car_number !=null and car_number!=''">
+        <if test="carNumber !=null and carNumber!=''">
             AND car_number = #{carNumber}
         </if>
-        <if test="car_color !=null and car_color!=''">
+        <if test="carColor !=null and carColor!=''">
             AND car_color = #{carColor}
         </if>
+        ORDER BY CREATE_DATE DESC 
     </select>
     <!--新增-->
     <insert id="insert">
         INSERT INTO CAR
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="car_id !=null and car_id!=''">
+            <if test="id !=null and id!=''">
                 car_id,
             </if>
-            <if test="car_cd !=null and car_cd!=''">
+            <if test="carCd !=null and carCd!=''">
                 car_cd,
             </if>
-            <if test="car_brand !=null and car_brand!=''">
+            <if test="carBrand !=null and carBrand!=''">
                 car_brand,
             </if>
-            <if test="car_model !=null and car_model!=''">
+            <if test="carModel !=null and carModel!=''">
                 car_model,
             </if>
-            <if test="car_number !=null and car_number!=''">
+            <if test="carNumber !=null and carNumber!=''">
                 car_number,
             </if>
-            <if test="car_color !=null and car_color!=''">
+            <if test="carColor !=null and carColor!=''">
                 car_color,
             </if>
 
@@ -85,22 +86,22 @@
             </if>
         </trim>
         <trim prefix="values(" suffix=")" suffixOverrides=",">
-            <if test="car_id !=null and car_id!=''">
-                #{carId},
+            <if test="id !=null and id!=''">
+                #{id},
             </if>
-            <if test="car_cd !=null and car_cd!=''">
+            <if test="carCd !=null and carCd!=''">
                 #{carCd},
             </if>
-            <if test="car_brand !=null and car_brand!=''">
+            <if test="carBrand !=null and carBrand!=''">
                 #{carBrand},
             </if>
-            <if test="car_model !=null and car_model!=''">
+            <if test="carModel !=null and carModel!=''">
                 #{carModel},
             </if>
-            <if test="car_number !=null and car_number!=''">
+            <if test="carNumber !=null and carNumber!=''">
                 #{carNumber},
             </if>
-            <if test="car_color !=null and car_color!=''">
+            <if test="carColor !=null and carColor!=''">
                 #{carColor},
             </if>
             <if test="createUser != null" >
@@ -127,22 +128,22 @@
     <update id="update">
         update CAR
         <trim prefix="set" suffixOverrides=",">
-            <if test="car_id !=null and car_id!=''">
-                car_id = #{carId},
+            <if test="id !=null and id!=''">
+                car_id = #{id},
             </if>
-            <if test="car_cd !=null and car_cd!=''">
+            <if test="carCd !=null and carCd!=''">
                 car_cd = #{carCd},
             </if>
-            <if test="car_brand !=null and car_brand!=''">
+            <if test="carBrand !=null and carBrand!=''">
                 car_brand = #{carBrand},
             </if>
-            <if test="car_model !=null and car_model!=''">
+            <if test="carModel !=null and carModel!=''">
                 car_model = #{carModel},
             </if>
-            <if test="car_number !=null and car_number!=''">
+            <if test="carNumber !=null and carNumber!=''">
                 car_number = #{carNumber},
             </if>
-            <if test="car_color !=null and car_color!=''">
+            <if test="carColor !=null and carColor!=''">
                 car_color = #{carColor},
             </if>
 
@@ -162,7 +163,7 @@
                 DEL_FLAG=#{delFlag},
             </if>
             <if test="remarks != null" >
-                REMARKS=#{remarks},
+                REMARKS=#{remarks}
             </if>
         </trim>
         where CAR_ID=#{id}

@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.renyong.modules.sys.dao.SysAutoGenerateCodingDao">
+    <resultMap id="BaseResultMap" type="com.renyong.modules.sys.model.SysAutoGenerateCoding">
+        <id column="auto_generate_coding_id" property="id" />
+        <result column="cd_english_name" property="cdEnglishName" />
+        <result column="cd_chinese_desc" property="cdChineseDesc" />
+        <result column="cd_prefix" property="cdPrefix" />
+        <result column="cd_current_num" property="cdCurrentNum" />
+        <result column="cd_length" property="cdLength" />
+        <result column="cd_time_format" property="cdTimeFormat" />
+        <result column="cd_start_num" property="cdStartNum" />
+        <!--公共属性-->
+        <result column="create_user" property="createUser.id" jdbcType="VARCHAR" />
+        <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+        <result column="last_update_date" property="lastUpdateDate" jdbcType="TIMESTAMP" />
+        <result column="last_update_user" property="lastUpdateUser.id" jdbcType="VARCHAR" />
+        <result column="del_flag" property="delFlag" jdbcType="VARCHAR" />
+        <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    </resultMap>
+    <!--查询单个-->
+    <select id="get" resultMap="BaseResultMap">
+        SELECT * from sys_auto_generate_coding WHERE sys_auto_generate_coding_id = #{id}
+    </select>
+    <!--查询多个-->
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT * from sys_auto_generate_coding WHERE del_flag = '0'
+        <if test="id !=null and id!=''">
+            AND auto_generate_coding_id = #{id}
+        </if>
+        <if test="cdEnglishName !=null and cdEnglishName!=''">
+            AND cd_english_name = #{cdEnglishName}
+        </if>
+        <if test="cdChineseDesc !=null and cdChineseDesc!=''">
+            AND cd_chinese_desc = #{cdChineseDesc}
+        </if>
+        <if test="cdPrefix !=null and cdPrefix!=''">
+            AND cd_prefix = #{cdPrefix}
+        </if>
+        <if test="cdCurrentNum !=null and cdCurrentNum!=''">
+            AND cd_current_num = #{cdCurrentNum}
+        </if>
+        <if test="cdLength !=null">
+            AND cd_length = #{cdLength}
+        </if>
+        <if test="cdTimeFormat !=null and cdTimeFormat!=''">
+            AND cd_time_format = #{cdTimeFormat}
+        </if>
+        <if test="cdStartNum !=null">
+            AND cd_start_num = #{cdStartNum}
+        </if>
+        ORDER BY CREATE_DATE DESC
+    </select>
+    <!--新增-->
+    <insert id="insert">
+        INSERT INTO sys_auto_generate_coding
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id !=null and id!=''">
+                auto_generate_coding_id,
+            </if>
+            <if test="cdEnglishName !=null and cdEnglishName!=''">
+                cd_english_name,
+            </if>
+            <if test="cdChineseDesc !=null and cdChineseDesc!=''">
+                cd_chinese_desc,
+            </if>
+            <if test="cdPrefix !=null and cdPrefix!=''">
+                cd_prefix,
+            </if>
+            <if test="cdCurrentNum !=null and cdCurrentNum!=''">
+                cd_current_num,
+            </if>
+            <if test="cdLength !=null">
+                cd_length,
+            </if>
+            <if test="cdTimeFormat !=null and cdTimeFormat!=''">
+                cd_time_format,
+            </if>
+            <if test="cdStartNum !=null">
+                cd_start_num,
+            </if>
+            <if test="createUser != null" >
+                CREATE_USER,
+            </if>
+            <if test="createDate != null" >
+                CREATE_DATE,
+            </if>
+            <if test="lastUpdateDate != null" >
+                LAST_UPDATE_DATE,
+            </if>
+            <if test="lastUpdateUser != null" >
+                LAST_UPDATE_USER,
+            </if>
+            <if test="delFlag != null" >
+                DEL_FLAG,
+            </if>
+            <if test="remarks != null" >
+                REMARKS
+            </if>
+        </trim>
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+            <if test="id !=null and id!=''">
+                #{id},
+            </if>
+            <if test="cdEnglishName !=null and cdEnglishName!=''">
+                #{cdEnglishName},
+            </if>
+            <if test="cdChineseDesc !=null and cdChineseDesc!=''">
+                #{cdChineseDesc},
+            </if>
+            <if test="cdPrefix !=null and cdPrefix!=''">
+                #{cdPrefix},
+            </if>
+            <if test="cdCurrentNum !=null and cdCurrentNum!=''">
+                #{cdCurrentNum},
+            </if>
+            <if test="cdLength !=null">
+                #{cdLength},
+            </if>
+            <if test="cdTimeFormat !=null and cdTimeFormat!=''">
+                #{cdTimeFormat},
+            </if>
+            <if test="cdStartNum !=null">
+                #{cdStartNum},
+            </if>
+            <if test="createUser != null" >
+                #{createUser.id},
+            </if>
+            <if test="createDate != null" >
+                #{createDate},
+            </if>
+            <if test="lastUpdateDate != null" >
+                #{lastUpdateDate},
+            </if>
+            <if test="lastUpdateUser != null" >
+                #{lastUpdateUser.id},
+            </if>
+            <if test="delFlag != null" >
+                #{delFlag},
+            </if>
+            <if test="remarks != null" >
+                #{remarks}
+            </if>
+        </trim>
+    </insert>
+    <!--修改-->
+    <update id="update">
+        update sys_auto_generate_coding
+        <trim prefix="set" suffixOverrides=",">
+            <if test="id !=null and id!=''">
+                auto_generate_coding_id = #{id},
+            </if>
+            <if test="cdEnglishName !=null and cdEnglishName!=''">
+                cd_english_name = #{cdEnglishName},
+            </if>
+            <if test="cdChineseDesc !=null and cdChineseDesc!=''">
+                cd_chinese_desc = #{cdChineseDesc},
+            </if>
+            <if test="cdPrefix !=null and cdPrefix!=''">
+                cd_prefix = #{cdPrefix},
+            </if>
+            <if test="cdCurrentNum !=null and cdCurrentNum!=''">
+                cd_current_num = #{cdCurrentNum},
+            </if>
+            <if test="cdLength !=null">
+                cd_length = #{cdLength},
+            </if>
+            <if test="cdTimeFormat !=null and cdTimeFormat!=''">
+                cd_time_format = #{cdTimeFormat},
+            </if>
+            <if test="cdStartNum !=null">
+                cd_start_num = #{cdStartNum},
+            </if>
+            <if test="createUser != null" >
+                CREATE_USER=#{createUser.id},
+            </if>
+            <if test="createDate != null" >
+                CREATE_DATE=#{createDate},
+            </if>
+            <if test="lastUpdateDate != null" >
+                LAST_UPDATE_DATE=#{lastUpdateDate},
+            </if>
+            <if test="lastUpdateUser != null" >
+                LAST_UPDATE_USER=#{lastUpdateUser.id},
+            </if>
+            <if test="delFlag != null" >
+                DEL_FLAG=#{delFlag},
+            </if>
+            <if test="remarks != null" >
+                REMARKS=#{remarks}
+            </if>
+        </trim>
+        where sys_auto_generate_coding_id=#{id}
+    </update>
+    <!--逻辑删除-->
+    <update id="delete">
+        update sys_auto_generate_coding
+        SET def_flag = '1',
+        LAST_UPDATE_DATE=#{lastUpdateDate},
+        LAST_UPDATE_USER=#{lastUpdateUser.id}
+        where sys_auto_generate_coding_id=#{id}
+    </update>
+    <!--物理删除-->
+    <delete id="deleteById">
+        DELETE FROM sys_auto_generate_coding WHERE sys_auto_generate_coding_id = #{id}
+    </delete>
+</mapper>

@@ -13,6 +13,7 @@ import java.lang.annotation.*;
 @Component
 @Target(ElementType.TYPE)
 @Documented
+@Inherited//改注解可被继承
 public @interface MybatisDao {
     String value() default "";
 }

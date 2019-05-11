@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class LoginController{
     @RequestMapping("/toLogin")
     public String toLoginPage(){//去登陆页面
-//        CarService carService = new CarService();
-//        carService.findAll();
         return "login";
     }
 }
