@@ -11,4 +11,5 @@ import com.renyong.modules.sys.model.SysAutoGenerateCoding;
  */
 @MybatisDao
 public interface SysAutoGenerateCodingDao extends BaseDao<SysAutoGenerateCoding> {
+    public SysAutoGenerateCoding getCdByEnName(String cdEnglishName);
 }

@@ -1,19 +1,16 @@
 package com.renyong.base.aop;
-
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
-import org.springframework.stereotype.Service;
-
+import org.springframework.stereotype.Component;
 import java.util.HashMap;
 import java.util.Map;
-
 /**
  * @Auther: 任勇勇
  * @Date: 2019/5/9 22:53
  * @Description:  日志切面类 用于记录增删改查操作
  */
 @Aspect
-@Service
+@Component
 public class LogAop {
     private String methodName;//方法名
     private String tableNote;//表备注 例如：汽车
@@ -63,7 +60,7 @@ public class LogAop {
     }
     //返回通知
     @AfterReturning(pointcut = "joinPointcut()",returning = "obj")
-    public void doAfterReturning(Object obj,JoinPoint joinPoint) {
+    public void doAfterReturning(Object obj) {
 
     }
 
@@ -73,7 +70,7 @@ public class LogAop {
     }
     //异常通知
     @AfterThrowing(pointcut = "joinPointcut()",throwing = "ex")
-    public void doAfterThrowing(Exception ex,JoinPoint joinPoint) {
+    public void doAfterThrowing(Exception ex) {
         System.out.println("doAfterThrowing advice");
     }
 }

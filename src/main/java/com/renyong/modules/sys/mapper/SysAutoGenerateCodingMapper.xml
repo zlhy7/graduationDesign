@@ -10,6 +10,7 @@
         <result column="cd_length" property="cdLength" />
         <result column="cd_time_format" property="cdTimeFormat" />
         <result column="cd_start_num" property="cdStartNum" />
+        <result column="code" property="code"/>
         <!--公共属性-->
         <result column="create_user" property="createUser.id" jdbcType="VARCHAR" />
         <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
@@ -20,7 +21,21 @@
     </resultMap>
     <!--查询单个-->
     <select id="get" resultMap="BaseResultMap">
-        SELECT * from sys_auto_generate_coding WHERE sys_auto_generate_coding_id = #{id}
+        SELECT * from sys_auto_generate_coding
+        WHERE auto_generate_coding_id = #{id}
+    </select>
+    <!--查询单个通过英文名-->
+    <select id="getCdByEnName"  resultMap="BaseResultMap">
+        SELECT
+            concat(
+                cd_prefix,
+            IF
+                ( cd_time_format != 'notTime', TIME_FORMAT( NOW( ), cd_time_format ), '' ),
+                LPAD( cd_current_num, cd_length, 0 )
+            ) code,sagc.*
+        FROM
+            sys_auto_generate_coding sagc
+        WHERE cd_english_name = #{cdEnglishName}
     </select>
     <!--查询多个-->
     <select id="findAll" resultMap="BaseResultMap">
@@ -159,9 +174,7 @@
             <if test="cdPrefix !=null and cdPrefix!=''">
                 cd_prefix = #{cdPrefix},
             </if>
-            <if test="cdCurrentNum !=null and cdCurrentNum!=''">
-                cd_current_num = #{cdCurrentNum},
-            </if>
+            cd_current_num = LPAD(cd_current_num+1,cd_length,0),
             <if test="cdLength !=null">
                 cd_length = #{cdLength},
             </if>
@@ -190,7 +203,7 @@
                 REMARKS=#{remarks}
             </if>
         </trim>
-        where sys_auto_generate_coding_id=#{id}
+        where auto_generate_coding_id=#{id}
     </update>
     <!--逻辑删除-->
     <update id="delete">
@@ -198,10 +211,10 @@
         SET def_flag = '1',
         LAST_UPDATE_DATE=#{lastUpdateDate},
         LAST_UPDATE_USER=#{lastUpdateUser.id}
-        where sys_auto_generate_coding_id=#{id}
+        where auto_generate_coding_id=#{id}
     </update>
     <!--物理删除-->
     <delete id="deleteById">
-        DELETE FROM sys_auto_generate_coding WHERE sys_auto_generate_coding_id = #{id}
+        DELETE FROM sys_auto_generate_coding WHERE auto_generate_coding_id = #{id}
     </delete>
 </mapper>

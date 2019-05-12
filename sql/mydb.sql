@@ -11,7 +11,7 @@
  Target Server Version : 50718
  File Encoding         : 65001
 
- Date: 11/05/2019 22:10:59
+ Date: 12/05/2019 22:43:30
 */
 
 SET NAMES utf8mb4;
@@ -53,7 +53,7 @@ CREATE TABLE `sys_auto_generate_coding`  (
   `cd_prefix` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '前缀',
   `cd_current_num` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '当前数字',
   `cd_length` int(11) NULL DEFAULT NULL COMMENT '长度',
-  `cd_time_format` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT 'noNeed' COMMENT '时间格式',
+  `cd_time_format` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT 'noNeed' COMMENT '时间格式,notTime代表没有时间格式',
   `cd_start_num` int(11) NULL DEFAULT 0 COMMENT '从0还是1开始',
   `del_flag` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '删除标记',
   `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
@@ -64,5 +64,10 @@ CREATE TABLE `sys_auto_generate_coding`  (
   PRIMARY KEY (`auto_generate_coding_id`) USING BTREE,
   UNIQUE INDEX `uk_cd_english_name`(`cd_english_name`) USING BTREE COMMENT '英文名唯一'
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '自动编码对应表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of sys_auto_generate_coding
+-- ----------------------------
+INSERT INTO `sys_auto_generate_coding` VALUES ('c19a1d2c749811e9b85500e04c83917e', 'CAR_CD', '汽车编码', 'CAR', '0000002', 7, 'notTime', 0, '0', '汽车编码备注', 'admin', '2019-05-12 17:31:44', 'admin', '2019-05-12 14:22:18');
 
 SET FOREIGN_KEY_CHECKS = 1;

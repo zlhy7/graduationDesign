@@ -1,8 +1,10 @@
 package com.renyong.modules.car.web;
 
+import com.renyong.base.util.GenerateUtil;
 import com.renyong.base.util.StringUtil;
 import com.renyong.modules.car.model.Car;
 import com.renyong.modules.car.service.CarService;
+import com.renyong.modules.sys.service.SysAutoGenerateCodingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +23,8 @@ import java.util.List;
 public class CarController{
     @Autowired
     private CarService carService;//汽车业务层
+    @Autowired
+    private SysAutoGenerateCodingService sysAutoGenerateCodingService;//自动编码类
     //查询一个
     @ModelAttribute("car")
     public Car get(String id){
@@ -33,6 +37,8 @@ public class CarController{
     @RequestMapping("list")
     public String list(Car car,Model model){
         List<Car> carList = carService.findAll(car);
+        String a = GenerateUtil.getAutoCd("CAR_CD");
+//        String b = sysAutoGenerateCodingService.getAutoCd("CAR_CD");
         model.addAttribute("car",car);//条件
         model.addAttribute("carList",carList);//记录行
         return "index";

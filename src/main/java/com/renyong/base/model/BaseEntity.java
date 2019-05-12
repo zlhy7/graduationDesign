@@ -1,6 +1,5 @@
 package com.renyong.base.model;
-
-import com.renyong.base.util.generateUtil;
+import com.renyong.base.util.GenerateUtil;
 import com.renyong.modules.user.model.UserBean;
 
 import java.util.Date;
@@ -80,7 +79,7 @@ public abstract class BaseEntity<T>{
         this.delFlag = delFlag;
     }
     public void preInsert(){
-        this.id = generateUtil.uuid();//保存id
+        this.id = GenerateUtil.uuid();//保存id
         this.lastUpdateDate = new Date();//最后更新时间
         this.createDate = this.lastUpdateDate;
         this.delFlag = "0";

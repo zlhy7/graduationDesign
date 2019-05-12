@@ -50,6 +50,16 @@ public class SysAutoGenerateCoding extends BaseEntity<SysAutoGenerateCoding>{
      */
     private Integer cdStartNum;
 
+    private String code;//用于存储最终生成的cd
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }
