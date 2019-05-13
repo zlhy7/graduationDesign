@@ -998,46 +998,103 @@
     </key>
     <column id="244" parent="230" name="auto_generate_coding_id">
       <Position>1</Position>
+      <Comment>表id</Comment>
       <DataType>varchar(36)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="245" parent="230" name="cd_english_name">
       <Position>2</Position>
+      <Comment>英文名</Comment>
       <DataType>varchar(30)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="246" parent="230" name="cd_chinese_desc">
       <Position>3</Position>
+      <Comment>中文描述</Comment>
       <DataType>varchar(30)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="247" parent="230" name="cd_prefix">
       <Position>4</Position>
+      <Comment>前缀</Comment>
       <DataType>varchar(10)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="248" parent="230" name="cd_current_num">
       <Position>5</Position>
+      <Comment>当前数字</Comment>
       <DataType>varchar(30)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="249" parent="230" name="cd_length">
       <Position>6</Position>
+      <Comment>长度</Comment>
       <DataType>int(11)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="250" parent="230" name="cd_time_format">
       <Position>7</Position>
+      <Comment>时间格式,notTime代表没有时间格式</Comment>
       <DataType>varchar(20)|0</DataType>
       <DefaultExpression>&apos;noNeed&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="251" parent="230" name="cd_start_num">
       <Position>8</Position>
+      <Comment>从0还是1开始</Comment>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
+    <column id="252" parent="230" name="del_flag">
+      <Position>9</Position>
+      <Comment>删除标记</Comment>
+      <DataType>varchar(2)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="253" parent="230" name="remark">
+      <Position>10</Position>
+      <Comment>备注</Comment>
+      <DataType>varchar(255)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="254" parent="230" name="create_user">
+      <Position>11</Position>
+      <Comment>创建人</Comment>
+      <DataType>varchar(36)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="255" parent="230" name="create_date">
+      <Position>12</Position>
+      <Comment>创建时间</Comment>
+      <DataType>datetime|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="256" parent="230" name="last_update_user">
+      <Position>13</Position>
+      <Comment>修改人</Comment>
+      <DataType>varchar(36)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="257" parent="230" name="last_update_date">
+      <Position>14</Position>
+      <Comment>更新时间</Comment>
+      <DataType>datetime|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="258" parent="230" name="uk_cd_english_name">
+      <ColNames>cd_english_name</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="259" parent="230" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>auto_generate_coding_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="260" parent="230" name="uk_cd_english_name">
+      <ColNames>cd_english_name</ColNames>
+      <UnderlyingIndexName>uk_cd_english_name</UnderlyingIndexName>
+    </key>
   </database-model>
 </dataSource>

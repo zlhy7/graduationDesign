@@ -174,7 +174,9 @@
             <if test="cdPrefix !=null and cdPrefix!=''">
                 cd_prefix = #{cdPrefix},
             </if>
-            cd_current_num = LPAD(cd_current_num+1,cd_length,0),
+            <if test="cdCurrentNum !=null and cdCurrentNum!=''">
+                cd_current_num = #{cdCurrentNum},
+            </if>
             <if test="cdLength !=null">
                 cd_length = #{cdLength},
             </if>
@@ -201,6 +203,20 @@
             </if>
             <if test="remarks != null" >
                 REMARKS=#{remarks}
+            </if>
+        </trim>
+        where auto_generate_coding_id=#{id}
+    </update>
+    <!--自动编码当前数位+1-->
+    <update id="updateCurrentNumById">
+        update sys_auto_generate_coding
+        <trim prefix="set" suffixOverrides=",">
+            cd_current_num = LPAD(cd_current_num+1,cd_length,0),
+            <if test="lastUpdateDate != null" >
+                LAST_UPDATE_DATE=#{lastUpdateDate},
+            </if>
+            <if test="lastUpdateUser != null" >
+                LAST_UPDATE_USER=#{lastUpdateUser.id},
             </if>
         </trim>
         where auto_generate_coding_id=#{id}

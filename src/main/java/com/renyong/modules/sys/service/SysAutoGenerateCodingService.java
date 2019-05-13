@@ -18,7 +18,7 @@ public class SysAutoGenerateCodingService extends BaseService<SysAutoGenerateCod
         SysAutoGenerateCoding sysAutoGenerateCoding = dao.getCdByEnName(cdEnglishName);
         String code = sysAutoGenerateCoding.getCode();//生成好的编码
         sysAutoGenerateCoding.preUpdate();
-        dao.update(sysAutoGenerateCoding);
+        dao.updateCurrentNumById(sysAutoGenerateCoding);
         return code;
     }
 }
