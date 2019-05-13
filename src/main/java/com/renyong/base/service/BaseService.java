@@ -6,6 +6,7 @@ import com.renyong.base.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -14,7 +15,7 @@ import java.util.List;
  * @Description: 公共service
  */
 @Transactional(readOnly = true)
-public class BaseService<D extends BaseDao<T>, T extends BaseEntity<T>>{
+public class BaseService<D extends BaseDao<T>, T extends BaseEntity<T>> implements Serializable{
     @Autowired
     protected D dao;
     public T get(String id) {

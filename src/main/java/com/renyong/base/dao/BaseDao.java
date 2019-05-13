@@ -1,5 +1,5 @@
 package com.renyong.base.dao;
-
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -7,7 +7,7 @@ import java.util.List;
  * @Date: 2019/4/14 16:16
  * @Description:
  */
-public interface BaseDao<T>{
+public interface BaseDao<T> extends Serializable {
     public T get(String id);//查询一个
     public T get(T var1);//查询一个
     public List<T> findAll();//查询所有

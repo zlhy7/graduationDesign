@@ -2,6 +2,7 @@ package com.renyong.base.model;
 import com.renyong.base.util.GenerateUtil;
 import com.renyong.modules.user.model.UserBean;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -9,7 +10,7 @@ import java.util.Date;
  * @Date: 2019/4/14 16:02
  * @Description: 基础的bean，其他的继承这个类
  */
-public abstract class BaseEntity<T>{
+public abstract class BaseEntity<T> implements Serializable{
     private static final long serialVersionUID = 1L;
     protected String id;//主键
     protected String remarks;//备注
