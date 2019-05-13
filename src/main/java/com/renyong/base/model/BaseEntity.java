@@ -84,7 +84,6 @@ public abstract class BaseEntity<T> implements Serializable{
         this.lastUpdateDate = new Date();//最后更新时间
         this.createDate = this.lastUpdateDate;
         this.delFlag = "0";
-//        UserBean user = UserUtils.getUser();
     }
     public void preUpdate(){
         this.lastUpdateDate = new Date();//最后更新时间
