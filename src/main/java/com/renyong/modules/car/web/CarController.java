@@ -38,7 +38,6 @@ public class CarController{
     public String list(Car car,Model model){
         List<Car> carList = carService.findAll(car);
         String a = GenerateUtil.getAutoCd("CAR_CD");
-//        String b = sysAutoGenerateCodingService.getAutoCd("CAR_CD");
         model.addAttribute("car",car);//条件
         model.addAttribute("carList",carList);//记录行
         return "index";
