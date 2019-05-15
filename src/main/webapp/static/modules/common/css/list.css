@@ -1,0 +1,16 @@
+body{
+    background-color: black;
+    color: white;
+}
+/*顶部导航栏*/
+.nav-tabs li{
+    padding: .75rem 1rem;
+}
+.nav-tabs li.active{
+    border-bottom: 3px solid darkgray;
+}
+/*列表页的查询条件所在form样式*/
+form.list_form{
+    display: flex;
+    padding: .75rem 1rem;
+}

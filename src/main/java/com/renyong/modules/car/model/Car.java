@@ -10,17 +10,43 @@ import com.renyong.base.model.BaseEntity;
  */
 @TableNote("汽车")
 public class Car extends BaseEntity<Car> {
+    private String CD_NAME = "CAR_CD,setCarCd";//第一个用于自动编码，第二个用于反射解析方法
     private String carCd;//车辆编码
     private String carBrand;//品牌
     private String carModel;//型号
     private String carColor;//颜色
     private String carNumber;//车牌号
-    public Car() {}
-    public Car(String carBrand, String carModel, String carColor, String carNumber) {
+
+    public String getCD_NAME() {
+        return CD_NAME;
+    }
+
+    public void setCD_NAME(String CD_NAME) {
+        this.CD_NAME = CD_NAME;
+    }
+
+    public String getCarBrand() {
+        return carBrand;
+    }
+
+    public void setCarBrand(String carBrand) {
         this.carBrand = carBrand;
+    }
+
+    public String getCarModel() {
+        return carModel;
+    }
+
+    public void setCarModel(String carModel) {
         this.carModel = carModel;
+    }
+
+    public String getCarColor() {
+        return carColor;
+    }
+
+    public void setCarColor(String carColor) {
         this.carColor = carColor;
-        this.carNumber = carNumber;
     }
 
     public String getCarCd() {

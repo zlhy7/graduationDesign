@@ -1,8 +1,13 @@
 package com.renyong.base.model;
+import com.renyong.base.annotation.TableNote;
 import com.renyong.base.util.GenerateUtil;
 import com.renyong.modules.user.model.UserBean;
 
 import java.io.Serializable;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Date;
 
 /**
@@ -12,6 +17,7 @@ import java.util.Date;
  */
 public abstract class BaseEntity<T> implements Serializable{
     private static final long serialVersionUID = 1L;
+    private String CD_NAME = "";
     protected String id;//主键
     protected String remarks;//备注
     protected UserBean createUser;//创建人
@@ -19,9 +25,17 @@ public abstract class BaseEntity<T> implements Serializable{
     protected UserBean lastUpdateUser;//更新人
     protected Date lastUpdateDate;//最后更新时间
     protected String delFlag = "0";//删除标记
-
+    private T t;//便于泛型解析
     public static long getSerialVersionUID() {
         return serialVersionUID;
+    }
+
+    public String getCD_NAME() {
+        return CD_NAME;
+    }
+
+    public void setCD_NAME(String CD_NAME) {
+        this.CD_NAME = CD_NAME;
     }
 
     public String getId() {
@@ -81,6 +95,19 @@ public abstract class BaseEntity<T> implements Serializable{
     }
     public void preInsert(){
         this.id = GenerateUtil.uuid();//保存id
+        Class class1 = this.getClass();
+        String cdName = this.getCD_NAME();
+        String code = GenerateUtil.getAutoCd(cdName.split(",")[0]);
+        try {
+            Method method = class1.getDeclaredMethod(cdName.split(",")[1],String.class);
+            method.invoke(this,code);
+        }catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        }catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
         this.lastUpdateDate = new Date();//最后更新时间
         this.createDate = this.lastUpdateDate;
         this.delFlag = "0";

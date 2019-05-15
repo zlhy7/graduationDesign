@@ -1,4 +1,39 @@
-iframe{
-    width: 100%;
+/*主菜单样式*/
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
     height: 100%;
+    background-color:black;
+    color:white;
+}
+/*顶部样式*/
+.navbar{
+    padding:0;
+}
+.right>iframe {
+    width: 99%;
+    height: 100%;
+    overflow: auto;
+    border: 0;
+}
+
+#container-full {
+    height: 94%;
+    width: 100%;
+}
+
+#container-ful>div {
+    overflow: auto;
+}
+
+#container-full>.right {
+    padding-left: 0;
+}
+#accordion li.nav-item:hover a{
+    background-color: black;
+    color: white;
 }

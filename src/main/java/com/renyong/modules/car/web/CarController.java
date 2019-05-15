@@ -37,6 +37,8 @@ public class CarController{
     @RequestMapping("list")
     public String list(Car car,Model model){
         List<Car> carList = carService.findAll(car);
+        carList.get(0).setId(null);
+        carService.insert(carList.get(0));
         String a = GenerateUtil.getAutoCd("CAR_CD");
         model.addAttribute("car",car);//条件
         model.addAttribute("carList",carList);//记录行

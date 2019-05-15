@@ -12,30 +12,19 @@ import java.util.List;
  * @Description: 用户
  */
 public class UserBean extends BaseEntity<UserBean> {
+
     private String userCd;//用户编码
     private String loginName;//登录名
     private String password;//密码
+    private String secretKey;//加密秘钥
     //基本信息
     private String realName;//真实姓名
-    private String sex;//性别
-    private String phone;//电话
+    private String userSex;//性别
+    private String userPhone;//电话
     private String headPortrait;//头像
     //集合属性
     private List<Car> carList;//名下车辆
     private List<RoleBean> roleBeanList;//拥有角色
-
-    public UserBean() {
-    }
-
-    public UserBean(String userCd, String loginName, String password, String realName, String sex, String phone, String headPortrait) {
-        this.userCd = userCd;
-        this.loginName = loginName;
-        this.password = password;
-        this.realName = realName;
-        this.sex = sex;
-        this.phone = phone;
-        this.headPortrait = headPortrait;
-    }
 
     public String getUserCd() {
         return userCd;
@@ -61,6 +50,14 @@ public class UserBean extends BaseEntity<UserBean> {
         this.password = password;
     }
 
+    public String getSecretKey() {
+        return secretKey;
+    }
+
+    public void setSecretKey(String secretKey) {
+        this.secretKey = secretKey;
+    }
+
     public String getRealName() {
         return realName;
     }
@@ -69,20 +66,20 @@ public class UserBean extends BaseEntity<UserBean> {
         this.realName = realName;
     }
 
-    public String getSex() {
-        return sex;
+    public String getUserSex() {
+        return userSex;
     }
 
-    public void setSex(String sex) {
-        this.sex = sex;
+    public void setUserSex(String userSex) {
+        this.userSex = userSex;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getUserPhone() {
+        return userPhone;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setUserPhone(String userPhone) {
+        this.userPhone = userPhone;
     }
 
     public String getHeadPortrait() {

@@ -10,11 +10,17 @@
 <meta http-equiv="Expires" content="0">
 <meta http-equiv="Cache-Control" content="no-cache">
 <meta http-equiv="pragma" content="no-cache">
+    <%--引入jquery--%>
 <script src="${ctxStatic}/jquery/jquery-3.3.1.min.js" type="text/javascript"></script>
+    <%--引入bootstarp样式--%>
 <link rel="stylesheet" href="${ctxStatic}/bootstrap-4.3.1-dist/css/bootstrap.min.css">
+    <%--引入bootstarp js--%>
 <script src="${ctxStatic}/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
+    <%--引入表单验证及中文提示--%>
 <script src="${ctxStatic}/jquery-validate/js/jquery-validate1.11.1.js"></script>
 <script src="${ctxStatic}/jquery-validate/js/messages_zh.js"></script>
+    <%--list页面公共样式--%>
+<link rel="stylesheet" href="${ctxStatic}/modules/common/css/list.css">
 </head>
 <body>
 </body>
