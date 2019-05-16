@@ -14,3 +14,10 @@ form.list_form{
     display: flex;
     padding: .75rem 1rem;
 }
+/*控件之间的距离*/
+#searchForm>.input-prepend{
+    margin-right: 30px;
+}
+.btn{
+    padding: 0.20rem .75rem;
+}

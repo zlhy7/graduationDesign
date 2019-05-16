@@ -1,7 +1,7 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : 本地数据库
+ Source Server         : 本地
  Source Server Type    : MySQL
  Source Server Version : 50718
  Source Host           : localhost:3306
@@ -11,7 +11,7 @@
  Target Server Version : 50718
  File Encoding         : 65001
 
- Date: 12/05/2019 22:43:30
+ Date: 16/05/2019 09:05:40
 */
 
 SET NAMES utf8mb4;
@@ -40,7 +40,9 @@ CREATE TABLE `car`  (
 -- ----------------------------
 -- Records of car
 -- ----------------------------
-INSERT INTO `car` VALUES ('2fa1sd21fds5f15d61sf55', 'car000000', '宝马', 'x666', '陕A · XM666', '#ffffff', NULL, '2019-05-09 21:55:45.000000', '2019-05-09 21:55:45.000000', NULL, '0', '第一个车');
+INSERT INTO `car` VALUES ('133052a0ab0e4c09b14da224aa473c94', 'CAR0000009', '宝马', 'x666', '陕A · XM666', '#ffffff', NULL, '2019-05-15 23:20:15.950000', '2019-05-15 23:20:15.950000', NULL, '0', '第一个车');
+INSERT INTO `car` VALUES ('168176bf98414bc0bb69c469eb4aa100', 'car000000', '宝马', 'x666', '陕A · XM666', '#ffffff', NULL, '2019-05-15 23:01:22.187000', '2019-05-15 23:01:22.187000', NULL, '0', '第一个车');
+INSERT INTO `car` VALUES ('f4682e9416724149bbf12bc482b19d3a', 'CAR0000007', '宝马', 'x666', '陕A · XM666', '#ffffff', NULL, '2019-05-15 23:10:27.457000', '2019-05-15 23:10:27.457000', NULL, '0', '第一个车');
 
 -- ----------------------------
 -- Table structure for sys_auto_generate_coding
@@ -68,6 +70,29 @@ CREATE TABLE `sys_auto_generate_coding`  (
 -- ----------------------------
 -- Records of sys_auto_generate_coding
 -- ----------------------------
-INSERT INTO `sys_auto_generate_coding` VALUES ('c19a1d2c749811e9b85500e04c83917e', 'CAR_CD', '汽车编码', 'CAR', '0000002', 7, 'notTime', 0, '0', '汽车编码备注', 'admin', '2019-05-12 17:31:44', 'admin', '2019-05-12 14:22:18');
+INSERT INTO `sys_auto_generate_coding` VALUES ('c19a1d2c749811e9b85500e04c83917e', 'CAR_CD', '汽车编码', 'CAR', '0000011', 7, 'notTime', 0, '0', '汽车编码备注', 'admin', '2019-05-12 17:31:44', 'admin', '2019-05-15 23:20:16');
+
+-- ----------------------------
+-- Table structure for sys_user
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_user`;
+CREATE TABLE `sys_user`  (
+  `user_id` varchar(36) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '用户id',
+  `user_cd` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '用户cd',
+  `login_name` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '登录名',
+  `password` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '登录密码',
+  `secret_key` varchar(8) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '加密秘钥',
+  `real_name` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '真实姓名',
+  `user_sex` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '用户性别',
+  `user_phone` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '用户电话',
+  `head_portrait` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '用户头像',
+  `del_flag` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '删除标记',
+  `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
+  `create_user` varchar(36) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '创建人',
+  `create_date` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  `last_update_user` varchar(36) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '修改人',
+  `last_update_date` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`user_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 SET FOREIGN_KEY_CHECKS = 1;

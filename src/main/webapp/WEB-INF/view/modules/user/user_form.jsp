@@ -4,20 +4,6 @@
 <head>
     <meta charset="UTF-8"/>
     <title>用户管理</title>
-    <script type="text/javascript">
-        //分页的方法
-        function page(n, s) {
-            <%--if (n > '${page.last}') {--%>
-                <%--n = '${page.last}';--%>
-            <%--}--%>
-            $("#pageNo").val(n);
-            $("#pageSize").val(s);
-            $("#searchForm").submit();
-            return false;
-        }
-        //调节宽度
-        // tableWidthReset(["2%","2%","3%","",""]);
-    </script>
 </head>
 <body>
 <ul class="nav nav-tabs">
@@ -37,7 +23,7 @@
         <form:input path="loginName"/>
     </div>
     <div class="input-btn">
-        <button class="btn btn-primary" onclick="return page('1')"><i class="glyphicon glyphicon-search"></i> 查询</button>
+        <button class="btn btn-primary" onclick="return page('1')"><i class="icon-search"></i> 查询</button>
     </div>
 </form:form>
 <table id="contentTable" class="table table-striped table-hover table-dark">
