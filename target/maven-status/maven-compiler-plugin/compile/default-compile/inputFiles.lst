@@ -1,6 +1,7 @@
 E:\project\graduationDesign\src\main\java\com\renyong\base\util\StringUtil.java
 E:\project\graduationDesign\src\main\java\com\renyong\base\aop\LogAop.java
 E:\project\graduationDesign\src\main\java\com\renyong\modules\other\LoginInterceptor.java
+E:\project\graduationDesign\src\main\java\com\renyong\modules\user\service\UserBeanService.java
 E:\project\graduationDesign\src\main\java\com\renyong\modules\car\web\CarController.java
 E:\project\graduationDesign\src\main\java\com\renyong\modules\sys\dao\SysAutoGenerateCodingDao.java
 E:\project\graduationDesign\src\main\java\com\renyong\base\annotation\TableNote.java
@@ -11,11 +12,13 @@ E:\project\graduationDesign\src\main\java\com\renyong\modules\sys\model\SysAutoG
 E:\project\graduationDesign\src\main\java\com\renyong\base\util\GenerateUtil.java
 E:\project\graduationDesign\src\main\java\com\renyong\base\util\DateUtil.java
 E:\project\graduationDesign\src\main\java\com\renyong\modules\car\dao\CarDao.java
+E:\project\graduationDesign\src\main\java\com\renyong\modules\user\web\UserBeanController.java
 E:\project\graduationDesign\src\main\java\com\renyong\base\service\BaseService.java
 E:\project\graduationDesign\src\main\java\com\renyong\base\annotation\MybatisDao.java
 E:\project\graduationDesign\src\main\java\com\renyong\modules\role\model\RoleBean.java
 E:\project\graduationDesign\src\main\java\com\renyong\modules\car\model\Car.java
 E:\project\graduationDesign\src\main\java\com\renyong\base\web\BaseController.java
+E:\project\graduationDesign\src\main\java\com\renyong\modules\user\dao\UserBeanDao.java
 E:\project\graduationDesign\src\main\java\com\renyong\base\dao\BaseDao.java
 E:\project\graduationDesign\src\main\java\com\renyong\base\model\BaseEntity.java
 E:\project\graduationDesign\src\main\java\com\renyong\modules\car\service\CarService.java

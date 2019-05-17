@@ -1,5 +1,6 @@
 package com.renyong.modules.car.web;
 
+import com.github.pagehelper.PageInfo;
 import com.renyong.base.util.GenerateUtil;
 import com.renyong.base.util.StringUtil;
 import com.renyong.modules.car.model.Car;
@@ -35,7 +36,7 @@ public class CarController{
     }
     //去往列表页面
     @RequestMapping("list")
-    public String list(Car car,Model model){
+    public String list(PageInfo pageInfo,Car car, Model model){
         List<Car> carList = carService.findAll(car);
         carList.get(0).setId(null);
         carService.insert(carList.get(0));

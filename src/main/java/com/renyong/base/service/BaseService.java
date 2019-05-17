@@ -1,11 +1,16 @@
 package com.renyong.base.service;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.renyong.base.dao.BaseDao;
 import com.renyong.base.model.BaseEntity;
+import com.renyong.base.model.Page;
 import com.renyong.base.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.Serializable;
 import java.util.List;
 
@@ -56,5 +61,9 @@ public class BaseService<D extends BaseDao<T>, T extends BaseEntity<T>> implemen
 
     public List<T> findAll(T entity) {
         return this.dao.findAll(entity);
+    }
+    public Page findPage(PageInfo<T> pageInfo, HttpServletRequest request, HttpServletResponse response){
+        PageHelper.startPage(pageInfo.getPageNum(),10);
+        return null;
     }
 }
