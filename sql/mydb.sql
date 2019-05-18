@@ -11,7 +11,7 @@
  Target Server Version : 50718
  File Encoding         : 65001
 
- Date: 16/05/2019 09:05:40
+ Date: 18/05/2019 17:06:48
 */
 
 SET NAMES utf8mb4;
@@ -92,7 +92,48 @@ CREATE TABLE `sys_user`  (
   `create_date` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
   `last_update_user` varchar(36) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '修改人',
   `last_update_date` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
-  PRIMARY KEY (`user_id`) USING BTREE
+  PRIMARY KEY (`user_id`) USING BTREE,
+  UNIQUE INDEX `un_login_name`(`login_name`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of sys_user
+-- ----------------------------
+INSERT INTO `sys_user` VALUES ('bdf5abe2794b11e996cf98eecb60554b', 'USER000001', 'admin', '21232f297a57a5a743894a0e4a801fc3', '', '管理员', '1', '123456', '没图', '0', '', 'admin', '2019-05-18 17:02:56', 'admin', '2019-05-18 17:02:56');
+INSERT INTO `sys_user` VALUES ('bdfab260794b11e996cf98eecb60554b', 'USER000001', 'admin1', '21232f297a57a5a743894a0e4a801fc3', '', '管理员', '1', '123456', '没图', '0', '', 'admin', '2019-05-18 17:02:56', 'admin', '2019-05-18 17:02:56');
+INSERT INTO `sys_user` VALUES ('bdfab53e794b11e996cf98eecb60554b', 'USER000001', 'admin2', '21232f297a57a5a743894a0e4a801fc3', '', '管理员', '1', '123456', '没图', '0', '', 'admin', '2019-05-18 17:02:56', 'admin', '2019-05-18 17:02:56');
+INSERT INTO `sys_user` VALUES ('bdfab653794b11e996cf98eecb60554b', 'USER000001', 'admin3', '21232f297a57a5a743894a0e4a801fc3', '', '管理员', '1', '123456', '没图', '0', '', 'admin', '2019-05-18 17:02:56', 'admin', '2019-05-18 17:02:56');
+INSERT INTO `sys_user` VALUES ('bdfab819794b11e996cf98eecb60554b', 'USER000001', 'admin4', '21232f297a57a5a743894a0e4a801fc3', '', '管理员', '1', '123456', '没图', '0', '', 'admin', '2019-05-18 17:02:56', 'admin', '2019-05-18 17:02:56');
+INSERT INTO `sys_user` VALUES ('bdfab8d4794b11e996cf98eecb60554b', 'USER000001', 'admin5', '21232f297a57a5a743894a0e4a801fc3', '', '管理员', '1', '123456', '没图', '0', '', 'admin', '2019-05-18 17:02:56', 'admin', '2019-05-18 17:02:56');
+INSERT INTO `sys_user` VALUES ('bdfab9c0794b11e996cf98eecb60554b', 'USER000001', 'admin6', '21232f297a57a5a743894a0e4a801fc3', '', '管理员', '1', '123456', '没图', '0', '', 'admin', '2019-05-18 17:02:56', 'admin', '2019-05-18 17:02:56');
+INSERT INTO `sys_user` VALUES ('bdfaba23794b11e996cf98eecb60554b', 'USER000001', 'admin7', '21232f297a57a5a743894a0e4a801fc3', '', '管理员', '1', '123456', '没图', '0', '', 'admin', '2019-05-18 17:02:56', 'admin', '2019-05-18 17:02:56');
+INSERT INTO `sys_user` VALUES ('bdfabb31794b11e996cf98eecb60554b', 'USER000001', 'admin8', '21232f297a57a5a743894a0e4a801fc3', '', '管理员', '1', '123456', '没图', '0', '', 'admin', '2019-05-18 17:02:56', 'admin', '2019-05-18 17:02:56');
+INSERT INTO `sys_user` VALUES ('bdfabd37794b11e996cf98eecb60554b', 'USER000001', 'admin9', '21232f297a57a5a743894a0e4a801fc3', '', '管理员', '1', '123456', '没图', '0', '', 'admin', '2019-05-18 17:02:56', 'admin', '2019-05-18 17:02:56');
+INSERT INTO `sys_user` VALUES ('bdfabe42794b11e996cf98eecb60554b', 'USER000001', 'admin10', '21232f297a57a5a743894a0e4a801fc3', '', '管理员', '1', '123456', '没图', '0', '', 'admin', '2019-05-18 17:02:56', 'admin', '2019-05-18 17:02:56');
+INSERT INTO `sys_user` VALUES ('bdfac090794b11e996cf98eecb60554b', 'USER000001', 'admin11', '21232f297a57a5a743894a0e4a801fc3', '', '管理员', '1', '123456', '没图', '0', '', 'admin', '2019-05-18 17:02:56', 'admin', '2019-05-18 17:02:56');
+INSERT INTO `sys_user` VALUES ('bdfac137794b11e996cf98eecb60554b', 'USER000001', 'admin12', '21232f297a57a5a743894a0e4a801fc3', '', '管理员', '1', '123456', '没图', '0', '', 'admin', '2019-05-18 17:02:56', 'admin', '2019-05-18 17:02:56');
+INSERT INTO `sys_user` VALUES ('bdfac19a794b11e996cf98eecb60554b', 'USER000001', 'admin13', '21232f297a57a5a743894a0e4a801fc3', '', '管理员', '1', '123456', '没图', '0', '', 'admin', '2019-05-18 17:02:56', 'admin', '2019-05-18 17:02:56');
+INSERT INTO `sys_user` VALUES ('bdfac1f3794b11e996cf98eecb60554b', 'USER000001', 'admin14', '21232f297a57a5a743894a0e4a801fc3', '', '管理员', '1', '123456', '没图', '0', '', 'admin', '2019-05-18 17:02:56', 'admin', '2019-05-18 17:02:56');
+INSERT INTO `sys_user` VALUES ('bdfac249794b11e996cf98eecb60554b', 'USER000001', 'admin15', '21232f297a57a5a743894a0e4a801fc3', '', '管理员', '1', '123456', '没图', '0', '', 'admin', '2019-05-18 17:02:56', 'admin', '2019-05-18 17:02:56');
+INSERT INTO `sys_user` VALUES ('bdfac297794b11e996cf98eecb60554b', 'USER000001', 'admin16', '21232f297a57a5a743894a0e4a801fc3', '', '管理员', '1', '123456', '没图', '0', '', 'admin', '2019-05-18 17:02:56', 'admin', '2019-05-18 17:02:56');
+INSERT INTO `sys_user` VALUES ('bdfac375794b11e996cf98eecb60554b', 'USER000001', 'admin17', '21232f297a57a5a743894a0e4a801fc3', '', '管理员', '1', '123456', '没图', '0', '', 'admin', '2019-05-18 17:02:56', 'admin', '2019-05-18 17:02:56');
+INSERT INTO `sys_user` VALUES ('bdfac4d4794b11e996cf98eecb60554b', 'USER000001', 'admin18', '21232f297a57a5a743894a0e4a801fc3', '', '管理员', '1', '123456', '没图', '0', '', 'admin', '2019-05-18 17:02:56', 'admin', '2019-05-18 17:02:56');
+INSERT INTO `sys_user` VALUES ('bdfac549794b11e996cf98eecb60554b', 'USER000001', 'admin19', '21232f297a57a5a743894a0e4a801fc3', '', '管理员', '1', '123456', '没图', '0', '', 'admin', '2019-05-18 17:02:56', 'admin', '2019-05-18 17:02:56');
+INSERT INTO `sys_user` VALUES ('bdfac61c794b11e996cf98eecb60554b', 'USER000001', 'admin20', '21232f297a57a5a743894a0e4a801fc3', '', '管理员', '1', '123456', '没图', '0', '', 'admin', '2019-05-18 17:02:56', 'admin', '2019-05-18 17:02:56');
+INSERT INTO `sys_user` VALUES ('bdfac6f3794b11e996cf98eecb60554b', 'USER000001', 'admin21', '21232f297a57a5a743894a0e4a801fc3', '', '管理员', '1', '123456', '没图', '0', '', 'admin', '2019-05-18 17:02:56', 'admin', '2019-05-18 17:02:56');
+INSERT INTO `sys_user` VALUES ('bdfac7d4794b11e996cf98eecb60554b', 'USER000001', 'admin22', '21232f297a57a5a743894a0e4a801fc3', '', '管理员', '1', '123456', '没图', '0', '', 'admin', '2019-05-18 17:02:56', 'admin', '2019-05-18 17:02:56');
+INSERT INTO `sys_user` VALUES ('bdfac8a8794b11e996cf98eecb60554b', 'USER000001', 'admin23', '21232f297a57a5a743894a0e4a801fc3', '', '管理员', '1', '123456', '没图', '0', '', 'admin', '2019-05-18 17:02:56', 'admin', '2019-05-18 17:02:56');
+INSERT INTO `sys_user` VALUES ('bdfac97c794b11e996cf98eecb60554b', 'USER000001', 'admin24', '21232f297a57a5a743894a0e4a801fc3', '', '管理员', '1', '123456', '没图', '0', '', 'admin', '2019-05-18 17:02:56', 'admin', '2019-05-18 17:02:56');
+INSERT INTO `sys_user` VALUES ('bdfaca56794b11e996cf98eecb60554b', 'USER000001', 'admin25', '21232f297a57a5a743894a0e4a801fc3', '', '管理员', '1', '123456', '没图', '0', '', 'admin', '2019-05-18 17:02:56', 'admin', '2019-05-18 17:02:56');
+INSERT INTO `sys_user` VALUES ('bdfacb37794b11e996cf98eecb60554b', 'USER000001', 'admin26', '21232f297a57a5a743894a0e4a801fc3', '', '管理员', '1', '123456', '没图', '0', '', 'admin', '2019-05-18 17:02:56', 'admin', '2019-05-18 17:02:56');
+INSERT INTO `sys_user` VALUES ('bdfacb94794b11e996cf98eecb60554b', 'USER000001', 'admin27', '21232f297a57a5a743894a0e4a801fc3', '', '管理员', '1', '123456', '没图', '0', '', 'admin', '2019-05-18 17:02:56', 'admin', '2019-05-18 17:02:56');
+INSERT INTO `sys_user` VALUES ('bdfacbec794b11e996cf98eecb60554b', 'USER000001', 'admin28', '21232f297a57a5a743894a0e4a801fc3', '', '管理员', '1', '123456', '没图', '0', '', 'admin', '2019-05-18 17:02:56', 'admin', '2019-05-18 17:02:56');
+INSERT INTO `sys_user` VALUES ('bdfaccca794b11e996cf98eecb60554b', 'USER000001', 'admin29', '21232f297a57a5a743894a0e4a801fc3', '', '管理员', '1', '123456', '没图', '0', '', 'admin', '2019-05-18 17:02:56', 'admin', '2019-05-18 17:02:56');
+INSERT INTO `sys_user` VALUES ('bdfacda1794b11e996cf98eecb60554b', 'USER000001', 'admin30', '21232f297a57a5a743894a0e4a801fc3', '', '管理员', '1', '123456', '没图', '0', '', 'admin', '2019-05-18 17:02:56', 'admin', '2019-05-18 17:02:56');
+INSERT INTO `sys_user` VALUES ('bdface78794b11e996cf98eecb60554b', 'USER000001', 'admin31', '21232f297a57a5a743894a0e4a801fc3', '', '管理员', '1', '123456', '没图', '0', '', 'admin', '2019-05-18 17:02:56', 'admin', '2019-05-18 17:02:56');
+INSERT INTO `sys_user` VALUES ('bdfacf4f794b11e996cf98eecb60554b', 'USER000001', 'admin32', '21232f297a57a5a743894a0e4a801fc3', '', '管理员', '1', '123456', '没图', '0', '', 'admin', '2019-05-18 17:02:56', 'admin', '2019-05-18 17:02:56');
+INSERT INTO `sys_user` VALUES ('bdfacfa5794b11e996cf98eecb60554b', 'USER000001', 'admin33', '21232f297a57a5a743894a0e4a801fc3', '', '管理员', '1', '123456', '没图', '0', '', 'admin', '2019-05-18 17:02:56', 'admin', '2019-05-18 17:02:56');
+INSERT INTO `sys_user` VALUES ('bdfacffd794b11e996cf98eecb60554b', 'USER000001', 'admin34', '21232f297a57a5a743894a0e4a801fc3', '', '管理员', '1', '123456', '没图', '0', '', 'admin', '2019-05-18 17:02:56', 'admin', '2019-05-18 17:02:56');
+INSERT INTO `sys_user` VALUES ('bdfad056794b11e996cf98eecb60554b', 'USER000001', 'admin35', '21232f297a57a5a743894a0e4a801fc3', '', '管理员', '1', '123456', '没图', '0', '', 'admin', '2019-05-18 17:02:56', 'admin', '2019-05-18 17:02:56');
 
 SET FOREIGN_KEY_CHECKS = 1;

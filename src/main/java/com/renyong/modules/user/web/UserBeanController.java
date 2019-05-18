@@ -1,5 +1,8 @@
 package com.renyong.modules.user.web;
+import com.github.pagehelper.PageInfo;
 import com.renyong.base.util.StringUtil;
+import com.renyong.base.web.BaseController;
+import com.renyong.modules.car.model.Car;
 import com.renyong.modules.user.model.UserBean;
 import com.renyong.modules.user.service.UserBeanService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +18,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/user/")
-public class UserBeanController {
+public class UserBeanController extends BaseController<UserBeanService>{
     @Autowired
     private UserBeanService userBeanService;//汽车业务层
     //查询一个
@@ -29,9 +32,10 @@ public class UserBeanController {
     //去往列表页面
     @RequestMapping("list")
     public String list(UserBean userBean,Model model){
-        List<UserBean> userBeanList = userBeanService.findAll(userBean);
+        PageInfo<UserBean> page = userBeanService.findPage(userBean);
         model.addAttribute("userBean",userBean);//条件
-        model.addAttribute("userBeanList",userBeanList);//记录行
+        model.addAttribute("page",page);//记录行
+        model.addAttribute("pagingBar",getPagingBar(page));//分页栏
         return "modules/user/user_list";
     }
     //增加或修改记录行

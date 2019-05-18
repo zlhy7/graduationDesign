@@ -167,7 +167,7 @@
                 login_name = #{loginName},
             </if>
             <if test="password !=null and password!=''">
-                password = #{password},
+                password = md5(#{password}),
             </if>
             <if test="secretKey !=null and secretKey!=''">
                 secret_key = #{secretKey},

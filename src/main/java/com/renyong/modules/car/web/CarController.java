@@ -3,6 +3,7 @@ package com.renyong.modules.car.web;
 import com.github.pagehelper.PageInfo;
 import com.renyong.base.util.GenerateUtil;
 import com.renyong.base.util.StringUtil;
+import com.renyong.base.web.BaseController;
 import com.renyong.modules.car.model.Car;
 import com.renyong.modules.car.service.CarService;
 import com.renyong.modules.sys.service.SysAutoGenerateCodingService;
@@ -21,7 +22,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/car/")
-public class CarController{
+public class CarController extends BaseController<CarService>{
     @Autowired
     private CarService carService;//汽车业务层
     @Autowired
@@ -36,13 +37,12 @@ public class CarController{
     }
     //去往列表页面
     @RequestMapping("list")
-    public String list(PageInfo pageInfo,Car car, Model model){
-        List<Car> carList = carService.findAll(car);
-        carList.get(0).setId(null);
-        carService.insert(carList.get(0));
-        String a = GenerateUtil.getAutoCd("CAR_CD");
+    public String list(Car car, Model model){
+        PageInfo<Car> page = carService.findPage(car);
+//        String a = GenerateUtil.getAutoCd("CAR_CD");
         model.addAttribute("car",car);//条件
-        model.addAttribute("carList",carList);//记录行
+        model.addAttribute("page",page);//记录行
+        model.addAttribute("pagingBar",getPagingBar(page));//分页栏
         return "index";
     }
     //增加或修改记录行
@@ -58,13 +58,12 @@ public class CarController{
     //去往表单页面
     @RequestMapping("fromconfig")
     public String formCfg(Car car,Model model){
-        List<Car> carList = carService.findAll();
         return "index";
     }
     //删除某记录
     @RequestMapping("remove")
     public String remove(Car car){
-
+        carService.delete(car);//逻辑删除
         return "index";
     }
 

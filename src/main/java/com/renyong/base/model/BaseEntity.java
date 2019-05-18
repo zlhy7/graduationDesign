@@ -25,9 +25,18 @@ public abstract class BaseEntity<T> implements Serializable{
     protected UserBean lastUpdateUser;//更新人
     protected Date lastUpdateDate;//最后更新时间
     protected String delFlag = "0";//删除标记
+    protected int pageNum = 1;//当前页码
     private T t;//便于泛型解析
     public static long getSerialVersionUID() {
         return serialVersionUID;
+    }
+
+    public int getPageNum() {
+        return pageNum;
+    }
+
+    public void setPageNum(int pageNum) {
+        this.pageNum = pageNum;
     }
 
     public String getCD_NAME() {
