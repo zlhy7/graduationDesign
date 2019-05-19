@@ -21,3 +21,10 @@
     font-weight: bolder;
     padding-top: 8px;
 }
+label.error{
+    color:red;
+    padding-top: 5px;
+}
+label.error:before{
+    content: "\e083";
+}

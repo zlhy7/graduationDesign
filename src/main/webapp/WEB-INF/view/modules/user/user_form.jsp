@@ -4,6 +4,46 @@
 <head>
     <meta charset="UTF-8"/>
     <title>用户管理</title>
+    <script>
+        $(function () {
+            $("#userSex").select2({
+                placeholder: "请选择",
+                allowClear: true
+            });
+            //表单验证
+            $("#searchForm").validate({
+                rules: {
+                    loginName:{
+                        required:true
+                    },
+                    userCd:{
+                        required:true
+                    }
+                },
+                messages: {
+                    // applicantName: {remote: "线路已被选择"},
+                    applicantName2: {remote: "车站已被选择"}
+                },
+                submitHandler: function(form){
+                    loading('正在提交，请稍等...');
+                    form.submit();
+                },
+                success: function(lable){
+                    lable.remove();
+                },
+                errorContainer: "#messageBox",
+                errorPlacement: function(error, element) {
+                    if (element.is(":checkbox")||element.is(":radio")||element.parent().is(".input-append")){
+                        error.appendTo(element.parent().parent());
+                        console.log(7777);
+                    } else {
+                        console.log(666);
+                        error.insertAfter(element);
+                    }
+                }
+            });
+        })
+    </script>
 </head>
 <body>
 <ul class="nav nav-tabs">
@@ -74,12 +114,5 @@
         </div>
     </div>
 </form:form>
-<script>
-    $("#monitor-manage-bind-rule-select").select2({
-        placeholder: "请选择规则名",
-        width: "190px",
-        allowClear: true
-    });
-</script>
 </body>
 </html>
