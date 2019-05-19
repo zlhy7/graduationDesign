@@ -104,7 +104,7 @@ public abstract class BaseEntity<T> implements Serializable{
     }
     public void preInsert(){
         this.id = GenerateUtil.uuid();//保存id
-        Class class1 = this.getClass();
+       /* Class class1 = this.getClass();
         String cdName = this.getCD_NAME();
         String code = GenerateUtil.getAutoCd(cdName.split(",")[0]);
         try {
@@ -116,7 +116,7 @@ public abstract class BaseEntity<T> implements Serializable{
             e.printStackTrace();
         }catch (InvocationTargetException e) {
             e.printStackTrace();
-        }
+        }*/
         this.lastUpdateDate = new Date();//最后更新时间
         this.createDate = this.lastUpdateDate;
         this.delFlag = "0";

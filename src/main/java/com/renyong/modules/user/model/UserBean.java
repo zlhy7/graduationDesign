@@ -12,7 +12,7 @@ import java.util.List;
  * @Description: 用户
  */
 public class UserBean extends BaseEntity<UserBean> {
-
+    private String CD_NAME = "USER_CD,setUserCd";//第一个用于自动编码，第二个用于反射解析方法
     private String userCd;//用户编码
     private String loginName;//登录名
     private String password;//密码

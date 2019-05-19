@@ -59,8 +59,10 @@
             <td>${userBean.userPhone}</td>
             <td>${userBean.headPortrait}</td>
             <td>
-                <a style="color: #fff" class="btn btn-warning updateBtn" href="/user/fromconfig?id=${userBean.id}">修改</a>
-                <a style="color: #fff" class="btn btn-danger delBtn" href="/user/remove?id=${userBean.id}" onclick="return confirmx('确认要删除该参数吗？删除后将无法恢复', this.href)">删除</a>
+                <a style="color: #fff" class="btn btn-warning updateBtn" href="/user/fromconfig?id=${userBean.id}">
+                    <i class="glyphicon glyphicon-pencil"></i>修改</a>
+                <a style="color: #fff" class="btn btn-danger delBtn" href="/user/remove?id=${userBean.id}" onclick="return confirmx('确认要删除该参数吗？删除后将无法恢复', this.href)">
+                    <i class="	glyphicon glyphicon-trash"></i>删除</a>
             </td>
         </tr>
     </c:forEach>

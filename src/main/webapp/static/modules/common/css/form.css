@@ -1,0 +1,23 @@
+/*表单页面文本框宽度*/
+.form-control{
+    width: 50%;
+}
+.form_form{
+    padding-top: 10px;
+}
+.form_form .col{
+    display: flex;
+    margin-bottom: 20px;
+}
+.form_form .col>.control-label{
+    width: 20%;
+    text-align: right;
+    padding-top: 6px;
+}
+/*必选红星样式*/
+.help-inline{
+    color:red;
+    font-size: 16px;
+    font-weight: bolder;
+    padding-top: 8px;
+}

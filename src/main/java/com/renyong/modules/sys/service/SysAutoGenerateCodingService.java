@@ -16,6 +16,9 @@ public class SysAutoGenerateCodingService extends BaseService<SysAutoGenerateCod
     @Transactional(readOnly = false)
     public String getAutoCd(String cdEnglishName){
         SysAutoGenerateCoding sysAutoGenerateCoding = dao.getCdByEnName(cdEnglishName);
+        if(sysAutoGenerateCoding == null){
+            return "你还没配置编码";
+        }
         String code = sysAutoGenerateCoding.getCode();//生成好的编码
         sysAutoGenerateCoding.preUpdate();
         dao.updateCurrentNumById(sysAutoGenerateCoding);//只更新当前数

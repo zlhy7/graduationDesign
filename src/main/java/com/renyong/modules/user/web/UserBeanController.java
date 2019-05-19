@@ -1,5 +1,6 @@
 package com.renyong.modules.user.web;
 import com.github.pagehelper.PageInfo;
+import com.renyong.base.util.GenerateUtil;
 import com.renyong.base.util.StringUtil;
 import com.renyong.base.web.BaseController;
 import com.renyong.modules.car.model.Car;
@@ -46,19 +47,23 @@ public class UserBeanController extends BaseController<UserBeanService>{
         }else{//修改
             userBeanService.update(userBean);
         }
-        return "index";
+        return "redirect:list";
     }
     //去往表单页面
     @RequestMapping("fromconfig")
     public String formCfg(UserBean userBean,Model model){
-        List<UserBean> userBeanList = userBeanService.findAll();
-        return "index";
+        if(StringUtil.isBlank(userBean.getId())){
+            String code = GenerateUtil.getAutoCd(userBean.getCD_NAME().split(",")[0]);
+            userBean.setUserCd(code);
+        }
+        model.addAttribute("userBean",userBean);
+        return "modules/user/user_form";
     }
     //删除某记录
     @RequestMapping("remove")
     public String remove(UserBean userBean){
-
-        return "index";
+        userBeanService.delete(userBean);
+        return "redirect:list";
     }
 
 }

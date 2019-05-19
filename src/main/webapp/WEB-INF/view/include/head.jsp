@@ -21,8 +21,13 @@
     <%--引入表单验证及中文提示--%>
 <script src="${ctxStatic}/jquery-validate/js/jquery-validate1.11.1.js"></script>
 <script src="${ctxStatic}/jquery-validate/js/messages_zh.js"></script>
+    <%--引入select2插件--%>
+<link rel="stylesheet" href="${ctxStatic}/select2-develop/css/select2.css">
+<script src="${ctxStatic}/select2-develop/js/select2.full.js"></script>
     <%--list页面公共样式--%>
 <link rel="stylesheet" href="${ctxStatic}/modules/common/css/list.css"/>
+    <%--form页面公共样式--%>
+<link rel="stylesheet" href="${ctxStatic}/modules/common/css/form.css"/>
     <%--list页面 js--%>
 <script src="${ctxStatic}/modules/common/js/list.js"></script>
 </head>
