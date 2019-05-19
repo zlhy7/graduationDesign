@@ -7,9 +7,10 @@ function tableWidthReset(widths){
 //全选，反选
 //动态复选框事件
 $(".chooseOne").on("click",function(){
-    if($(".chooseOne:checked").length==$(".chooseOne:not(:disabled)").length){//全部选中时
+    console.log(666);
+    if($(".chooseOne:checked").length==$(".chooseOne").length){//全部选中时
         $(".chooseAll").prop("checked",true);
-    }else if($(".chooseOne:checked").length < $(".chooseOne:not(:disabled)").length){//选中数量小于可用复选框数量
+    }else if($(".chooseOne:checked").length < $(".chooseOne").length){//选中数量小于可用复选框数量
         $(".chooseAll").prop("checked",false);
     }
 });
