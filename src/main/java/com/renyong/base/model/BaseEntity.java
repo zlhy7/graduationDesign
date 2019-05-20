@@ -26,7 +26,6 @@ public abstract class BaseEntity<T> implements Serializable{
     protected Date lastUpdateDate;//最后更新时间
     protected String delFlag = "0";//删除标记
     protected int pageNum = 1;//当前页码
-    private T t;//便于泛型解析
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }
@@ -104,19 +103,21 @@ public abstract class BaseEntity<T> implements Serializable{
     }
     public void preInsert(){
         this.id = GenerateUtil.uuid();//保存id
-       /* Class class1 = this.getClass();
-        String cdName = this.getCD_NAME();
-        String code = GenerateUtil.getAutoCd(cdName.split(",")[0]);
-        try {
-            Method method = class1.getDeclaredMethod(cdName.split(",")[1],String.class);
-            method.invoke(this,code);
-        }catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        }catch (InvocationTargetException e) {
-            e.printStackTrace();
-        }*/
+        if(!"".equals(this.getCD_NAME())){//如果没传cd则自己生成
+            Class class1 = this.getClass();
+            String cdName = this.getCD_NAME();
+            String code = GenerateUtil.getAutoCd(cdName.split(",")[0]);
+            try {
+                Method method = class1.getDeclaredMethod(cdName.split(",")[1],String.class);
+                method.invoke(this,code);
+            }catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+            }catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
+        }
         this.lastUpdateDate = new Date();//最后更新时间
         this.createDate = this.lastUpdateDate;
         this.delFlag = "0";

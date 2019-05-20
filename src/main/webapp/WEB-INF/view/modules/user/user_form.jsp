@@ -18,6 +18,21 @@
                     },
                     userCd:{
                         required:true
+                    },
+                    realName:{
+                        required:true
+                    },
+                    userSex:{
+                        required:true
+                    },
+                    isAllowFlag:{
+                        required:true
+                    },
+                    userPhone:{
+                        required:true
+                    },
+                    remarks:{
+                        required:true
                     }
                 },
                 messages: {
@@ -51,6 +66,7 @@
     <li class="active"><a href="${ctx}/user/fromconfig?id=${userBean.id}">${not empty userBean.id?'修改':'添加'}用户</a></li>
 </ul>
 <form:form id="searchForm" class="form_form" modelAttribute="userBean" action="${ctx}/user/save" method="post">
+    <form:hidden path="id" />
     <div class="row">
         <div class="col">
             <label class="control-label">用户名：</label>
@@ -66,14 +82,15 @@
     <div class="row">
         <div class="col">
             <label class="control-label">姓名：</label>
-            <input type="text" class="form-control"/>
+            <input type="text" name="realName" class="form-control"/>
             <span class="help-inline">*</span>
         </div>
         <div class="col">
             <label class="control-label">性别：</label>
             <select id="userSex" name="userSex" class="form-control select2">
-                <option value="123">选项1</option>
-                <option value="456">选项2</option>
+                <option value="">保密</option>
+                <option value="1">男</option>
+                <option value="0">女</option>
             </select>
             <span class="help-inline">*</span>
         </div>
@@ -81,12 +98,12 @@
     <div class="row">
         <div class="col">
             <label class="control-label">手机：</label>
-            <input type="text" class="form-control"/>
+            <input type="text" name="userPhone" class="form-control"/>
             <span class="help-inline">*</span>
         </div>
         <div class="col">
             <label class="control-label">是否允许登陆：</label>
-            <input type="text" class="form-control"/>
+            <input type="text" name="isAllowFlag" class="form-control"/>
             <span class="help-inline">*</span>
         </div>
     </div>

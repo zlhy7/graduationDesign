@@ -1,6 +1,7 @@
 package com.renyong.base.util;
 
 import com.renyong.modules.sys.service.SysAutoGenerateCodingService;
+import com.renyong.modules.sys.service.SysDictBeanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -20,6 +21,9 @@ import java.util.UUID;
 public class GenerateUtil {
     @Autowired
     private SysAutoGenerateCodingService sysAutoGenerateCodingService;
+    @Autowired
+    private SysDictBeanService sysDictBeanService;
+    private static SysDictBeanService dictService;
     private static SysAutoGenerateCodingService autoCd;
     private static Random random = new Random(); // 随机数生成器
     private static StringBuffer carID  = new StringBuffer(); // 随机车牌号
@@ -50,12 +54,14 @@ public class GenerateUtil {
     public static String getAutoCd(String cdEnglistName){
         return autoCd.getAutoCd(cdEnglistName);
     }
-
-    public static SysAutoGenerateCodingService getAutoCd() {
-        return autoCd;
+    //返回字典代表值
+    public static String getDictValByKey(String dictName,String key){
+        return dictService.getDictValByKey(dictName,key);
     }
     @PostConstruct
     public void init(){
         GenerateUtil.autoCd = this.sysAutoGenerateCodingService;
+        GenerateUtil.dictService = this.sysDictBeanService;
     }
+
 }

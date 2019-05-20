@@ -41,7 +41,7 @@
     </div>
 </div>
 <div id="container-full" class="container-full row">
-    <div class="col-xl-2 left">
+    <div class="col-xl-2 left bg-dark">
         <div id="accordion">
             <div class="card">
                 <div class="card-header list-group-item-primary" data-toggle="collapse" href="#collapseOne">
@@ -71,11 +71,14 @@
                         系统设置
                     </a>
                 </div>
-                <div id="collapseTwo" class="collapse" data-parent="#accordion">
+                <div id="collapseTwo" class="collapse show" data-parent="#accordion">
                     <div class="bg-dark">
                         <ul class="nav flex-column">
                             <li class="nav-item">
                                 <a class="nav-link text-center" href="#">编码配置</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-center"  href="#" onclick="showContent('${ctx}/sysDictBean/list')">字典配置</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-center" href="#">角色管理</a>

@@ -1,6 +1,6 @@
 /*表单页面文本框宽度*/
 .form-control{
-    width: 50%;
+    width: 300px;
 }
 .form_form{
     padding-top: 10px;
@@ -9,7 +9,7 @@
     display: flex;
     margin-bottom: 20px;
 }
-.form_form .col>.control-label{
+.form_form .col>.control-label,.form_form .row>.control-label{
     width: 20%;
     text-align: right;
     padding-top: 6px;
@@ -27,4 +27,16 @@ label.error{
 }
 label.error:before{
     content: "\e083";
+}
+/*单列的表单*/
+form.form_form2{
+    width: 80%;
+    margin: 0 auto;
+}
+/*出现在form的table*/
+.form_table{
+    text-align: center;
+}
+.form_table td,.form_table th{
+    border: 1px solid white;
 }
