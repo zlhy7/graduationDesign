@@ -8,29 +8,37 @@
         var num=1;
         //验证key值唯一
         $.validator.addMethod("checkKeyUnique",function(value,element,params){
-            console.log(element);
-            var uniqueFlag = true;
+            // var uniqueFlag = true;
+            var keys = [];
             $("[name=key1]").each(function () {
-                if(value == $(this).val() && this.id != element.id){
+                keys.push($(this).val());
+                /*if(value == $(this).val() && this.id != element.id){
                     return false;
-                }
+                }*/
             });
-            return uniqueFlag;
+            return (keys.indexOf(value) == keys.lastIndexOf(value));
         },"key值唯一");
         $(function () {
             //表单验证
             $("#searchForm").validate({
                 rules: {
-                    sysDictBeanCd: {
-                        required: true
-                    },
                     dictEnglishName: {
-                        required: true
+                        required: true,
+                        remote: {
+                            scriptCharset: 'UTF-8',
+                            url: "${ctx}/sysDictBean/checkDictEnglishName",
+                            data: {
+                                dictEnglishName: function () {
+                                    return $("#dictEnglishName").val();
+                                },
+                                dictEnglishName2:function(){
+                                    return "${sysDictBean.dictEnglishName}";
+                                }
+                            },
+                            type: "post"
+                        }
                     },
                     dictChineseDesc: {
-                        required: true
-                    },
-                    remarks: {
                         required: true
                     },
                     key1: {
@@ -42,12 +50,7 @@
                     }
                 },
                 messages: {
-                    // applicantName: {remote: "线路已被选择"},
-                    applicantName2: {remote: "车站已被选择"}
-                },
-                submitHandler: function (form) {
-                    loading('正在提交，请稍等...');
-                    form.submit();
+                    dictEnglishName: {remote: "名称已存在"}
                 },
                 success: function (lable) {
                     lable.remove();
@@ -62,7 +65,14 @@
                 }
             });
             $("#btnSubmit").click(function () {
-                
+                var keys=[];
+                var values=[];
+                $("[name=key1]").each(function (index) {
+                    keys.push($(this).val());
+                    values.push($("[name=value1]").eq(index).val());
+                })
+                $("#dictKey").val(keys);
+                $("#dictValue").val(values);
             });
         });
         //添加行
@@ -91,13 +101,8 @@
 <form:form id="searchForm" class="form_form form_form2" modelAttribute="sysDictBeanBean"
            action="${ctx}/sysDictBean/save" method="post">
     <form:hidden path="id" />
-    <div class="row">
-        <div class="col">
-            <label class="control-label">字典编号：</label>
-            <input type="text" class="form-control" readonly="readonly" name="sysDictBeanCd" value="${sysDictBeanBean.sysDictBeanCd}"/>
-            <span class="help-inline">*</span>
-        </div>
-    </div>
+    <form:hidden path="dictKey" />
+    <form:hidden path="dictValue" />
     <div class="row">
         <div class="col">
             <label class="control-label">字典名：</label>
@@ -117,7 +122,6 @@
             <label class="control-label">备注：</label>
             <textarea name="remarks" class="form-control" style="resize:none;font-size: 14px;height: 100px;"
                       maxlength="255">${sysDictBeanBean.remarks}</textarea>
-            <span class="help-inline">*</span>
         </div>
     </div>
     <div class="row">

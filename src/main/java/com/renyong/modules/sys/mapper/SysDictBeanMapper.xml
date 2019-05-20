@@ -134,6 +134,13 @@
             AND dict_key = #{dictKey}
         </if>
     </select>
+    <!--供页面使用的查询-->
+    <select id="getForPageUse" resultMap="BaseResultMap">
+        SELECT dict_id,sys_dict_bean_cd,dict_chinese_desc,dict_english_name
+         FROM sys_dict where del_flag = '0'
+--          GROUP by dict_english_name
+
+    </select>
     <!--修改-->
     <update id="update">
         update sys_dict

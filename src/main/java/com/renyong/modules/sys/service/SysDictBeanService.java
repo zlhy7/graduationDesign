@@ -1,5 +1,6 @@
 package com.renyong.modules.sys.service;
 
+import com.github.pagehelper.PageInfo;
 import com.renyong.base.service.BaseService;
 import com.renyong.base.util.StringUtil;
 import com.renyong.modules.sys.dao.SysDictBeanDao;
@@ -7,6 +8,8 @@ import com.renyong.modules.sys.model.SysAutoGenerateCoding;
 import com.renyong.modules.sys.model.SysDictBean;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * @Auther: 任勇勇
@@ -21,5 +24,9 @@ public class SysDictBeanService extends BaseService<SysDictBeanDao,SysDictBean>{
             value = "";
         }
         return value;
+    }
+    public PageInfo<SysDictBean> findPage(SysDictBean sysDictBean){
+        List<SysDictBean> sysDictBeanList = dao.getForPageUse(sysDictBean);
+        return super.findPage(sysDictBean,sysDictBeanList);
     }
 }

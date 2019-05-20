@@ -11,11 +11,11 @@
   <short-name>fns</short-name>
   <uri>http://java.sun.com/jsp/jstl/functionss</uri>
 
-<!--<function>-->
-    <!--<description>获取参数</description>-->
-    <!--<name>getConfigValue</name>-->
-    <!--<function-class>com.javaee.modules.sys.utils.ConfigUtils</function-class>-->
-    <!--<function-signature>java.lang.String getConfigValue(java.lang.String, java.lang.String,java.lang.String)</function-signature>-->
-    <!--<example>${fns:getConfigValue(type,key,defaultValue)}</example>-->
-  <!--</function>-->
+<function>
+    <description>获取字典值</description>
+    <name>getDictValByKey</name>
+    <function-class>com.renyong.base.util.GenerateUtil</function-class>
+    <function-signature>java.lang.String getDictValByKey(java.lang.String,java.lang.String)</function-signature>
+    <example>${fns:getDict(type,key)}</example>
+  </function>
 </taglib>

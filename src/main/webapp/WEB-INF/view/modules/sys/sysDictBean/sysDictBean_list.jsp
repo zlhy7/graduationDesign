@@ -46,8 +46,10 @@
             <td><input type="checkbox" class="chooseOne"/></td>
             <td>${status.count}</td>
             <td>${sysDictBean.sysDictBeanCd}</td>
-            <td>${sysDictBean.dictEnglistName}</td>
-            <td>字典值</td>
+            <td>${sysDictBean.dictEnglishName}</td>
+            <td>
+
+            </td>
             <td>${sysDictBean.remarks}</td>
             <td>
                 <a style="color: #fff" class="btn btn-warning updateBtn" href="/sysDictBean/fromconfig?id=${sysDictBean.id}">

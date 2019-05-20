@@ -30,7 +30,7 @@
             concat(
                 cd_prefix,
             IF
-                ( cd_time_format != 'notTime', TIME_FORMAT( NOW( ), cd_time_format ), '' ),
+                ( cd_time_format != 'noNeed', TIME_FORMAT( NOW( ), cd_time_format ), '' ),
                 LPAD( cd_current_num, cd_length, 0 )
             ) code,sagc.*
         FROM

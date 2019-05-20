@@ -64,4 +64,9 @@ public class BaseService<D extends BaseDao<T>, T extends BaseEntity<T>> implemen
         PageInfo<T> pageInfo1=new PageInfo<T>(this.findAll(entity),6);//设置页码链长度
         return pageInfo1;
     }
+    public PageInfo findPage(T entity,List<T> list){
+        PageHelper.startPage(entity.getPageNum(),10);
+        PageInfo<T> pageInfo1=new PageInfo<T>(list,6);//设置页码链长度
+        return pageInfo1;
+    }
 }

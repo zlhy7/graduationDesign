@@ -1,6 +1,5 @@
 package com.renyong.modules.sys.web;
 import com.github.pagehelper.PageInfo;
-import com.renyong.base.util.GenerateUtil;
 import com.renyong.base.util.StringUtil;
 import com.renyong.base.web.BaseController;
 import com.renyong.modules.sys.model.SysDictBean;
@@ -10,6 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.io.PrintWriter;
+import java.util.List;
 
 /**
  * @Auther: 任勇勇
@@ -20,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/sysDictBean/")
 public class SysDictBeanController extends BaseController<SysDictBeanService>{
     @Autowired
-    private SysDictBeanService sysDictBeanBeanService;//汽车业务层
+    private SysDictBeanService sysDictBeanBeanService;//字典业务层
     //查询一个
     @ModelAttribute("sysDictBeanBean")
     public SysDictBean get(String id){
@@ -40,21 +43,31 @@ public class SysDictBeanController extends BaseController<SysDictBeanService>{
     }
     //增加或修改记录行
     @RequestMapping("save")
-    public String save(SysDictBean sysDictBeanBean){
+    public String save(SysDictBean sysDictBeanBean,RedirectAttributes redirectAttributes){
+        String messages = "";
         if(StringUtil.isBlank(sysDictBeanBean.getId())){//添加
-
-            sysDictBeanBeanService.insert(sysDictBeanBean);
+            String[] keys = sysDictBeanBean.getDictKey().split(",");
+            String[] values = sysDictBeanBean.getDictValue().split(",");
+            for (int i=0;i<keys.length;i++){
+                sysDictBeanBean.setDictKey(keys[i]);
+                sysDictBeanBean.setDictValue(values[i]);
+                sysDictBeanBeanService.insert(sysDictBeanBean);
+                sysDictBeanBean.setId(null);
+            }
+            messages = "添加成功";
         }else{//修改
             sysDictBeanBeanService.update(sysDictBeanBean);
+            messages = "修改成功";
         }
+        addMessage(redirectAttributes,messages);
         return "redirect:list";
     }
     //去往表单页面
     @RequestMapping("fromconfig")
     public String formCfg(SysDictBean sysDictBeanBean,Model model){
-        if(StringUtil.isBlank(sysDictBeanBean.getId())){
-            String code = GenerateUtil.getAutoCd(sysDictBeanBean.getCD_NAME().split(",")[0]);
-        }else{
+        if(StringUtil.isBlank(sysDictBeanBean.getId())){//添加
+
+        }else{//修改
 
         }
         model.addAttribute("sysDictBeanBean",sysDictBeanBean);
@@ -66,5 +79,16 @@ public class SysDictBeanController extends BaseController<SysDictBeanService>{
         sysDictBeanBeanService.delete(sysDictBeanBean);
         return "redirect:list";
     }
-
+    //验证英文名唯一
+    @RequestMapping("checkDictEnglishName")
+    public void checkDictEnglishName(SysDictBean sysDictBean, String dictEnglishName2, PrintWriter out){
+        List<SysDictBean> sysDictBeanList = sysDictBeanBeanService.findAll(sysDictBean);
+        boolean flag = sysDictBeanList.size()==0;
+        if(sysDictBean.getDictEnglishName().equals(dictEnglishName2)){
+            flag = true;
+        }
+        out.print(flag);
+        out.flush();
+        out.close();
+    }
 }

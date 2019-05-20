@@ -2,6 +2,7 @@ package com.renyong.base.web;
 
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * @Auther: 任勇勇
@@ -14,6 +15,9 @@ public class BaseController<S>{
     protected static StringBuffer pagingBarStr = new StringBuffer();
     //页面分页栏
     public String getPagingBar(PageInfo pageInfo){
+        if(pageInfo == null){
+            return "";
+        }
         pagingBarStr.setLength(0);
         pagingBarStr.append("<ul class='pagination' style='float: right;'>");
         boolean preFlag = pageInfo.isHasPreviousPage();//是否还有上一页
@@ -29,5 +33,18 @@ public class BaseController<S>{
         pagingBarStr.append("<li class='page-item"+(nextFlag?"":" disabled")+"'><a class='page-link' href='javascript:page("+pageInfo.getEndRow()+")'>尾页</a></li>");
         pagingBarStr.append("<li class='page-item disabled'><a class='page-link' href='javascript:void(0))'>共"+pageInfo.getTotal()+"条记录,共"+pageInfo.getPages()+"页</a></li></ul>");
         return pagingBarStr.toString();
+    }
+    //页面提示信息
+    protected void addMessage(RedirectAttributes redirectAttributes, String... messages) {
+        StringBuilder sb = new StringBuilder();
+        String[] var7 = messages;
+        int var6 = messages.length;
+
+        for(int var5 = 0; var5 < var6; ++var5) {
+            String message = var7[var5];
+            sb.append(message).append(messages.length > 1 ? "<br/>" : "");
+        }
+
+        redirectAttributes.addFlashAttribute("message", sb.toString());
     }
 }
