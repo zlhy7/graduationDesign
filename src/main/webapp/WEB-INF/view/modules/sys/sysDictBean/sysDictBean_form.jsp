@@ -95,25 +95,24 @@
 <ul class="nav nav-tabs">
     <li><a href="${ctx}/sysDictBean/list">字典列表 </a></li>
     <li class="active"><a
-            href="${ctx}/sysDictBean/fromconfig?id=${sysDictBeanBean.id}">${not empty sysDictBeanBean.id?'修改':'添加'}字典</a>
+            href="${ctx}/sysDictBean/fromconfig?dictEnglishName=${sysDictBean.dictEnglishName}">${not empty sysDictBean.dictEnglishName?'修改':'添加'}字典</a>
     </li>
 </ul>
-<form:form id="searchForm" class="form_form form_form2" modelAttribute="sysDictBeanBean"
+<form:form id="searchForm" class="form_form form_form2" modelAttribute="sysDictBean"
            action="${ctx}/sysDictBean/save" method="post">
-    <form:hidden path="id" />
-    <form:hidden path="dictKey" />
-    <form:hidden path="dictValue" />
+    <form:hidden path="dictKey"/>
+    <form:hidden path="dictValue"/>
     <div class="row">
         <div class="col">
             <label class="control-label">字典名：</label>
-            <input type="text" class="form-control" name="dictEnglishName" value="${sysDictBeanBean.dictEnglishName}"/>
+            <input type="text" class="form-control" name="dictEnglishName" value="${sysDictBean.dictEnglishName}"/>
             <span class="help-inline">*</span>
         </div>
     </div>
     <div class="row">
         <div class="col">
             <label class="control-label">中文描述：</label>
-            <input type="text" name="dictChineseDesc" class="form-control" value="${sysDictBeanBean.dictChineseDesc}"/>
+            <input type="text" name="dictChineseDesc" class="form-control" value="${sysDictBean.dictChineseDesc}"/>
             <span class="help-inline">*</span>
         </div>
     </div>
@@ -121,7 +120,7 @@
         <div class="col">
             <label class="control-label">备注：</label>
             <textarea name="remarks" class="form-control" style="resize:none;font-size: 14px;height: 100px;"
-                      maxlength="255">${sysDictBeanBean.remarks}</textarea>
+                      maxlength="255">${sysDictBean.remarks}</textarea>
         </div>
     </div>
     <div class="row">
@@ -136,7 +135,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <c:if test="${empty sysDictBeanBean.id}" var="flag1">
+                    <c:if test="${empty sysDictBean.dictEnglishName}" var="flag1">
                         <tr>
                             <td>
                                 <input type="text" name="key1" id="key0" class="form-control"/>
@@ -151,7 +150,20 @@
                     </c:if>
                     <c:if test="${!flag1}">
                         <c:forEach items="${key_value_list}" var="key_value" varStatus="status">
-
+                            <tr>
+                                <td>
+                                    <input type="text" name="key1" id="key${status.index}" class="form-control" value="${key_value.dictKey}"/>
+                                </td>
+                                <td>
+                                    <input type="text" name="value1" id="value${status.index}" class="form-control" value="${key_value.dictValue}"/>
+                                </td>
+                                <td>
+                                    <a style="color: #fff;font-size: 14px" class="btn btn-outline-primary" onclick="addRow(this)">插入行</a>
+                                    <c:if test="${!status.first}">
+                                        <a style="color: #fff;font-size: 14px" class="btn btn-outline-primary" onclick="delRow(this)">删除行</a>
+                                    </c:if>
+                                </td>
+                            </tr>
                         </c:forEach>
                     </c:if>
                 </tbody>

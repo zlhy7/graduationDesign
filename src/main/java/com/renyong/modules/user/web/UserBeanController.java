@@ -3,7 +3,6 @@ import com.github.pagehelper.PageInfo;
 import com.renyong.base.util.GenerateUtil;
 import com.renyong.base.util.StringUtil;
 import com.renyong.base.web.BaseController;
-import com.renyong.modules.car.model.Car;
 import com.renyong.modules.user.model.UserBean;
 import com.renyong.modules.user.service.UserBeanService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.io.PrintWriter;
 import java.util.List;
 /**
  * @Auther: 任勇勇
@@ -37,6 +38,7 @@ public class UserBeanController extends BaseController<UserBeanService>{
         model.addAttribute("userBean",userBean);//条件
         model.addAttribute("page",page);//记录行
         model.addAttribute("pagingBar",getPagingBar(page));//分页栏
+        model.addAttribute("autocompleteData",getUserRealName(page.getList()));//自动完成框数据源
         return "modules/user/user_list";
     }
     //增加或修改记录行
@@ -53,7 +55,7 @@ public class UserBeanController extends BaseController<UserBeanService>{
     @RequestMapping("fromconfig")
     public String formCfg(UserBean userBean,Model model){
         if(StringUtil.isBlank(userBean.getId())){
-            String code = GenerateUtil.getAutoCd(userBean.getCD_NAME().split(",")[0]);
+            String code = GenerateUtil.getAutoCd("USER_CD");
             userBean.setUserCd(code);
         }
         model.addAttribute("userBean",userBean);
@@ -65,5 +67,30 @@ public class UserBeanController extends BaseController<UserBeanService>{
         userBeanService.delete(userBean);
         return "redirect:list";
     }
-
+    //验证用户名唯一
+    @RequestMapping("checkLoginName")
+    public void checkDictEnglishName(UserBean userBean, String loginName2, PrintWriter out){
+        List<UserBean> userBeanList = userBeanService.findAll(userBean);
+        boolean flag = userBeanList.size()==0;
+        if(userBean.getLoginName().equals(loginName2)){
+            flag = true;
+        }
+        out.print(flag);
+        out.flush();
+        out.close();
+    }
+    //获取全部名称供页面自动完成框使用
+    public String getUserRealName(List<UserBean> userBeanList){
+        StringBuffer sb = new StringBuffer("[");
+        for (UserBean userBean:userBeanList){
+            if(sb.indexOf(userBean.getRealName())==-1){//已存在
+                sb.append("'"+userBean.getRealName()+"',");
+            }
+        }
+        if(sb.length()>1){
+            sb.deleteCharAt(sb.length()-1);
+        }
+        sb.append("]");
+        return sb.toString();
+    }
 }

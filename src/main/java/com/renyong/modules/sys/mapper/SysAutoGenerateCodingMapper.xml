@@ -224,7 +224,7 @@
     <!--逻辑删除-->
     <update id="delete">
         update sys_auto_generate_coding
-        SET def_flag = '1',
+        SET del_flag = '1',
         LAST_UPDATE_DATE=#{lastUpdateDate},
         LAST_UPDATE_USER=#{lastUpdateUser.id}
         where auto_generate_coding_id=#{id}

@@ -116,7 +116,7 @@
                 #{loginName},
             </if>
             <if test="password !=null and password!=''">
-                #{password},
+                MD5(#{password}),
             </if>
             <if test="secretKey !=null and secretKey!=''">
                 #{secretKey},
@@ -133,6 +133,7 @@
             <if test="headPortrait !=null and headPortrait!=''">
                 #{headPortrait},
             </if>
+
             <if test="createUser != null" >
                 #{createUser.id},
             </if>
@@ -208,7 +209,7 @@
     <!--逻辑删除-->
     <update id="delete">
         update SYS_USER
-        SET def_flag = '1',
+        SET del_flag = '1',
         LAST_UPDATE_DATE=#{lastUpdateDate},
         LAST_UPDATE_USER=#{lastUpdateUser.id}
         where USER_ID=#{id}

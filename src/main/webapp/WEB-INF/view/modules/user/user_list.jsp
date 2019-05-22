@@ -11,6 +11,13 @@
             $("#searchForm").submit();
             return false;
         }
+        $(function () {
+            //自动完成框
+            var autocompleteData = ${autocompleteData};
+            $( "#realName" ).autocomplete({
+                source: autocompleteData
+            });
+        });
     </script>
 </head>
 <body>
@@ -19,15 +26,10 @@
     <li><a href="${ctx}/user/fromconfig">添加用户</a></li>
 </ul>
 <form:form id="searchForm" class="list_form" modelAttribute="userBean" action="/user/list" method="post">
-    <%--<form:hidden path="orderBy"/>--%>
     <form:hidden path="pageNum"/>
     <div class="input-prepend">
         <span class="input-label">姓名：</span>
         <form:input path="realName"/>
-    </div>
-    <div class="input-prepend">
-        <span class="input-label">角色：</span>
-        <form:input path="loginName"/>
     </div>
     <div class="input-btn">
         <button class="btn btn-primary" onclick="return page('1')"><i class="glyphicon glyphicon-search"></i> 查询</button>

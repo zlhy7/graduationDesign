@@ -62,4 +62,8 @@
     <param-name>webAppRootKey</param-name>
     <param-value>SLSaleSystem.root</param-value>
   </context-param>
+  <!--设置session时间-->
+  <session-config>
+    <session-timeout>15</session-timeout>
+  </session-config>
 </web-app>

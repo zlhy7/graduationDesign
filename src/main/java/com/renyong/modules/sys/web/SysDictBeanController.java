@@ -65,18 +65,19 @@ public class SysDictBeanController extends BaseController<SysDictBeanService>{
     //去往表单页面
     @RequestMapping("fromconfig")
     public String formCfg(SysDictBean sysDictBeanBean,Model model){
-        if(StringUtil.isBlank(sysDictBeanBean.getId())){//添加
+        if(StringUtil.isBlank(sysDictBeanBean.getDictEnglishName())){//添加
 
         }else{//修改
-
+            List<SysDictBean> sysDictBeanList = sysDictBeanBeanService.findAll(sysDictBeanBean);
+            model.addAttribute("key_value_list",sysDictBeanList);
         }
-        model.addAttribute("sysDictBeanBean",sysDictBeanBean);
+        model.addAttribute("sysDictBean",sysDictBeanBean);
         return "modules/sys/sysDictBean/sysDictBean_form";
     }
     //删除某记录
     @RequestMapping("remove")
-    public String remove(SysDictBean sysDictBeanBean){
-        sysDictBeanBeanService.delete(sysDictBeanBean);
+    public String remove(String dictEnglishName){
+        sysDictBeanBeanService.deleteByDictName(dictEnglishName);
         return "redirect:list";
     }
     //验证英文名唯一

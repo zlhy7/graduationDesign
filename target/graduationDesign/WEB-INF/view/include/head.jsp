@@ -30,6 +30,10 @@
 <link rel="stylesheet" href="${ctxStatic}/modules/common/css/form.css"/>
     <%--list页面 js--%>
 <script src="${ctxStatic}/modules/common/js/list.js"></script>
+    <%--引入jqueryUI css--%>
+<link rel="stylesheet" href="${ctxStatic}/jquery-ui-1.12.1/jquery-ui.min.css"/>
+    <%--引入jqueryUI js--%>
+<script src="${ctxStatic}/jquery-ui-1.12.1/jquery-ui.min.js"></script>
 </head>
 <body>
 </body>

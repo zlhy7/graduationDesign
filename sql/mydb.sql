@@ -57,7 +57,7 @@ CREATE TABLE `sys_auto_generate_coding` (
   `cd_time_format` varchar(20) DEFAULT 'noNeed' COMMENT '时间格式,notTime代表没有时间格式',
   `cd_start_num` int(11) DEFAULT '0' COMMENT '从0还是1开始',
   `del_flag` varchar(2) DEFAULT NULL COMMENT '删除标记',
-  `remark` varchar(255) DEFAULT NULL COMMENT '备注',
+  `remarks` varchar(255) DEFAULT NULL COMMENT '备注',
   `create_user` varchar(36) DEFAULT NULL COMMENT '创建人',
   `create_date` datetime DEFAULT NULL COMMENT '创建时间',
   `last_update_user` varchar(36) DEFAULT NULL COMMENT '修改人',
@@ -68,9 +68,10 @@ CREATE TABLE `sys_auto_generate_coding` (
 
 /*Data for the table `sys_auto_generate_coding` */
 
-insert  into `sys_auto_generate_coding`(`auto_generate_coding_id`,`cd_english_name`,`cd_chinese_desc`,`cd_prefix`,`cd_current_num`,`cd_length`,`cd_time_format`,`cd_start_num`,`del_flag`,`remark`,`create_user`,`create_date`,`last_update_user`,`last_update_date`) values 
+insert  into `sys_auto_generate_coding`(`auto_generate_coding_id`,`cd_english_name`,`cd_chinese_desc`,`cd_prefix`,`cd_current_num`,`cd_length`,`cd_time_format`,`cd_start_num`,`del_flag`,`remarks`,`create_user`,`create_date`,`last_update_user`,`last_update_date`) values 
 ('c19a1d2c749811e9b85500e04c83917e','CAR_CD','汽车编码','CAR','0000011',7,'noNeed',0,'0','汽车编码备注','admin','2019-05-12 17:31:44','admin','2019-05-15 23:20:16'),
-('c19a1d2c796311e9b85500e04c83917e','DICT_CD','字典编码','DICT','0',6,'noNeed',0,'0','字典编码备注','admin','2019-05-20 21:47:34','admin','2019-05-20 21:47:42');
+('c19a1d2c796311e9b85500e04c83917e','DICT_CD','字典编码','DICT','000021',6,'noNeed',0,'0','字典编码备注','admin','2019-05-20 21:47:34','admin','2019-05-22 22:33:28'),
+('c19a1d2c796356qew85500e04c83917e','USER_CD','用户编码','USER','000010',6,'noNeed',0,'0','人员编码','admin','2019-05-20 21:47:34','admin','2019-05-22 23:32:48');
 
 /*Table structure for table `sys_dict` */
 
@@ -84,16 +85,21 @@ CREATE TABLE `sys_dict` (
   `dict_key` varchar(30) DEFAULT NULL COMMENT '键',
   `dict_value` varchar(255) DEFAULT NULL COMMENT '值',
   `del_flag` varchar(2) DEFAULT NULL COMMENT '删除标记',
-  `remark` varchar(255) DEFAULT NULL COMMENT '备注',
+  `remarks` varchar(255) DEFAULT NULL COMMENT '备注',
   `create_user` varchar(36) DEFAULT NULL COMMENT '创建人',
   `create_date` datetime DEFAULT NULL COMMENT '创建时间',
   `last_update_user` varchar(36) DEFAULT NULL COMMENT '修改人',
   `last_update_date` datetime DEFAULT NULL COMMENT '更新时间',
-  PRIMARY KEY (`dict_id`),
-  UNIQUE KEY `un_login_name` (`dict_english_name`)
+  PRIMARY KEY (`dict_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `sys_dict` */
+
+insert  into `sys_dict`(`dict_id`,`sys_dict_bean_cd`,`dict_chinese_desc`,`dict_english_name`,`dict_key`,`dict_value`,`del_flag`,`remarks`,`create_user`,`create_date`,`last_update_user`,`last_update_date`) values 
+('01c97684b12345d8b535933330c51e68','DICT000019','是否','YES_NO','1','是','0','',NULL,'2019-05-22 22:33:28',NULL,'2019-05-22 22:33:28'),
+('0e312c1093bd42d5baabb6b7b41a4df0','DICT000020','是否','YES_NO','0','否','0','',NULL,'2019-05-22 22:33:28',NULL,'2019-05-22 22:33:28'),
+('2b4e979955034085886ca284b9d55572','DICT000016','性别','USER_SEX','2','女','0','',NULL,'2019-05-21 07:23:29',NULL,'2019-05-21 07:23:29'),
+('55f4435cbb4d4c519f1e9c187d7b78d2','DICT000012','性别','USER_SEX','1','男','0','',NULL,'2019-05-21 07:22:33',NULL,'2019-05-21 07:22:33');
 
 /*Table structure for table `sys_user` */
 
@@ -103,61 +109,37 @@ CREATE TABLE `sys_user` (
   `user_id` varchar(36) NOT NULL COMMENT '用户id',
   `user_cd` varchar(20) DEFAULT NULL COMMENT '用户cd',
   `login_name` varchar(30) DEFAULT NULL COMMENT '登录名',
-  `password` varchar(32) DEFAULT NULL COMMENT '登录密码',
+  `login_password` varchar(32) DEFAULT NULL COMMENT '登录密码',
   `secret_key` varchar(8) DEFAULT NULL COMMENT '加密秘钥',
   `real_name` varchar(20) DEFAULT NULL COMMENT '真实姓名',
   `user_sex` varchar(2) DEFAULT NULL COMMENT '用户性别',
   `user_phone` varchar(20) DEFAULT NULL COMMENT '用户电话',
   `head_portrait` longtext COMMENT '用户头像',
   `del_flag` varchar(2) DEFAULT NULL COMMENT '删除标记',
-  `remark` varchar(255) DEFAULT NULL COMMENT '备注',
   `create_user` varchar(36) DEFAULT NULL COMMENT '创建人',
   `create_date` datetime DEFAULT NULL COMMENT '创建时间',
   `last_update_user` varchar(36) DEFAULT NULL COMMENT '修改人',
   `last_update_date` datetime DEFAULT NULL COMMENT '更新时间',
+  `remarks` varchar(255) DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `un_login_name` (`login_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `sys_user` */
 
-insert  into `sys_user`(`user_id`,`user_cd`,`login_name`,`password`,`secret_key`,`real_name`,`user_sex`,`user_phone`,`head_portrait`,`del_flag`,`remark`,`create_user`,`create_date`,`last_update_user`,`last_update_date`) values 
-('bdf5abe2794b11e996cf98eecb60554b','USER000001','admin','21232f297a57a5a743894a0e4a801fc3','','管理员','1','123456','没图','0','','admin','2019-05-18 17:02:56','admin','2019-05-18 17:02:56'),
-('bdfab260794b11e996cf98eecb60554b','USER000001','admin1','21232f297a57a5a743894a0e4a801fc3','','管理员','1','123456','没图','0','','admin','2019-05-18 17:02:56','admin','2019-05-18 17:02:56'),
-('bdfab53e794b11e996cf98eecb60554b','USER000001','admin2','21232f297a57a5a743894a0e4a801fc3','','管理员','1','123456','没图','0','','admin','2019-05-18 17:02:56','admin','2019-05-18 17:02:56'),
-('bdfab653794b11e996cf98eecb60554b','USER000001','admin3','21232f297a57a5a743894a0e4a801fc3','','管理员','1','123456','没图','0','','admin','2019-05-18 17:02:56','admin','2019-05-18 17:02:56'),
-('bdfab819794b11e996cf98eecb60554b','USER000001','admin4','21232f297a57a5a743894a0e4a801fc3','','管理员','1','123456','没图','0','','admin','2019-05-18 17:02:56','admin','2019-05-18 17:02:56'),
-('bdfab8d4794b11e996cf98eecb60554b','USER000001','admin5','21232f297a57a5a743894a0e4a801fc3','','管理员','1','123456','没图','0','','admin','2019-05-18 17:02:56','admin','2019-05-18 17:02:56'),
-('bdfab9c0794b11e996cf98eecb60554b','USER000001','admin6','21232f297a57a5a743894a0e4a801fc3','','管理员','1','123456','没图','0','','admin','2019-05-18 17:02:56','admin','2019-05-18 17:02:56'),
-('bdfaba23794b11e996cf98eecb60554b','USER000001','admin7','21232f297a57a5a743894a0e4a801fc3','','管理员','1','123456','没图','0','','admin','2019-05-18 17:02:56','admin','2019-05-18 17:02:56'),
-('bdfabb31794b11e996cf98eecb60554b','USER000001','admin8','21232f297a57a5a743894a0e4a801fc3','','管理员','1','123456','没图','0','','admin','2019-05-18 17:02:56','admin','2019-05-18 17:02:56'),
-('bdfabd37794b11e996cf98eecb60554b','USER000001','admin9','21232f297a57a5a743894a0e4a801fc3','','管理员','1','123456','没图','0','','admin','2019-05-18 17:02:56','admin','2019-05-18 17:02:56'),
-('bdfabe42794b11e996cf98eecb60554b','USER000001','admin10','21232f297a57a5a743894a0e4a801fc3','','管理员','1','123456','没图','0','','admin','2019-05-18 17:02:56','admin','2019-05-18 17:02:56'),
-('bdfac090794b11e996cf98eecb60554b','USER000001','admin11','21232f297a57a5a743894a0e4a801fc3','','管理员','1','123456','没图','0','','admin','2019-05-18 17:02:56','admin','2019-05-18 17:02:56'),
-('bdfac137794b11e996cf98eecb60554b','USER000001','admin12','21232f297a57a5a743894a0e4a801fc3','','管理员','1','123456','没图','0','','admin','2019-05-18 17:02:56','admin','2019-05-18 17:02:56'),
-('bdfac19a794b11e996cf98eecb60554b','USER000001','admin13','21232f297a57a5a743894a0e4a801fc3','','管理员','1','123456','没图','0','','admin','2019-05-18 17:02:56','admin','2019-05-18 17:02:56'),
-('bdfac1f3794b11e996cf98eecb60554b','USER000001','admin14','21232f297a57a5a743894a0e4a801fc3','','管理员','1','123456','没图','0','','admin','2019-05-18 17:02:56','admin','2019-05-18 17:02:56'),
-('bdfac249794b11e996cf98eecb60554b','USER000001','admin15','21232f297a57a5a743894a0e4a801fc3','','管理员','1','123456','没图','0','','admin','2019-05-18 17:02:56','admin','2019-05-18 17:02:56'),
-('bdfac297794b11e996cf98eecb60554b','USER000001','admin16','21232f297a57a5a743894a0e4a801fc3','','管理员','1','123456','没图','0','','admin','2019-05-18 17:02:56','admin','2019-05-18 17:02:56'),
-('bdfac375794b11e996cf98eecb60554b','USER000001','admin17','21232f297a57a5a743894a0e4a801fc3','','管理员','1','123456','没图','0','','admin','2019-05-18 17:02:56','admin','2019-05-18 17:02:56'),
-('bdfac4d4794b11e996cf98eecb60554b','USER000001','admin18','21232f297a57a5a743894a0e4a801fc3','','管理员','1','123456','没图','0','','admin','2019-05-18 17:02:56','admin','2019-05-18 17:02:56'),
-('bdfac549794b11e996cf98eecb60554b','USER000001','admin19','21232f297a57a5a743894a0e4a801fc3','','管理员','1','123456','没图','0','','admin','2019-05-18 17:02:56','admin','2019-05-18 17:02:56'),
-('bdfac61c794b11e996cf98eecb60554b','USER000001','admin20','21232f297a57a5a743894a0e4a801fc3','','管理员','1','123456','没图','0','','admin','2019-05-18 17:02:56','admin','2019-05-18 17:02:56'),
-('bdfac6f3794b11e996cf98eecb60554b','USER000001','admin21','21232f297a57a5a743894a0e4a801fc3','','管理员','1','123456','没图','0','','admin','2019-05-18 17:02:56','admin','2019-05-18 17:02:56'),
-('bdfac7d4794b11e996cf98eecb60554b','USER000001','admin22','21232f297a57a5a743894a0e4a801fc3','','管理员','1','123456','没图','0','','admin','2019-05-18 17:02:56','admin','2019-05-18 17:02:56'),
-('bdfac8a8794b11e996cf98eecb60554b','USER000001','admin23','21232f297a57a5a743894a0e4a801fc3','','管理员','1','123456','没图','0','','admin','2019-05-18 17:02:56','admin','2019-05-18 17:02:56'),
-('bdfac97c794b11e996cf98eecb60554b','USER000001','admin24','21232f297a57a5a743894a0e4a801fc3','','管理员','1','123456','没图','0','','admin','2019-05-18 17:02:56','admin','2019-05-18 17:02:56'),
-('bdfaca56794b11e996cf98eecb60554b','USER000001','admin25','21232f297a57a5a743894a0e4a801fc3','','管理员','1','123456','没图','0','','admin','2019-05-18 17:02:56','admin','2019-05-18 17:02:56'),
-('bdfacb37794b11e996cf98eecb60554b','USER000001','admin26','21232f297a57a5a743894a0e4a801fc3','','管理员','1','123456','没图','0','','admin','2019-05-18 17:02:56','admin','2019-05-18 17:02:56'),
-('bdfacb94794b11e996cf98eecb60554b','USER000001','admin27','21232f297a57a5a743894a0e4a801fc3','','管理员','1','123456','没图','0','','admin','2019-05-18 17:02:56','admin','2019-05-18 17:02:56'),
-('bdfacbec794b11e996cf98eecb60554b','USER000001','admin28','21232f297a57a5a743894a0e4a801fc3','','管理员','1','123456','没图','0','','admin','2019-05-18 17:02:56','admin','2019-05-18 17:02:56'),
-('bdfaccca794b11e996cf98eecb60554b','USER000001','admin29','21232f297a57a5a743894a0e4a801fc3','','管理员','1','123456','没图','0','','admin','2019-05-18 17:02:56','admin','2019-05-18 17:02:56'),
-('bdfacda1794b11e996cf98eecb60554b','USER000001','admin30','21232f297a57a5a743894a0e4a801fc3','','管理员','1','123456','没图','0','','admin','2019-05-18 17:02:56','admin','2019-05-18 17:02:56'),
-('bdface78794b11e996cf98eecb60554b','USER000001','admin31','21232f297a57a5a743894a0e4a801fc3','','管理员','1','123456','没图','0','','admin','2019-05-18 17:02:56','admin','2019-05-18 17:02:56'),
-('bdfacf4f794b11e996cf98eecb60554b','USER000001','admin32','21232f297a57a5a743894a0e4a801fc3','','管理员','1','123456','没图','0','','admin','2019-05-18 17:02:56','admin','2019-05-18 17:02:56'),
-('bdfacfa5794b11e996cf98eecb60554b','USER000001','admin33','21232f297a57a5a743894a0e4a801fc3','','管理员','1','123456','没图','0','','admin','2019-05-18 17:02:56','admin','2019-05-18 17:02:56'),
-('bdfacffd794b11e996cf98eecb60554b','USER000001','admin34','21232f297a57a5a743894a0e4a801fc3','','管理员','1','123456','没图','0','','admin','2019-05-18 17:02:56','admin','2019-05-18 17:02:56'),
-('bdfad056794b11e996cf98eecb60554b','USER000001','admin35','21232f297a57a5a743894a0e4a801fc3','','管理员','1','123456','没图','0','','admin','2019-05-18 17:02:56','admin','2019-05-18 17:02:56');
+insert  into `sys_user`(`user_id`,`user_cd`,`login_name`,`login_password`,`secret_key`,`real_name`,`user_sex`,`user_phone`,`head_portrait`,`del_flag`,`create_user`,`create_date`,`last_update_user`,`last_update_date`,`remarks`) values 
+('bdf5abe2794b11e996cf98eecb60554b','USER000001','admin','21232f297a57a5a743894a0e4a801fc3','','管理员','1','123456','没图','0','admin','2019-05-18 17:02:56','admin','2019-05-18 17:02:56',''),
+('bdfab260794b11e996cf98eecb60554b','USER000001','admin1','21232f297a57a5a743894a0e4a801fc3','','管理员','1','123456','没图','0','admin','2019-05-18 17:02:56','admin','2019-05-18 17:02:56',''),
+('bdfab53e794b11e996cf98eecb60554b','USER000001','admin2','21232f297a57a5a743894a0e4a801fc3','','管理员','1','123456','没图','0','admin','2019-05-18 17:02:56','admin','2019-05-18 17:02:56',''),
+('bdfab653794b11e996cf98eecb60554b','USER000001','admin3','21232f297a57a5a743894a0e4a801fc3','','管理员','1','123456','没图','0','admin','2019-05-18 17:02:56','admin','2019-05-18 17:02:56',''),
+('bdfab819794b11e996cf98eecb60554b','USER000001','admin4','21232f297a57a5a743894a0e4a801fc3','','管理员','1','123456','没图','0','admin','2019-05-18 17:02:56','admin','2019-05-18 17:02:56',''),
+('bdfab8d4794b11e996cf98eecb60554b','USER000001','admin5','21232f297a57a5a743894a0e4a801fc3','','管理员','1','123456','没图','0','admin','2019-05-18 17:02:56','admin','2019-05-18 17:02:56',''),
+('bdfab9c0794b11e996cf98eecb60554b','USER000001','admin6','21232f297a57a5a743894a0e4a801fc3','','管理员','1','123456','没图','0','admin','2019-05-18 17:02:56','admin','2019-05-18 17:02:56',''),
+('bdfaba23794b11e996cf98eecb60554b','USER000001','admin7','21232f297a57a5a743894a0e4a801fc3','','管理员','1','123456','没图','0','admin','2019-05-18 17:02:56','admin','2019-05-18 17:02:56',''),
+('bdfabb31794b11e996cf98eecb60554b','USER000001','admin8','21232f297a57a5a743894a0e4a801fc3','','管理员','1','123456','没图','0','admin','2019-05-18 17:02:56','admin','2019-05-18 17:02:56',''),
+('bdfabd37794b11e996cf98eecb60554b','USER000001','admin9','21232f297a57a5a743894a0e4a801fc3','','管理员','1','123456','没图','0','admin','2019-05-18 17:02:56','admin','2019-05-18 17:02:56',''),
+('bdfabe42794b11e996cf98eecb60554b','USER000001','admin10','21232f297a57a5a743894a0e4a801fc3','','管理员','1','123456','没图','0','admin','2019-05-18 17:02:56','admin','2019-05-18 17:02:56',''),
+('bdfac090794b11e996cf98eecb60554b','USER000001','admin11','21232f297a57a5a743894a0e4a801fc3','','管理员','1','123456','没图','0','admin','2019-05-18 17:02:56','admin','2019-05-18 17:02:56','');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

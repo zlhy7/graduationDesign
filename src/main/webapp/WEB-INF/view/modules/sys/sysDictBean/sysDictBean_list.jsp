@@ -33,8 +33,8 @@
     <tr>
         <th><input type="checkbox" class="chooseAll"/></th>
         <th>序号</th>
-        <th>字典编号</th>
         <th>字典名</th>
+        <th>描述</th>
         <th>字典值</th>
         <th>备注</th>
         <th>操作</th>
@@ -45,16 +45,14 @@
         <tr>
             <td><input type="checkbox" class="chooseOne"/></td>
             <td>${status.count}</td>
-            <td>${sysDictBean.sysDictBeanCd}</td>
             <td>${sysDictBean.dictEnglishName}</td>
-            <td>
-
-            </td>
+            <td>${sysDictBean.dictChineseDesc}</td>
+            <td>${sysDictBean.dictValue}</td>
             <td>${sysDictBean.remarks}</td>
             <td>
-                <a style="color: #fff" class="btn btn-warning updateBtn" href="/sysDictBean/fromconfig?id=${sysDictBean.id}">
+                <a style="color: #fff" class="btn btn-warning updateBtn" href="/sysDictBean/fromconfig?dictEnglishName=${sysDictBean.dictEnglishName}">
                     <i class="glyphicon glyphicon-pencil"></i>修改</a>
-                <a style="color: #fff" class="btn btn-danger delBtn" href="/sysDictBean/remove?id=${sysDictBean.id}">
+                <a style="color: #fff" class="btn btn-danger delBtn" href="/sysDictBean/remove?dictEnglishName=${sysDictBean.dictEnglishName}">
                     <i class="glyphicon glyphicon-trash"></i>删除</a>
             </td>
         </tr>

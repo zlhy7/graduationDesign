@@ -18,19 +18,26 @@ import java.util.List;
  */
 @Service
 public class SysDictBeanService extends BaseService<SysDictBeanDao,SysDictBean>{
-    public List<SysDictBean> getDict(String dictName) {//返回字典
+    //返回字典
+    public List<SysDictBean> getDict(String dictName) {
         return dao.getDict(dictName);
     }
-
-    public String getDictValByKey(String dictName, String key){//返回字典值
+    //返回字典值
+    public String getDictValByKey(String dictName, String key){
         String value = dao.getDictValByKey(dictName,key);
         if(value == null){
             value = "";
         }
         return value;
     }
-    public PageInfo<SysDictBean> findPage(SysDictBean sysDictBean){//返回分页
+    //返回分页
+    public PageInfo<SysDictBean> findPage(SysDictBean sysDictBean){
         List<SysDictBean> sysDictBeanList = dao.getForPageUse(sysDictBean);
         return super.findPage(sysDictBean,sysDictBeanList);
+    }
+    //页面删除方法
+    @Transactional(readOnly = false)
+    public void deleteByDictName(String dictEnglishName){
+        dao.deleteByDictName(dictEnglishName);
     }
 }

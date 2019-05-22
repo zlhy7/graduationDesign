@@ -39,6 +39,8 @@
         <setting name="jdbcTypeForNull" value="NULL"/>
 		<!-- 解决在查询的时候，可以返回Map，但是一旦这个字段为空（null）的时候，map里就没有了-->
 		<!--<setting name="callSettersOnNulls" value="true"/>-->
+		<!-- 打印查询语句 -->
+		<setting name="logImpl" value="STDOUT_LOGGING" />
 	</settings>
 	<!-- 类型别名 -->
 	<typeAliases>
