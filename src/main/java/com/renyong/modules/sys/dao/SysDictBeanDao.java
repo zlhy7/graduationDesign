@@ -14,5 +14,6 @@ import java.util.List;
 @MybatisDao
 public interface SysDictBeanDao extends BaseDao<SysDictBean> {
     public String getDictValByKey(String dictName,String key);//返回字典key代表值
+    public List<SysDictBean> getDict(String dictName);//返回字典
     public List<SysDictBean> getForPageUse(SysDictBean sysDictBean);//供页面查询使用的查询
 }

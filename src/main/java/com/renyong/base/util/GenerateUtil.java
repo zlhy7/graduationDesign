@@ -1,5 +1,6 @@
 package com.renyong.base.util;
 
+import com.renyong.modules.sys.model.SysDictBean;
 import com.renyong.modules.sys.service.SysAutoGenerateCodingService;
 import com.renyong.modules.sys.service.SysDictBeanService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
@@ -57,6 +59,10 @@ public class GenerateUtil {
     //返回字典代表值
     public static String getDictValByKey(String dictName,String key){
         return dictService.getDictValByKey(dictName,key);
+    }
+    //返回字典代表值
+    public static List<SysDictBean> getDict(String dictName){
+        return dictService.getDict(dictName);
     }
     @PostConstruct
     public void init(){

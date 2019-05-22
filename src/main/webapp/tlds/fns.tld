@@ -18,4 +18,12 @@
     <function-signature>java.lang.String getDictValByKey(java.lang.String,java.lang.String)</function-signature>
     <example>${fns:getDict(type,key)}</example>
   </function>
+
+    <function>
+        <description>获取字典</description>
+        <name>getDict</name>
+        <function-class>com.renyong.base.util.GenerateUtil</function-class>
+        <function-signature>java.util.List getDict(java.lang.String)</function-signature>
+        <example>${fns:getDict(dictName)}</example>
+    </function>
 </taglib>
