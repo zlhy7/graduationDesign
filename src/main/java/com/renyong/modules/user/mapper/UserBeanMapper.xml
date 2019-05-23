@@ -125,7 +125,7 @@
                 #{realName},
             </if>
             <if test="userSex !=null and userSex!=''">
-                #{userSex}
+                #{userSex},
             </if>
             <if test="userPhone !=null and userPhone!=''">
                 #{userPhone},
