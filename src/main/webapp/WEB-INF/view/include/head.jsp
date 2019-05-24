@@ -34,6 +34,15 @@
 <link rel="stylesheet" href="${ctxStatic}/jquery-ui-1.12.1/jquery-ui.min.css"/>
     <%--引入jqueryUI js--%>
 <script src="${ctxStatic}/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+    <%--引入JBox css--%>
+<link rel="stylesheet" href="${ctxStatic}/jquery-jbox/2.3/Skins/Bootstrap/jbox.min.css"/>
+    <%--引入JBox js--%>
+<script src="${ctxStatic}/jquery-jbox/2.3/jquery.jBox-2.3.min.js"></script>
+<script src="${ctxStatic}/jquery-jbox/2.3/i18n/jquery.jBox-zh-CN.min.js"></script>
+    <%--引入layerUI css--%>
+<link rel="stylesheet" href="${ctxStatic}/layer-v3.1.1/layer/theme/default/layer.css"/>
+    <%--引入layerUI js--%>
+<script src="${ctxStatic}/layer-v3.1.1/layer/layer.js"></script>
 </head>
 <body>
 </body>

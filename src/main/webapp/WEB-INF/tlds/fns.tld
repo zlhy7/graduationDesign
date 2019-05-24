@@ -7,7 +7,7 @@
     <display-name>JSTL functions sys</display-name>
     <tlib-version>1.1</tlib-version>
     <short-name>fns</short-name>
-    <uri>http://java.sun.com/jsp/jstl/functionss</uri>
+    <uri>myFns</uri><!--此处写taglib引入的路径-->
     <function>
         <description>获取字典值</description>
         <name>getDictValByKey</name>

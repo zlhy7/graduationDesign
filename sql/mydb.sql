@@ -59,9 +59,9 @@ CREATE TABLE `sys_auto_generate_coding` (
   `del_flag` varchar(2) DEFAULT NULL COMMENT '删除标记',
   `remarks` varchar(255) DEFAULT NULL COMMENT '备注',
   `create_user` varchar(36) DEFAULT NULL COMMENT '创建人',
-  `create_date` datetime DEFAULT NULL COMMENT '创建时间',
+  `create_date` datetime(6) DEFAULT NULL COMMENT '创建时间',
   `last_update_user` varchar(36) DEFAULT NULL COMMENT '修改人',
-  `last_update_date` datetime DEFAULT NULL COMMENT '更新时间',
+  `last_update_date` datetime(6) DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`auto_generate_coding_id`) USING BTREE,
   UNIQUE KEY `uk_cd_english_name` (`cd_english_name`) USING BTREE COMMENT '英文名唯一'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='自动编码对应表';
@@ -69,9 +69,9 @@ CREATE TABLE `sys_auto_generate_coding` (
 /*Data for the table `sys_auto_generate_coding` */
 
 insert  into `sys_auto_generate_coding`(`auto_generate_coding_id`,`cd_english_name`,`cd_chinese_desc`,`cd_prefix`,`cd_current_num`,`cd_length`,`cd_time_format`,`cd_start_num`,`del_flag`,`remarks`,`create_user`,`create_date`,`last_update_user`,`last_update_date`) values 
-('c19a1d2c749811e9b85500e04c83917e','CAR_CD','汽车编码','CAR','0000011',7,'noNeed',0,'0','汽车编码备注','admin','2019-05-12 17:31:44','admin','2019-05-15 23:20:16'),
-('c19a1d2c796311e9b85500e04c83917e','DICT_CD','字典编码','DICT','000021',6,'noNeed',0,'0','字典编码备注','admin','2019-05-20 21:47:34','admin','2019-05-22 22:33:28'),
-('c19a1d2c796356qew85500e04c83917e','USER_CD','用户编码','USER','000010',6,'noNeed',0,'0','人员编码','admin','2019-05-20 21:47:34','admin','2019-05-22 23:32:48');
+('c19a1d2c749811e9b85500e04c83917e','CAR_CD','汽车编码','CAR','0000011',7,'noNeed',0,'0','汽车编码备注','admin','2019-05-12 17:31:44.000000','admin','2019-05-15 23:20:16.000000'),
+('c19a1d2c796311e9b85500e04c83917e','DICT_CD','字典编码','DICT','000021',6,'noNeed',0,'0','字典编码备注','admin','2019-05-20 21:47:34.000000','admin','2019-05-22 22:33:28.000000'),
+('c19a1d2c796356qew85500e04c83917e','USER_CD','用户编码','USER','000011',6,'noNeed',0,'0','人员编码','admin','2019-05-20 21:47:34.000000','admin','2019-05-23 06:42:31.638000');
 
 /*Table structure for table `sys_dict` */
 
@@ -128,6 +128,7 @@ CREATE TABLE `sys_user` (
 /*Data for the table `sys_user` */
 
 insert  into `sys_user`(`user_id`,`user_cd`,`login_name`,`login_password`,`secret_key`,`real_name`,`user_sex`,`user_phone`,`head_portrait`,`del_flag`,`create_user`,`create_date`,`last_update_user`,`last_update_date`,`remarks`) values 
+('0cd20ea8a1ce47fda86266df8a988886','USER000010','renyong','c33367701511b4f6020ec61ded352059',NULL,'任勇','1','17691390880',NULL,'0',NULL,'2019-05-23 06:43:01',NULL,'2019-05-23 06:43:01',NULL),
 ('bdf5abe2794b11e996cf98eecb60554b','USER000001','admin','21232f297a57a5a743894a0e4a801fc3','','管理员','1','123456','没图','0','admin','2019-05-18 17:02:56','admin','2019-05-18 17:02:56',''),
 ('bdfab260794b11e996cf98eecb60554b','USER000001','admin1','21232f297a57a5a743894a0e4a801fc3','','管理员','1','123456','没图','0','admin','2019-05-18 17:02:56','admin','2019-05-18 17:02:56',''),
 ('bdfab53e794b11e996cf98eecb60554b','USER000001','admin2','21232f297a57a5a743894a0e4a801fc3','','管理员','1','123456','没图','0','admin','2019-05-18 17:02:56','admin','2019-05-18 17:02:56',''),
