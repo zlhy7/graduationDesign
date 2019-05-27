@@ -21,7 +21,8 @@ $(document).on(".chooseAll","click",function(){
 function confirmx(msg,obj){
     layer.confirm(msg, {
         btn: ['确认','取消'],//按钮
-        title:"警告"
+        title:"警告",
+        offset: '150px'
     }, function(){
         window.location.href = obj.href;
         return false;

@@ -91,9 +91,7 @@
             <if test="cdTimeFormat !=null and cdTimeFormat!=''">
                 cd_time_format,
             </if>
-            <if test="cdStartNum !=null">
-                cd_start_num,
-            </if>
+            cd_start_num,
             <if test="createUser != null" >
                 CREATE_USER,
             </if>
@@ -135,9 +133,7 @@
             <if test="cdTimeFormat !=null and cdTimeFormat!=''">
                 #{cdTimeFormat},
             </if>
-            <if test="cdStartNum !=null">
-                #{cdStartNum},
-            </if>
+            #{cdStartNum},
             <if test="createUser != null" >
                 #{createUser.id},
             </if>
@@ -183,9 +179,7 @@
             <if test="cdTimeFormat !=null">
                 cd_time_format = #{cdTimeFormat},
             </if>
-            <if test="cdStartNum !=null">
-                cd_start_num = #{cdStartNum},
-            </if>
+            cd_start_num = #{cdStartNum},
             <if test="createUser != null" >
                 CREATE_USER=#{createUser.id},
             </if>

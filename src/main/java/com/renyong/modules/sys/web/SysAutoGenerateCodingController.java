@@ -46,6 +46,8 @@ public class SysAutoGenerateCodingController extends BaseController<SysAutoGener
     public String save(SysAutoGenerateCoding sysAutoGenerateCodingBean,RedirectAttributes redirectAttributes){
         String messages = "";
         if(StringUtil.isBlank(sysAutoGenerateCodingBean.getId())){//添加
+            String currtNum = String.format("%0"+sysAutoGenerateCodingBean.getCdLength()+"d",sysAutoGenerateCodingBean.getCdStartNum());
+            sysAutoGenerateCodingBean.setCdCurrentNum(currtNum);
             sysAutoGenerateCodingBeanService.insert(sysAutoGenerateCodingBean);
             messages = "添加成功";
         }else{//修改
@@ -69,8 +71,8 @@ public class SysAutoGenerateCodingController extends BaseController<SysAutoGener
     }
     //删除某记录
     @RequestMapping("remove")
-    public String remove(String dictEnglishName){
-//        sysAutoGenerateCodingBeanService.deleteByDictName(dictEnglishName);
+    public String remove(SysAutoGenerateCoding sysAutoGenerateCodingBean){
+        sysAutoGenerateCodingBeanService.delete(sysAutoGenerateCodingBean);
         return "redirect:list";
     }
     //验证英文名唯一

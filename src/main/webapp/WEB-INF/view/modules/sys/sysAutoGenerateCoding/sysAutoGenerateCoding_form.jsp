@@ -59,7 +59,11 @@
                     cdEnglishName: {remote: "编码名已被占用"}
                 },
                 submitHandler: function(form){
-                    loading('正在提交，请稍等...');
+                    layer.open({
+                        shadeClose: false,
+                        type: 0,
+                        content: '提交中...'
+                    });
                     form.submit();
                 },
                 success: function(lable){
