@@ -50,9 +50,9 @@
             <td>${sysDictBean.dictValue}</td>
             <td>${sysDictBean.remarks}</td>
             <td>
-                <a style="color: #fff" class="btn btn-warning updateBtn" href="/sysDictBean/fromconfig?dictEnglishName=${sysDictBean.dictEnglishName}">
+                <a style="color: #fff" class="btn btn-warning updateBtn" href="${ctx}/sysDictBean/fromconfig?dictEnglishName=${sysDictBean.dictEnglishName}">
                     <i class="glyphicon glyphicon-pencil"></i>修改</a>
-                <a style="color: #fff" class="btn btn-danger delBtn" href="/sysDictBean/remove?dictEnglishName=${sysDictBean.dictEnglishName}">
+                <a style="color: #fff" class="btn btn-danger delBtn" href="${ctx}/sysDictBean/remove?dictEnglishName=${sysDictBean.dictEnglishName}">
                     <i class="glyphicon glyphicon-trash"></i>删除</a>
             </td>
         </tr>

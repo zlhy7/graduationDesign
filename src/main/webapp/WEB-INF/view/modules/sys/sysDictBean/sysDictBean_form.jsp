@@ -6,17 +6,27 @@
     <title>字典管理</title>
     <script>
         var num=1;
+        function getArrElementLen(arr,element) {
+            var count = 0;
+            for (var i=0;i<arr.length;i++){
+                if(arr[i] == element){
+                    count++;
+                }
+            }
+            return count;
+        }
         //验证key值唯一
         $.validator.addMethod("checkKeyUnique",function(value,element,params){
             // var uniqueFlag = true;
             var keys = [];
+            var id = "";
             $("[name=key1]").each(function () {
+                if($(this).val() == value){
+                    id = $(this)[0].id;
+                }
                 keys.push($(this).val());
-                /*if(value == $(this).val() && this.id != element.id){
-                    return false;
-                }*/
             });
-            return (keys.indexOf(value) == keys.lastIndexOf(value));
+            return (getArrElementLen(keys,value)==1 && id==$(element)[0].id);
         },"key值唯一");
         $(function () {
             //表单验证

@@ -40,3 +40,7 @@ form.form_form2{
 .form_table td,.form_table th{
     border: 1px solid white;
 }
+/*下拉框的背景色*/
+.select2-dropdown{
+    background-color: black;
+}

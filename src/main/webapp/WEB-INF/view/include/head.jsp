@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ include file="/WEB-INF/view/include/taglib.jsp"%>
-<!DOCTYPE html>
-<html style="overflow-x:auto;overflow-y:auto;">
+<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="author" content="http://jeesite.com/" />
@@ -30,6 +29,8 @@
 <link rel="stylesheet" href="${ctxStatic}/modules/common/css/form.css"/>
     <%--list页面 js--%>
 <script src="${ctxStatic}/modules/common/js/list.js"></script>
+    <%--form页面 js--%>
+<script src="${ctxStatic}/modules/common/js/form.js"></script>
     <%--引入jqueryUI css--%>
 <link rel="stylesheet" href="${ctxStatic}/jquery-ui-1.12.1/jquery-ui.min.css"/>
     <%--引入jqueryUI js--%>

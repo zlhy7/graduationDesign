@@ -6,8 +6,7 @@ function tableWidthReset(widths){
 }
 //全选，反选
 //动态复选框事件
-$(".chooseOne").on("click",function(){
-    console.log(666);
+$(document).on(".chooseOne","click",function(){
     if($(".chooseOne:checked").length==$(".chooseOne").length){//全部选中时
         $(".chooseAll").prop("checked",true);
     }else if($(".chooseOne:checked").length < $(".chooseOne").length){//选中数量小于可用复选框数量
@@ -15,8 +14,25 @@ $(".chooseOne").on("click",function(){
     }
 });
 
+$(document).on(".chooseAll","click",function(){
+    $(".chooseOne").prop("chekced",$(this).prop("checked"));
+});
+//确认提示框
+function confirmx(msg,obj){
+    layer.confirm(msg, {
+        btn: ['确认','取消'],//按钮
+        title:"警告"
+    }, function(){
+        window.location.href = obj.href;
+        return false;
+    }, function(index){
+        layer.close(index);
+        return false;
+    });
+    return false;
+}
 $(function () {
-    //name相同id不同即可
+    //name相同id不同即可,validate验证扩展
     if($.validator){
             $.validator.prototype.elements = function () {
                 var validator = this,

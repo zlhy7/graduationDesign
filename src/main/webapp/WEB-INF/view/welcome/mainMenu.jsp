@@ -75,7 +75,7 @@
                     <div class="bg-dark">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link text-center" href="#">编码配置</a>
+                                <a class="nav-link text-center" href="#" onclick="showContent('${ctx}/sysAutoGenerateCoding/list')">编码配置</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-center"  href="#" onclick="showContent('${ctx}/sysDictBean/list')">字典配置</a>

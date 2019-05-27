@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -68,5 +71,25 @@ public class BaseService<D extends BaseDao<T>, T extends BaseEntity<T>> implemen
         PageHelper.startPage(entity.getPageNum(),10);
         PageInfo<T> pageInfo1=new PageInfo<T>(list,6);//设置页码链长度
         return pageInfo1;
+    }
+    public List<String> getProperty(List<T> list,String getMethodName){
+        List<String> list1 = new ArrayList<String>();
+        Class class1 = list.get(0).getClass();
+        Method method1 = null;
+        try {
+            method1 = class1.getDeclaredMethod(getMethodName);
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        }
+        for (T entity:list){
+            try {
+                list1.add((String)method1.invoke(entity));
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
+        }
+        return list1;
     }
 }

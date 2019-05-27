@@ -18,7 +18,7 @@
     <li class="active"><a href="${ctx}/car/list">车辆列表 </a></li>
     <li><a href="${ctx}/car/fromconfig">添加车辆</a></li>
 </ul>
-<form:form id="searchForm" class="list_form" modelAttribute="car" action="/car/list" method="post">
+<form:form id="searchForm" class="list_form" modelAttribute="car" action="${ctx}/car/list" method="post">
     <form:hidden path="pageNum"/>
     <div class="input-prepend">
         <span class="input-label">品牌：</span>
@@ -51,9 +51,9 @@
             <td>${car.carColor}</td>
             <td>${car.carNumber}</td>
             <td>
-                <a style="color: #fff" class="btn btn-warning updateBtn" href="/car/fromconfig?id=${car.id}">
+                <a style="color: #fff" class="btn btn-warning updateBtn" href="${ctx}/car/fromconfig?id=${car.id}">
                     <i class="glyphicon glyphicon-pencil"></i>修改</a>
-                <a style="color: #fff" class="btn btn-danger delBtn" href="/car/remove?id=${car.id}" onclick="return confirmx('确认要删除该参数吗？删除后将无法恢复', this.href)">
+                <a style="color: #fff" class="btn btn-danger delBtn" href="${ctx}/car/remove?id=${car.id}" onclick="return confirmx('确认要删除该参数吗？删除后将无法恢复', this.href)">
                     <i class="glyphicon glyphicon-trash"></i>删除</a>
             </td>
         </tr>

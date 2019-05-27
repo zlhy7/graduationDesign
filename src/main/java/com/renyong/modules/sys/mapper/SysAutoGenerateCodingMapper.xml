@@ -180,7 +180,7 @@
             <if test="cdLength !=null">
                 cd_length = #{cdLength},
             </if>
-            <if test="cdTimeFormat !=null and cdTimeFormat!=''">
+            <if test="cdTimeFormat !=null">
                 cd_time_format = #{cdTimeFormat},
             </if>
             <if test="cdStartNum !=null">

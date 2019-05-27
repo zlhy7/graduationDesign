@@ -7,22 +7,10 @@
     <script>
         $(function () {
             //带搜索的下拉框
-            $("#userSex").select2({
+            $("#userSex,#isAllowFlag").select2({
                 placeholder: "请选择",
                 allowClear: true
             });
-            //登录名验证
-            $.validator.addMethod("checkLoginName",function(value,element,params){
-                //以字母开头，其他的由字母，数字，下划线组成
-                var regex = /^[a-zA-Z][a-zA-Z0-9_]+$/;
-                return regex.test(value);
-            },"用户名以字母开头");
-            //姓名验证
-            $.validator.addMethod("checkRealName",function(value,element,params){
-                //真实姓名为2~5位的汉字
-                var regex = /^[\u4E00-\uFA29]{2,5}$/;
-                return regex.test(value);
-            },"姓名必须是中文");
             //手机号验证
             $.validator.addMethod("checkPhone",function(value,element,params){
                 var regex = /^(0|86|17951)?(13[0-9]|15[012356789]|166|17[3678]|18[0-9]|14[57])[0-9]{8}$/;
@@ -56,7 +44,8 @@
                     realName:{
                         required:true,
                         checkRealName:true,
-                        minlength:2
+                        minlength:2,
+                        maxlength:10
                     },
                     userSex:{
                         required:true
@@ -86,7 +75,6 @@
                 },
                 errorContainer: "#messageBox",
                 errorPlacement: function(error, element) {
-                    console.log(element.prop("nodeName"));
                     if (element.is(":checkbox")||element.is(":radio")||element.parent().is(".input-append")){
                         error.appendTo(element.parent().parent());
                     } else if("SELECT"==element.prop("nodeName")){//如果是下拉框，错误出现在
@@ -95,6 +83,23 @@
                         error.insertAfter(element);
                     }
                 }
+            });
+            //头像预览
+            $("#headPortraitFile").change(function () {
+                var file = this.files[0];
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var isPhotoFileRegular = /^.*\.(jpg|gif|png|bmp)$/i;
+                    if(isPhotoFileRegular.test($("#headPortraitFile").val())){
+                        //设置图片src
+                        $("#headPortraitImg")[0].src = this.result;
+                        $("#headPortrait").val(this.result);
+                    }else{
+                        $("#headPortraitFile").val('');//清空文件域
+                        alert("请上传正确的图片格式");
+                    }
+                }
+                reader.readAsDataURL(file);
             });
         })
     </script>
@@ -109,27 +114,28 @@
     <div class="row">
         <div class="col">
             <label class="control-label">用户名：</label>
-            <input type="text" class="form-control" id="loginName" name="loginName" value="${userBean.loginName}"/>
+            <form:input type="text" class="form-control" path="loginName" value="${userBean.loginName}" placeholder="请输入用户名"/>
             <span class="help-inline">*</span>
         </div>
         <div class="col">
             <label class="control-label">用户编号：</label>
-            <input type="text" class="form-control" readonly="readonly" name="userCd" value="${userBean.userCd}"/>
+            <form:input type="text" class="form-control" readonly="true" path="userCd" value="${userBean.userCd}"/>
             <span class="help-inline">*</span>
         </div>
     </div>
     <div class="row">
         <div class="col">
             <label class="control-label">姓名：</label>
-            <input type="text" name="realName" class="form-control"/>
+            <form:input type="text" path="realName" class="form-control"/>
             <span class="help-inline">*</span>
         </div>
         <div class="col">
             <label class="control-label">性别：</label>
+            <%--<options:option items="${fns:getDict('USER_SEX')}" itemKey="dictKey" itemValue="dictValue" defaultValue="${userBean.userSex}"/>--%>
             <select id="userSex" name="userSex" class="form-control select2">
                 <option value="">保密</option>
-                <option value="1" selected>男</option>
-                <option value="2">女</option>
+                <option value="1" <c:if test="${userBean.userSex eq '1'}">selected</c:if>>男</option>
+                <option value="2" <c:if test="${userBean.userSex eq '2'}">selected</c:if>>女</option>
             </select>
             <span class="help-inline">*</span>
         </div>
@@ -137,7 +143,7 @@
     <div class="row">
         <div class="col">
             <label class="control-label">手机：</label>
-            <input type="text" name="userPhone" class="form-control"/>
+            <form:input type="text" path="userPhone" class="form-control"/>
             <span class="help-inline">*</span>
         </div>
         <div class="col">
@@ -154,9 +160,14 @@
             <label class="control-label">备注：</label>
                 <%--<input type="text" class="form-control"/>--%>
             <textarea path="remarks" class="form-control" style="resize:none;font-size: 14px;height: 100px;"
-                      maxlength="255"></textarea>
+                      maxlength="255">${userBean.remarks}</textarea>
         </div>
-        <div class="col"></div>
+        <div class="col">
+            <label class="control-label">上传头像：</label>
+            <input type="file" id="headPortraitFile"/>
+            <form:hidden path="headPortrait"/>
+            <img id="headPortraitImg" height="200" width="200" src="${userBean.headPortrait}"/>
+        </div>
     </div>
     <div class="row">
         <div class="col">

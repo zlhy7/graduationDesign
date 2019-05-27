@@ -21,3 +21,16 @@ form.list_form{
 .btn{
     padding: 0.20rem .75rem;
 }
+/*确认按钮组样式*/
+.layui-layer-dialog .layui-layer-title,.layui-layer-dialog .layui-layer-btn{
+    background-color: black;
+    color: white;
+}
+/*确认提示框的取消按钮样式*/
+.layui-layer-dialog a.layui-layer-btn1 {
+    background-color:  #ccc;
+}
+/*确认提示框的提示文字样式*/
+.layui-layer-dialog .layui-layer-content {
+    background-color:  black;
+}

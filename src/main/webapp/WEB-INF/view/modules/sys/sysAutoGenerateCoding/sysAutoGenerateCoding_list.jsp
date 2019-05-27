@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta charset="UTF-8"/>
-    <title>用户管理</title>
+    <title>编码配置管理</title>
     <script type="text/javascript">
         //分页的方法
         function page(n) {
@@ -22,14 +22,14 @@
 </head>
 <body>
 <ul class="nav nav-tabs">
-    <li class="active"><a href="${ctx}/user/list">用户列表 </a></li>
-    <li><a href="${ctx}/user/fromconfig">添加用户</a></li>
+    <li class="active"><a href="${ctx}/sysAutoGenerateCoding/list">编码配置</a></li>
+    <li><a href="${ctx}/sysAutoGenerateCoding/fromconfig">添加编码</a></li>
 </ul>
-<form:form id="searchForm" class="list_form" modelAttribute="userBean" action="${ctx}/user/list" method="post">
+<form:form id="searchForm" class="list_form" modelAttribute="sysAutoGenerateCodingBean" action="${ctx}/sysAutoGenerateCoding/list" method="post">
     <form:hidden path="pageNum"/>
     <div class="input-prepend">
-        <span class="input-label">姓名：</span>
-        <form:input path="realName"/>
+        <span class="input-label">中文描述：</span>
+        <form:input path="cdChineseDesc"/>
     </div>
     <div class="input-btn">
         <button class="btn btn-primary" onclick="return page('1')"><i class="glyphicon glyphicon-search"></i> 查询</button>
@@ -40,30 +40,32 @@
     <tr>
         <th><input type="checkbox" class="chooseAll"/></th>
         <th>序号</th>
-        <th>用户编号</th>
-        <th>登录名</th>
-        <th>真实姓名</th>
-        <th>性别</th>
-        <th>电话</th>
-        <th>头像</th>
+        <th>英文名</th>
+        <th>中文描述</th>
+        <th>前缀</th>
+        <th>当前数字</th>
+        <th>长度</th>
+        <th>时间格式</th>
+        <th>备注</th>
         <th>操作</th>
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${page.list}" var="userBean" varStatus="status">
+    <c:forEach items="${page.list}" var="sysAutoGenerateCodingBean" varStatus="status">
         <tr>
             <td><input type="checkbox" class="chooseOne"/></td>
             <td>${status.count}</td>
-            <td>${userBean.userCd}</td>
-            <td>${userBean.loginName}</td>
-            <td>${userBean.realName}</td>
-            <td>${fns:getDictValByKey("USER_SEX",userBean.userSex)}</td>
-            <td>${userBean.userPhone}</td>
-            <td><img src="${userBean.headPortrait}" height="50" width="50"/></td>
+            <td>${sysAutoGenerateCodingBean.cdEnglishName}</td>
+            <td>${sysAutoGenerateCodingBean.cdChineseDesc}</td>
+            <td>${sysAutoGenerateCodingBean.cdPrefix}</td>
+            <td>${sysAutoGenerateCodingBean.cdCurrentNum}</td>
+            <td>${sysAutoGenerateCodingBean.cdLength}</td>
+            <td>${sysAutoGenerateCodingBean.cdTimeFormat}</td>
+            <td>${sysAutoGenerateCodingBean.remarks}</td>
             <td>
-                <a style="color: #fff" class="btn btn-warning updateBtn" href="${ctx}/user/fromconfig?id=${userBean.id}">
+                <a style="color: #fff" class="btn btn-warning updateBtn" href="${ctx}/sysAutoGenerateCoding/fromconfig?id=${sysAutoGenerateCodingBean.id}">
                     <i class="glyphicon glyphicon-pencil"></i>修改</a>
-                <a style="color: #fff" class="btn btn-danger delBtn" href="${ctx}/user/remove?id=${userBean.id}" onclick="return confirmx('确认要删除该用户吗？', this)">
+                <a style="color: #fff" class="btn btn-danger delBtn" href="${ctx}/sysAutoGenerateCoding/remove?id=${sysAutoGenerateCodingBean.id}" onclick="return confirmx('确认要删除该编码配置吗？', this)">
                     <i class="glyphicon glyphicon-trash"></i>删除</a>
             </td>
         </tr>

@@ -5,6 +5,7 @@
 <%@ taglib prefix="fns" uri="myFns"%>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tagss"%>
 <%@ taglib prefix="sys" tagdir="/WEB-INF/tags/sys"%>
+<%@ taglib prefix="options" tagdir="/WEB-INF/tags/options"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <c:set var="ctxStatic" value="${pageContext.request.contextPath}/static" />
 <%
