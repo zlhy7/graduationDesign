@@ -186,7 +186,7 @@
             <i class="glyphicon glyphicon-floppy-disk"></i>&nbsp;&nbsp;保 存
         </button>
         <button style="color: #fff" id="btnCancel" class="btn btn-warning" type="button"
-                onclick="window.document.location.href='${ctx}/sysDictBean/list'">
+                onclick="window.location.href='${ctx}/sysDictBean/list'">
             <i class="glyphicon glyphicon-home"></i>&nbsp;返 回
         </button>
     </div>

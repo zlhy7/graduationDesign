@@ -59,7 +59,6 @@ public class SysDictBeanController extends BaseController<SysDictBeanService>{
             sysDictBeanBeanService.update(sysDictBeanBean);
             messages = "修改成功";
         }
-        addMessage(redirectAttributes,messages);
         return "redirect:list";
     }
     //去往表单页面

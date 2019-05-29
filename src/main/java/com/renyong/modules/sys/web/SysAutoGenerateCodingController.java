@@ -54,7 +54,6 @@ public class SysAutoGenerateCodingController extends BaseController<SysAutoGener
             sysAutoGenerateCodingBeanService.update(sysAutoGenerateCodingBean);
             messages = "修改成功";
         }
-        addMessage(redirectAttributes,messages);
         return "redirect:list";
     }
     //去往表单页面
@@ -63,8 +62,7 @@ public class SysAutoGenerateCodingController extends BaseController<SysAutoGener
         if(StringUtil.isBlank(sysAutoGenerateCodingBean.getId())){//添加
 
         }else{//修改
-            List<SysAutoGenerateCoding> sysAutoGenerateCodingList = sysAutoGenerateCodingBeanService.findAll(sysAutoGenerateCodingBean);
-            model.addAttribute("key_value_list",sysAutoGenerateCodingList);
+
         }
         model.addAttribute("sysAutoGenerateCoding",sysAutoGenerateCodingBean);
         return "modules/sys/sysAutoGenerateCoding/sysAutoGenerateCoding_form";

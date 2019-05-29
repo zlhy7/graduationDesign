@@ -48,12 +48,14 @@
             <td>${car.carCd}</td>
             <td>${car.carBrand}</td>
             <td>${car.carModel}</td>
-            <td>${car.carColor}</td>
+            <td>
+                <div style="width: 30px;height: 30px;background-color: ${car.carColor}"></div>
+            </td>
             <td>${car.carNumber}</td>
             <td>
                 <a style="color: #fff" class="btn btn-warning updateBtn" href="${ctx}/car/fromconfig?id=${car.id}">
                     <i class="glyphicon glyphicon-pencil"></i>修改</a>
-                <a style="color: #fff" class="btn btn-danger delBtn" href="${ctx}/car/remove?id=${car.id}" onclick="return confirmx('确认要删除该参数吗？删除后将无法恢复', this.href)">
+                <a style="color: #fff" class="btn btn-danger delBtn" href="${ctx}/car/remove?id=${car.id}" onclick="return confirmx('确认要删除该车辆吗？', this)">
                     <i class="glyphicon glyphicon-trash"></i>删除</a>
             </td>
         </tr>

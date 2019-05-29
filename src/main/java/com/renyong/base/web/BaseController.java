@@ -10,8 +10,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  * @Description: 基础控制器
  */
 public class BaseController<S>{
+    protected static StringBuffer strB = new StringBuffer();
     @Autowired
-    private S service;//业务层bean
+    protected S service;//业务层bean
     protected static StringBuffer pagingBarStr = new StringBuffer();
     //页面分页栏
     public String getPagingBar(PageInfo pageInfo){
@@ -33,18 +34,5 @@ public class BaseController<S>{
         pagingBarStr.append("<li class='page-item"+(nextFlag?"":" disabled")+"'><a class='page-link' href='javascript:page("+pageInfo.getEndRow()+")'>尾页</a></li>");
         pagingBarStr.append("<li class='page-item disabled'><a class='page-link' href='javascript:void(0))'>共"+pageInfo.getTotal()+"条记录,共"+pageInfo.getPages()+"页</a></li></ul>");
         return pagingBarStr.toString();
-    }
-    //页面提示信息
-    protected void addMessage(RedirectAttributes redirectAttributes, String... messages) {
-        StringBuilder sb = new StringBuilder();
-        String[] var7 = messages;
-        int var6 = messages.length;
-
-        for(int var5 = 0; var5 < var6; ++var5) {
-            String message = var7[var5];
-            sb.append(message).append(messages.length > 1 ? "<br/>" : "");
-        }
-
-        redirectAttributes.addFlashAttribute("message", sb.toString());
     }
 }

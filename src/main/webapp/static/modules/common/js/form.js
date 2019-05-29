@@ -10,3 +10,13 @@ $.validator.addMethod("checkRealName",function(value,element,params){
     var regex = /^[\u4E00-\uFA29]+$/;
     return regex.test(value);
 },"姓名必须是中文");
+//所有select 渲染成selec2
+$(function () {
+    $("select").addClass("form-control select2");
+    $("select").each(function () {
+        $(this).select2({
+            placeholder: "请选择",
+            allowClear: true
+        });
+    });
+});

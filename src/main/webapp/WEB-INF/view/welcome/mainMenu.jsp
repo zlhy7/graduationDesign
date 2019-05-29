@@ -5,12 +5,6 @@
     <meta charset="UTF-8"/>
     <title>停车管理系统</title>
     <link rel="stylesheet" href="${ctxStatic}/modules/welcome/css/welcome.css"/>
-    <script type="text/javascript">
-        // 展示内容
-        function showContent(linkAddress){
-            $("iframe")[0].src = linkAddress;
-        }
-    </script>
 </head>
 <body>
 <div class="navbar navbar-duomi navbar-static-top bg-dark" role="navigation">
@@ -56,7 +50,7 @@
                                 <a class="nav-link text-center" href="#" onclick="showContent('${ctx}/user/list')">用户管理</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-center" href="#">车辆管理</a>
+                                <a class="nav-link text-center" href="#" onclick="showContent('${ctx}/car/list')">车辆管理</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-center" href="#">车位管理</a>
@@ -71,7 +65,7 @@
                         系统设置
                     </a>
                 </div>
-                <div id="collapseTwo" class="collapse show" data-parent="#accordion">
+                <div id="collapseTwo" class="collapse" data-parent="#accordion">
                     <div class="bg-dark">
                         <ul class="nav flex-column">
                             <li class="nav-item">

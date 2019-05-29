@@ -6,11 +6,6 @@
     <title>用户管理</title>
     <script>
         $(function () {
-            //带搜索的下拉框
-            $("#userSex,#isAllowFlag").select2({
-                placeholder: "请选择",
-                allowClear: true
-            });
             //手机号验证
             $.validator.addMethod("checkPhone",function(value,element,params){
                 var regex = /^(0|86|17951)?(13[0-9]|15[012356789]|166|17[3678]|18[0-9]|14[57])[0-9]{8}$/;
@@ -131,12 +126,10 @@
         </div>
         <div class="col">
             <label class="control-label">性别：</label>
-            <%--<options:option items="${fns:getDict('USER_SEX')}" itemKey="dictKey" itemValue="dictValue" defaultValue="${userBean.userSex}"/>--%>
-            <select id="userSex" name="userSex" class="form-control select2">
-                <option value="">保密</option>
-                <option value="1" <c:if test="${userBean.userSex eq '1'}">selected</c:if>>男</option>
-                <option value="2" <c:if test="${userBean.userSex eq '2'}">selected</c:if>>女</option>
-            </select>
+            <form:select path="userSex">
+                <form:option value="">请选择</form:option>
+                <form:options items="${fns:getDict('USER_SEX')}" itemLabel="dictValue" itemValue="dictKey" htmlEscape="false"/>
+            </form:select>
             <span class="help-inline">*</span>
         </div>
     </div>
@@ -148,18 +141,17 @@
         </div>
         <div class="col">
             <label class="control-label">是否允许登陆：</label>
-            <select id="isAllowFlag" name="isAllowFlag" class="form-control select2">
-                <option value="1" selected>允许</option>
-                <option value="2">拒绝</option>
-            </select>
+            <form:select path="userSex">
+                <form:option value="">请选择</form:option>
+                <form:options items="${fns:getDict('IS_ALLOW')}" itemLabel="dictValue" itemValue="dictKey" htmlEscape="false"/>
+            </form:select>
             <span class="help-inline">*</span>
         </div>
     </div>
     <div class="row">
         <div class="col">
             <label class="control-label">备注：</label>
-                <%--<input type="text" class="form-control"/>--%>
-            <textarea path="remarks" class="form-control" style="resize:none;font-size: 14px;height: 100px;"
+            <textarea name="remarks" class="form-control" style="resize:none;font-size: 14px;height: 100px;"
                       maxlength="255">${userBean.remarks}</textarea>
         </div>
         <div class="col">

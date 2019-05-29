@@ -6,11 +6,6 @@
     <title>编码配置</title>
     <script>
         $(function () {
-            //带搜索的下拉框
-            $("#cdStartNum,#cdTimeFormat").select2({
-                placeholder: "请选择",
-                allowClear: true
-            });
             $("#cdStartNum").select2('val','1');//设置默认值
             $("#cdTimeFormat").select2('val','');//设置默认值
             //表单验证
@@ -18,7 +13,7 @@
                 rules: {
                     cdEnglishName:{
                         required:true,
-                        remote: {
+                        /*remote: {//关闭字典名唯一验证
                             scriptCharset: 'UTF-8',
                             url: "${ctx}/sysAutoGenerateCoding/checkCdEnglishName",
                             data: {
@@ -30,7 +25,7 @@
                                 }
                             },
                             type: "post"
-                        },
+                        },*/
                         checkLoginName:true,
                         minlength:6,
                         maxlength:18
@@ -131,21 +126,16 @@
     <div class="row">
         <div class="col">
             <label class="control-label">时间格式：</label>
-            <select id="cdTimeFormat" name="cdTimeFormat" class="form-control select2">
-                <option value="">请选择</option>
-                <option value="%Y%M%d" <c:if test="${sysAutoGenerateCodingBean.cdTimeFormat eq '%Y%M%d'}">selected</c:if>>yyyyMMdd</option>
-                <option value="%y%M%d" <c:if test="${sysAutoGenerateCodingBean.cdTimeFormat eq '%y%M%d'}">selected</c:if>>yyMMdd</option>
-                <option value="%M%d" <c:if test="${sysAutoGenerateCodingBean.cdTimeFormat eq '%M%d'}">selected</c:if>>MMdd</option>
-                <option value="%H%m%s" <c:if test="${sysAutoGenerateCodingBean.cdTimeFormat eq '%H%m%s'}">selected</c:if>>HHmmss</option>
-            </select>
+            <form:select path="cdTimeFormat">
+                <form:option value="noNeed">请选择</form:option>
+                <form:options items="${fns:getDict('TIME_FORMAT')}" itemLabel="dictValue" itemValue="dictKey" htmlEscape="false"/>
+            </form:select>
         </div>
     </div>
     <div class="row">
         <div class="col">
             <label class="control-label">备注：</label>
-            <textarea path="remarks" class="form-control" style="resize:none;font-size: 14px;height: 100px;"maxlength="255">
-                    ${sysAutoGenerateCodingBean.remarks}
-            </textarea>
+            <textarea name="remarks" class="form-control" style="resize:none;font-size: 14px;height: 100px;" maxlength="255">${sysAutoGenerateCodingBean.remarks}</textarea>
         </div>
     </div>
     <div class="row">
@@ -154,7 +144,7 @@
             <i class="glyphicon glyphicon-floppy-disk"></i>&nbsp;&nbsp;保 存
         </button>
         <button style="color: #fff" id="btnCancel" class="btn btn-warning" type="button"
-                onclick="window.document.location.href='${ctx}/sysAutoGenerateCoding/list'">
+                onclick="window.location.href='${ctx}/sysAutoGenerateCoding/list'">
             <i class="glyphicon glyphicon-home"></i>&nbsp;返 回
         </button>
     </div>

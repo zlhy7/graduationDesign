@@ -35,7 +35,6 @@ public class UserBeanController extends BaseController<UserBeanService>{
     @RequestMapping("list")
     public String list(UserBean userBean,Model model){
         PageInfo<UserBean> page = userBeanService.findPage(userBean);
-        String a = GenerateUtil.getAutoCd("dsafdfad");
         model.addAttribute("userBean",userBean);//条件
         model.addAttribute("page",page);//记录行
         model.addAttribute("pagingBar",getPagingBar(page));//分页栏
