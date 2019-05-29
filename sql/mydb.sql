@@ -41,6 +41,7 @@ CREATE TABLE `car` (
 insert  into `car`(`car_id`,`car_cd`,`car_brand`,`car_model`,`car_number`,`car_color`,`CREATE_USER`,`CREATE_DATE`,`LAST_UPDATE_DATE`,`LAST_UPDATE_USER`,`DEL_FLAG`,`REMARKS`) values 
 ('133052a0ab0e4c09b14da224aa473c94','CAR0000009','宝马','x666','陕A · XM666','#ffffff',NULL,'2019-05-15 23:20:15.950000','2019-05-15 23:20:15.950000',NULL,'0','第一个车'),
 ('168176bf98414bc0bb69c469eb4aa100','car000000','宝马','x666','陕A · XM666','#ffffff',NULL,'2019-05-15 23:01:22.187000','2019-05-15 23:01:22.187000',NULL,'0','第一个车'),
+('9a04166000e94698b8a2e59e898c7fd0','CAR0000006','宝马','525li','陕A,YG666','#0000FF',NULL,'2019-05-29 22:05:43.548000','2019-05-29 22:05:43.548000',NULL,'0',NULL),
 ('f4682e9416724149bbf12bc482b19d3a','CAR0000007','宝马','x666','陕A · XM666','#ffffff',NULL,'2019-05-15 23:10:27.457000','2019-05-15 23:10:27.457000',NULL,'0','第一个车');
 
 /*Table structure for table `sys_auto_generate_coding` */
@@ -69,11 +70,10 @@ CREATE TABLE `sys_auto_generate_coding` (
 /*Data for the table `sys_auto_generate_coding` */
 
 insert  into `sys_auto_generate_coding`(`auto_generate_coding_id`,`cd_english_name`,`cd_chinese_desc`,`cd_prefix`,`cd_current_num`,`cd_length`,`cd_time_format`,`cd_start_num`,`del_flag`,`remarks`,`create_user`,`create_date`,`last_update_user`,`last_update_date`) values 
-('26f47ae82a464ed999b4adbb39d5ca02','dsafdfad','法第三方的','dsaf','0000001',7,'noNeed',1,'0',NULL,NULL,'2019-05-27 23:29:11.501000',NULL,'2019-05-27 23:29:11.501000'),
-('940d94dc9ef5402eb1b02b9799e592c6','ROLE_CD','角色编码','RC','000002',6,'%H%m%s',1,'0',NULL,NULL,'2019-05-27 22:18:25.205000',NULL,'2019-05-27 23:25:51.028000'),
-('c19a1d2c749811e9b85500e04c83917e','CAR_CD','汽车编码','CAR','0000011',7,'noNeed',0,'0','汽车编码备注','admin','2019-05-12 17:31:44.000000','admin','2019-05-15 23:20:16.000000'),
-('c19a1d2c796311e9b85500e04c83917e','DICT_CD','字典编码','DICT','000021',6,'noNeed',0,'0','字典编码备注','admin','2019-05-20 21:47:34.000000','admin','2019-05-22 22:33:28.000000'),
-('c19a1d2c796356qew85500e04c83917e','USER_CD','用户编码','USER','000045',6,'noNeed',0,'0','人员编码','admin','2019-05-20 21:47:34.000000','admin','2019-05-27 23:12:19.873000');
+('2f84b2abdaaf4e49a1eb710c365abbbb','CAR_CD','汽车编码','CAR','0000007',7,'noNeed',1,'0','汽车编码备注',NULL,'2019-05-29 20:21:23.699000',NULL,'2019-05-29 22:05:43.514000'),
+('940d94dc9ef5402eb1b02b9799e592c6','ROLE_CD','角色编码','RC','000002',6,'%H%i%s',1,'0','角色编码憋住',NULL,'2019-05-27 22:18:25.205000',NULL,'2019-05-27 23:25:51.028000'),
+('c19a1d2c796311e9b85500e04c83917e','DICT_CD','字典编码','DICT','000033',6,'noNeed',0,'0','字典编码备注','admin','2019-05-20 21:47:34.000000','admin','2019-05-29 21:34:20.323000'),
+('c19a1d2c796356qew85500e04c83917e','USER_CD','用户编码','USER','000056',6,'noNeed',0,'0','人员编码','admin','2019-05-20 21:47:34.000000','admin','2019-05-29 21:18:46.998000');
 
 /*Table structure for table `sys_dict` */
 
@@ -84,7 +84,7 @@ CREATE TABLE `sys_dict` (
   `sys_dict_bean_cd` varchar(20) DEFAULT NULL COMMENT '字典cd',
   `dict_chinese_desc` varchar(255) DEFAULT NULL COMMENT '中文描述',
   `dict_english_name` varchar(20) DEFAULT NULL COMMENT '英文名',
-  `dict_key` varchar(30) DEFAULT NULL COMMENT '键',
+  `dict_key` varchar(255) DEFAULT NULL COMMENT '键',
   `dict_value` varchar(255) DEFAULT NULL COMMENT '值',
   `del_flag` varchar(2) DEFAULT NULL COMMENT '删除标记',
   `remarks` varchar(255) DEFAULT NULL COMMENT '备注',
@@ -99,9 +99,21 @@ CREATE TABLE `sys_dict` (
 
 insert  into `sys_dict`(`dict_id`,`sys_dict_bean_cd`,`dict_chinese_desc`,`dict_english_name`,`dict_key`,`dict_value`,`del_flag`,`remarks`,`create_user`,`create_date`,`last_update_user`,`last_update_date`) values 
 ('01c97684b12345d8b535933330c51e68','DICT000019','是否','YES_NO','1','是','0','',NULL,'2019-05-22 22:33:28',NULL,'2019-05-22 22:33:28'),
-('0e312c1093bd42d5baabb6b7b41a4df0','DICT000020','是否','YES_NO','0','否','0','',NULL,'2019-05-22 22:33:28',NULL,'2019-05-22 22:33:28'),
+('0228dd49be544b85aef150f63d7ab7c5','DICT000022','汽车颜色','CAR_COLOR','#FF0000','红色','0','汽车颜色',NULL,'2019-05-29 21:11:38',NULL,'2019-05-29 21:11:38'),
+('0e312c1093bd42d5baabb6b7b41a4df0','DICT000020','是否','YES_NO','2','否','0','',NULL,'2019-05-22 22:33:28',NULL,'2019-05-22 22:33:28'),
 ('2b4e979955034085886ca284b9d55572','DICT000016','性别','USER_SEX','2','女','0','',NULL,'2019-05-21 07:23:29',NULL,'2019-05-21 07:23:29'),
-('55f4435cbb4d4c519f1e9c187d7b78d2','DICT000012','性别','USER_SEX','1','男','0','',NULL,'2019-05-21 07:22:33',NULL,'2019-05-21 07:22:33');
+('3524429495ad4d58b7e9cc96bce42e73','DICT000031','时间格式','TIME_FORMAT','%M%d','MMdd','0','时间格式',NULL,'2019-05-29 21:34:20',NULL,'2019-05-29 21:34:20'),
+('4396ed3712b34313b115f934f56e8acf','DICT000029','时间格式','TIME_FORMAT','%Y%M%d','yyyyMMdd','0','时间格式',NULL,'2019-05-29 21:34:20',NULL,'2019-05-29 21:34:20'),
+('55f4435cbb4d4c519f1e9c187d7b78d2','DICT000012','性别','USER_SEX','1','男','0','',NULL,'2019-05-21 07:22:33',NULL,'2019-05-21 07:22:33'),
+('5a1b5709443340a39754acd072c67285','DICT000021','汽车颜色','CAR_COLOR','#0000FF','蓝色','0','汽车颜色',NULL,'2019-05-29 21:11:38',NULL,'2019-05-29 21:11:38'),
+('5a71ab983aa04ad79ec879a4926b9d34','DICT000025','汽车颜色','CAR_COLOR','#F4A460','棕色','0','汽车颜色',NULL,'2019-05-29 21:11:38',NULL,'2019-05-29 21:11:38'),
+('66a11e979fdd4e9480c13d50924597ee','DICT000028','是否允许登陆','IS_ALLOW','2','拒绝','0','是否允许登陆',NULL,'2019-05-29 21:13:32',NULL,'2019-05-29 21:13:32'),
+('6e25966c142241d19a091b2ddf451e6b','DICT000030','时间格式','TIME_FORMAT','%y%M%d','yyMMdd','0','时间格式',NULL,'2019-05-29 21:34:20',NULL,'2019-05-29 21:34:20'),
+('7bdaa1541b584766b1a150006bbf8c19','DICT000032','时间格式','TIME_FORMAT','%H%i%s','HHmmss','0','时间格式',NULL,'2019-05-29 21:34:20',NULL,'2019-05-29 21:34:20'),
+('86466f514d914d11967ca327b6882c9a','DICT000027','是否允许登陆','IS_ALLOW','1','允许','0','是否允许登陆',NULL,'2019-05-29 21:13:32',NULL,'2019-05-29 21:13:32'),
+('b07bb8791d9241819aff08ba5a202511','DICT000026','汽车颜色','CAR_COLOR','#D3D3D3','灰色','0','汽车颜色',NULL,'2019-05-29 21:11:38',NULL,'2019-05-29 21:11:38'),
+('d6f7484bedff4c399d80b1c39f3aaa60','DICT000023','汽车颜色','CAR_COLOR','#FFFFFF','白色','0','汽车颜色',NULL,'2019-05-29 21:11:38',NULL,'2019-05-29 21:11:38'),
+('dbb219e5e02b4a8d89c3bc420e17a27e','DICT000024','汽车颜色','CAR_COLOR','#000000','黑色','0','汽车颜色',NULL,'2019-05-29 21:11:38',NULL,'2019-05-29 21:11:38');
 
 /*Table structure for table `sys_user` */
 

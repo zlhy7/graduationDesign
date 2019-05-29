@@ -44,6 +44,15 @@
 				background: url('${ctxStatic}/modules/login/img/back.gif') no-repeat;
 				background-size: contain;
 			}
+            #loginForm{
+                height: 750px;
+                border: 1px solid white;
+            }
+            label.control-label{
+                padding: 5px;
+                width: 80px;
+                text-align: right;
+            }
 		</style>
 	</head>
 	<body>
@@ -81,10 +90,17 @@
 			</div>
 			<%--居上有点距离--%>
 			<div class="row mt-10">
-				<div class="col-md-8 offset-md-2 login-form-div">
-					<div class="col-md-4 offset-md-9">
-						<form id="loginForm" action="${ctx}/toLogin" method="post" name="form1"
-							  style="height: 750px;width: 100%">
+				<div class="col-md-10 offset-md-2 login-form-div">
+					<div class="col-md-5 offset-md-7">
+						<form id="loginForm" class="form_form2" action="${ctx}/toLogin" method="post" name="form1">
+                            <div class="p-2 d-flex">
+                                <label class="control-label">登录名：</label>
+                                <input type="text" id="loginName" name="loginName" class="form-control" placeholder="请输入用户名"/>
+                            </div>
+                            <div class="p-2 d-flex">
+                                <label class="control-label">密码：</label>
+                                <input type="text" id="password" name="password" class="form-control" placeholder="请输入密码"/>
+                            </div>
 						</form>
 					</div>
 				</div>
