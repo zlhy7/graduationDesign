@@ -16,17 +16,41 @@ import java.util.List;
  */
 @Controller
 public class LoginController extends BaseController<UserBeanService>{
+    /**
+     * 访问登录界面
+     * @return
+     */
     @RequestMapping("/toLogin")
     public String toLoginPage(){//去登陆页面
         return "modules/login/login";
     }
+
+    /**
+     * 处理登录
+     * @param userBean 用户信息
+     * @param session session会话
+     * @return
+     */
     @RequestMapping("/dealwithLogin")
-    public String dealwithLogin(UserBean userBean, HttpSession session){//处理登录
+    public String dealwithLogin(UserBean userBean, HttpSession session){
         List<UserBean> userBeanList = service.findAll(userBean);//查询用户
         if(userBeanList!=null && !userBeanList.isEmpty()){
             session.setAttribute("userBean",userBeanList.get(0));
             return "welcome/mainMenu";
         }
         return "modules/login/login";
+    }
+
+    /**
+     * 注销的方法
+     * @param session
+     * @return
+     */
+    @RequestMapping("/loginOut")
+    public String loginOut(HttpSession session){
+        if (session!=null){
+            session.invalidate();//重置session
+        }
+        return "redirect:/toLogin";
     }
 }
