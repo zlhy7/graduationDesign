@@ -17,6 +17,8 @@
 			}
 			#showChildModule{
 				border: 1px solid white;
+				height: 80%;
+				width: 100%
 			}
 		</style>
 	</head>
@@ -24,7 +26,7 @@
 		<div class="container-fluid">
 			<div class="row">
 				<%--变蓝 标题1 居中--%>
-				<div class="col-md-6 offset-md-3 text-primary display-2 text-center">
+				<div class="col-md-6 offset-md-3 text-primary display-3 text-center">
 					欢迎使用停车管理系统
 				</div>
 			</div>
@@ -32,7 +34,7 @@
 			<div class="row mt-10">
 				<div class="col-md-10 offset-md-2 login-form-div">
 					<div class="col-md-5 offset-md-7">
-						<iframe id="showChildModule" name="showChildModule" frameborder="0" src="${ctx}/loginController/iframeSrc?modulesName=loginPage" class="form_form2" style="height: 750px;width: 100%"/>
+						<iframe id="showChildModule" name="showChildModule" frameborder="0" src="${ctx}/loginController/iframeSrc?modulesName=loginPage" class="form_form2"/>
 					</div>
 				</div>
 			</div>
