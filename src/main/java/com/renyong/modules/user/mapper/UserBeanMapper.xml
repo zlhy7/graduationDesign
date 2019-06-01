@@ -36,13 +36,18 @@
             AND login_name = #{loginName}
         </if>
         <if test="password !=null and password!=''">
-            AND password = md5(#{password})
+            <if test="currentPwdWay=='md5Pwd'.toString()">
+                AND password = #{password}
+            </if>
+            <if test="currentPwdWay=='generalPwd'.toString()">
+                AND password = md5(#{password})
+            </if>
         </if>
         <if test="secretKey !=null and secretKey!=''">
             AND secret_key = #{secretKey}
         </if>
         <if test="realName !=null and realName!=''">
-            AND real_name = #{realName}
+            AND instr(real_name,#{realName})>0
         </if>
         <if test="userSex !=null and userSex!=''">
             AND user_sex = #{userSex}

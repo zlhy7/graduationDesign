@@ -6,6 +6,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.PrintWriter;
 
 /**
  * @Auther: 任勇勇
@@ -20,13 +21,18 @@ public class LoginInterceptor implements HandlerInterceptor {
         // 返回false则不执行拦截
         HttpSession session = request.getSession();
         String uri = request.getRequestURI(); // 获取登录的uri，这个是不进行拦截的
-        /*if(uri.contains("toLogin")||uri.contains("dealwithLogin")){
+        //不拦截去登录页面，处理登录，或是注销登录的请求
+        if(uri.contains("iframeSrc")){
             flag = true;
         }else if(session.getAttribute("userBean")==null) {
             // 拦截后进入登录页面
-            response.sendRedirect(request.getContextPath()+"/toLogin");
+            //顶级对象返回登录页
+            PrintWriter out = response.getWriter();
+            out.print("<script type='text/javascript' charset='UTF-8'>" +
+                    "top.window.location.href = \"/loginController/toLogin\";" +
+                    "</script>");
             flag = false;
-        }*/
+        }
         return flag;
     }
 

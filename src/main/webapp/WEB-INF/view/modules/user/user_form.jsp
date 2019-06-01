@@ -62,7 +62,7 @@
                     realName:{minlength:"名字至少两个字"}
                 },
                 submitHandler: function(form){
-                    loading('正在提交，请稍等...');
+                    layer.load(0, {shade: [0.8, '#393D49'], time: 3000})
                     form.submit();
                 },
                 success: function(lable){

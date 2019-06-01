@@ -16,6 +16,7 @@ public class UserBean extends BaseEntity<UserBean> {
     private String userCd;//用户编码
     private String loginName;//登录名
     private String password;//密码
+    private String currentPwdWay;//当前密码方式
     private String secretKey;//加密秘钥
     //基本信息
     private String realName;//真实姓名
@@ -25,6 +26,24 @@ public class UserBean extends BaseEntity<UserBean> {
     //集合属性
     private List<Car> carList;//名下车辆
     private List<RoleBean> roleBeanList;//拥有角色
+
+    @Override
+    public String getCD_NAME() {
+        return CD_NAME;
+    }
+
+    @Override
+    public void setCD_NAME(String CD_NAME) {
+        this.CD_NAME = CD_NAME;
+    }
+
+    public String getCurrentPwdWay() {
+        return currentPwdWay;
+    }
+
+    public void setCurrentPwdWay(String currentPwdWay) {
+        this.currentPwdWay = currentPwdWay;
+    }
 
     public String getUserCd() {
         return userCd;
@@ -48,6 +67,8 @@ public class UserBean extends BaseEntity<UserBean> {
 
     public void setPassword(String password) {
         this.password = password;
+        String pwdFs = password.matches("^[a-z0-9]{32}$")?"md5Pwd":"generalPwd";
+        this.setCurrentPwdWay(pwdFs);
     }
 
     public String getSecretKey() {

@@ -10,6 +10,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  * @Description: 基础控制器
  */
 public class BaseController<S>{
+    protected String message = "";//提示信息
     protected static StringBuffer strB = new StringBuffer();
     @Autowired
     protected S service;//业务层bean
@@ -34,5 +35,18 @@ public class BaseController<S>{
         pagingBarStr.append("<li class='page-item"+(nextFlag?"":" disabled")+"'><a class='page-link' href='javascript:page("+pageInfo.getEndRow()+")'>尾页</a></li>");
         pagingBarStr.append("<li class='page-item disabled'><a class='page-link' href='javascript:void(0))'>共"+pageInfo.getTotal()+"条记录,共"+pageInfo.getPages()+"页</a></li></ul>");
         return pagingBarStr.toString();
+    }
+    //保存提示信息到页面
+    protected void addMessage(RedirectAttributes redirectAttributes, String... messages) {
+        StringBuilder sb = new StringBuilder();
+        String[] var7 = messages;
+        int var6 = messages.length;
+
+        for(int var5 = 0; var5 < var6; ++var5) {
+            String message = var7[var5];
+            sb.append(message).append(messages.length > 1 ? "<br/>" : "");
+        }
+
+        redirectAttributes.addFlashAttribute("message", sb.toString());
     }
 }

@@ -65,6 +65,10 @@
                 success: function (lable) {
                     lable.remove();
                 },
+                submitHandler: function(form){
+                    layer.load(0, {shade: [0.8, '#393D49'], time: 3000})
+                    form.submit();
+                },
                 errorContainer: "#messageBox",
                 errorPlacement: function (error, element) {
                     if (element.is(":checkbox") || element.is(":radio") || element.parent().is(".input-append")) {

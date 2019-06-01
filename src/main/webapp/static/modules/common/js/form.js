@@ -10,13 +10,21 @@ $.validator.addMethod("checkRealName",function(value,element,params){
     var regex = /^[\u4E00-\uFA29]+$/;
     return regex.test(value);
 },"姓名必须是中文");
+//去登录
+function toLogin() {
+    top.window.location.href = "/loginController/toLogin";
+}
+//去主菜单
+function toMainMenu() {
+    top.window.location.href = "/loginController/toMainMenu";
+}
 //所有select 渲染成selec2
 $(function () {
     $("select").addClass("form-control select2");
-    $("select").each(function () {
+    /*$("select").each(function () {
         $(this).select2({
             placeholder: "请选择",
             allowClear: true
         });
-    });
+    });*/
 });

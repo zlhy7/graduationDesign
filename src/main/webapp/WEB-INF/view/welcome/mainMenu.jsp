@@ -5,6 +5,11 @@
     <meta charset="UTF-8"/>
     <title>停车管理系统</title>
     <link rel="stylesheet" href="${ctxStatic}/modules/welcome/css/welcome.css"/>
+    <script type="text/javascript">
+        $(function () {
+            <%--layer.alert('登录成功，欢迎你：${userBean.realName}', {icon: 6});--%>
+        });
+    </script>
 </head>
 <body>
 <div class="navbar navbar-duomi navbar-static-top bg-dark" role="navigation">
@@ -27,7 +32,7 @@
                     <div class="dropdown-menu bg-dark">
                         <a class="dropdown-item text-primary" href="#">个人信息</a>
                         <a class="dropdown-item text-primary" href="#">修改密码</a>
-                        <a class="dropdown-item text-primary" href="#">退出系统</a>
+                        <a class="dropdown-item text-primary" href="${ctx}/loginController/loginOut">退出系统</a>
                     </div>
                 </li>
             </ul>

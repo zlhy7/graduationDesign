@@ -14,25 +14,6 @@
             //表单验证
             $("#searchForm").validate({
                 rules: {
-                    <%--loginName:{--%>
-                        <%--required:true,--%>
-                        <%--remote: {--%>
-                            <%--scriptCharset: 'UTF-8',--%>
-                            <%--url: "${ctx}/car/checkLoginName",--%>
-                            <%--data: {--%>
-                                <%--loginName: function () {--%>
-                                    <%--return $("#loginName").val();--%>
-                                <%--},--%>
-                                <%--loginName2:function(){--%>
-                                    <%--return "${car.carColor}";--%>
-                                <%--}--%>
-                            <%--},--%>
-                            <%--type: "post"--%>
-                        <%--},--%>
-                        <%--checkLoginName:true,--%>
-                        <%--minlength:6,--%>
-                        <%--maxlength:18--%>
-                    <%--},--%>
                     carCd:{
                         required:true
                     },
@@ -50,10 +31,9 @@
                     }
                 },
                 messages: {
-                    loginName: {remote: "车辆名已被占用"},
                 },
                 submitHandler: function(form){
-                    loading('正在提交，请稍等...');
+                    layer.load(0, {shade: [0.8, '#393D49'], time: 3000})
                     form.submit();
                 },
                 success: function(lable){

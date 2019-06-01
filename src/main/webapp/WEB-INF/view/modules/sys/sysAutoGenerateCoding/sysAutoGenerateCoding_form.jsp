@@ -54,11 +54,7 @@
                     cdEnglishName: {remote: "编码名已被占用"}
                 },
                 submitHandler: function(form){
-                    layer.open({
-                        shadeClose: false,
-                        type: 0,
-                        content: '提交中...'
-                    });
+                    layer.load(0, {shade: [0.8, '#393D49'], time: 3000})
                     form.submit();
                 },
                 success: function(lable){
