@@ -5,8 +5,11 @@
 #loginForm{
 	width: 90%;
 	height: 90%;
-	padding-top: 4rem;
-	padding-left: 7rem;
+	padding-top: 20%;
+	padding-left: 20%;
+	width:fit-content;
+	width:-webkit-fit-content;
+	width:-moz-fit-content;
 }
 #loginForm .hang{
 	width:fit-content;
@@ -15,9 +18,10 @@
 }
 #loginForm .hang-top{
 	width: 70%;
-	height: 55%;
+	height: 40%;
 	background: url('../img/huajiSiji.gif') no-repeat;
 	background-size: contain;
+	margin: 0 auto;
 }
 label.control-label{
 	padding: 5px;
