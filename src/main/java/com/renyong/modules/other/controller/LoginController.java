@@ -2,8 +2,8 @@ package com.renyong.modules.other.controller;
 
 import com.renyong.base.util.CookieUtil;
 import com.renyong.base.util.StringUtil;
+import com.renyong.base.util.UserUtil;
 import com.renyong.base.web.BaseController;
-import com.renyong.modules.sys.model.SysDictBean;
 import com.renyong.modules.user.model.UserBean;
 import com.renyong.modules.user.service.UserBeanService;
 import org.springframework.stereotype.Controller;
@@ -11,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import sun.security.util.Password;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,14 +24,19 @@ import java.util.List;
  * @Description: 登录注销相关的控制器
  */
 @Controller
-@RequestMapping("/loginController")
+@RequestMapping("/loginController/")
 public class LoginController extends BaseController<UserBeanService>{
     /**
      * 访问登录界面
+     * @param userBean 用户信息
+     * @param response
+     * @param request
+     * @param model
+     * @param message 提示信息
      * @return
      */
-    @RequestMapping("/toLogin")
-    public String toLoginPage(UserBean userBean,HttpServletResponse response, HttpServletRequest request,Model model){//去登陆页面
+    @RequestMapping("toLogin")
+    public String toLoginPage(UserBean userBean,HttpServletResponse response, HttpServletRequest request,Model model,String message){//去登陆页面
         //登录名
         String loginName = CookieUtil.getCookie(request,response,"loginName",false);
         /**
@@ -43,6 +47,12 @@ public class LoginController extends BaseController<UserBeanService>{
             String password = CookieUtil.getCookie(request,response,loginName,false);
             userBean.setPassword(password);
         }
+        if(StringUtil.isNotBlank(message)){
+            /**
+             * 如果有提示信息就提示
+             */
+            model.addAttribute("message",message);
+        }
         model.addAttribute("userBean",userBean);
         return "modules/login/login";
     }
@@ -51,7 +61,7 @@ public class LoginController extends BaseController<UserBeanService>{
      * 去往主菜单的请求
      * @return
      */
-    @RequestMapping("/toMainMenu")
+    @RequestMapping("toMainMenu")
     public String toMainMenu(){
         return "welcome/mainMenu";
     }
@@ -61,22 +71,35 @@ public class LoginController extends BaseController<UserBeanService>{
      * @param session session会话
      * @return
      */
-    @RequestMapping("/dealwithLogin")
+    @RequestMapping("dealwithLogin")
     public String dealwithLogin(UserBean userBean, @RequestParam(required = false) String keepPwd, HttpSession session, HttpServletResponse response, HttpServletRequest request, Model model,RedirectAttributes redirectAttributes){
-        List<UserBean> userBeanList = service.findAll(userBean);//查询用户
+        List<UserBean> userBeanList = service.findAll(userBean);
+        /**
+         * 查询用户
+         */
         if (userBeanList!=null && !userBeanList.isEmpty()){
             session.setAttribute("userBean",userBeanList.get(0));
-            message="";//提示信息清空
+            /**
+             * 提示信息清空
+             */
+            message="";
             if(keepPwd!=null){
-                //保存用户信息到本地
-                CookieUtil.setCookie(response,"loginName",userBeanList.get(0).getLoginName(),60*60*24*7);//7天有效
-                CookieUtil.setCookie(response,userBeanList.get(0).getLoginName(),userBeanList.get(0).getPassword(),60*60*24*7);//7天有效
+                /**
+                 * 保存用户信息到本地
+                 */
+                /**
+                 * 7天有效
+                 */
+                CookieUtil.setCookie(response,"loginName",userBeanList.get(0).getLoginName(),60*60*24*7);
+                CookieUtil.setCookie(response,userBeanList.get(0).getLoginName(),userBeanList.get(0).getPassword(),60*60*24*7);
             }else{
                 //移除本地用户信息
                 CookieUtil.getCookie(request,response,"loginName",true);
                 CookieUtil.getCookie(request,response,userBeanList.get(0).getLoginName(),true);
             }
-            //登录标识
+            /**
+             * 登录标识
+             */
             return "redirect:iframeSrc?modulesName=loginPage&loginFlag=success";
         } else {
             message="密码错误";
@@ -90,12 +113,19 @@ public class LoginController extends BaseController<UserBeanService>{
      * @param session
      * @return
      */
-    @RequestMapping("/loginOut")
+    @RequestMapping("loginOut")
     public String loginOut(HttpSession session){
         if (session!=null){
-            session.invalidate();//重置session
+            /**
+             * 重置session
+             */
+            session.invalidate();
+            /**
+             * 清空UserUtil里的当前用户
+             */
+            UserUtil.setCurrentUserBean(null);
         }
-        return "redirect:/toLogin";
+        return "redirect:toLogin";
     }
 
     /**
@@ -103,7 +133,7 @@ public class LoginController extends BaseController<UserBeanService>{
      * @param userBean
      * @param out
      */
-    @RequestMapping("/isExistsUser")
+    @RequestMapping("isExistsUser")
     public void isExistsUser(UserBean userBean, PrintWriter out){
         List<UserBean> userBeanList = service.findAll(userBean);
         boolean flag = !userBeanList.isEmpty();
@@ -117,7 +147,7 @@ public class LoginController extends BaseController<UserBeanService>{
      * @param modulesName
      * @return
      */
-    @RequestMapping("/iframeSrc")
+    @RequestMapping("iframeSrc")
     public String iframeChildrenModules(@RequestParam(required = false) String modulesName,@RequestParam(required = false) String loginFlag,Model model){
         if(StringUtil.isBlank(modulesName)){
             modulesName = "loginPage";

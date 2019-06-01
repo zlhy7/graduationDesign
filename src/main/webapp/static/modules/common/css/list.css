@@ -34,3 +34,9 @@ form.list_form{
 .layui-layer-dialog .layui-layer-content {
     background-color:  black;
 }
+/*layer msg样式*/
+.demo-class{
+    background-color: white;
+    font-size: 16px;
+    color: red;
+}

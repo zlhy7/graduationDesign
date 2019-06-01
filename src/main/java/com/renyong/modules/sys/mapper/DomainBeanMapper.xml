@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.renyong.modules.sys.dao.DomainBeanDao">
+    <resultMap id="BaseResultMap" type="com.renyong.modules.sys.model.DomainBean">
+        <id column="domain_id" property="id" />
+        <result column="domain_cd" property="domainCd" />
+        <result column="domain_desc" property="domainDesc" />
+        <result column="domain_name" property="domainName" />
+        <result column="table_name" property="tableName" />
+        <result column="thead_ths" property="theadThs"/>
+        <result column="column_show_names" property="columnShowNames" />
+        <result column="column_output_names" property="columnOutputNames" />
+        <!--公共属性-->
+        <result column="create_user" property="createUser.id" jdbcType="VARCHAR" />
+        <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+        <result column="last_update_date" property="lastUpdateDate" jdbcType="TIMESTAMP" />
+        <result column="last_update_user" property="lastUpdateUser.id" jdbcType="VARCHAR" />
+        <result column="del_flag" property="delFlag" jdbcType="VARCHAR" />
+        <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    </resultMap>
+    <!--查询单个-->
+    <select id="get" resultMap="BaseResultMap">
+        SELECT * from sys_domain
+        WHERE domain_id = #{id}
+    </select>
+    <!--查询多个-->
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT * from sys_domain WHERE del_flag = '0'
+        <if test="id !=null and id!=''">
+            AND domain_id = #{id}
+        </if>
+        <if test="domainCd !=null and domainCd!=''">
+            AND domain_cd = #{domainCd}
+        </if>
+        <if test="domainDesc !=null and domainDesc!=''">
+            AND  instr(domain_desc,#{domainDesc})>0
+        </if>
+        <if test="domainName !=null and domainName!=''">
+            AND domain_name = #{domainName}
+        </if>
+        <if test="tableName !=null and tableName!=''">
+            AND `table_name` = #{tableName}
+        </if>
+        <if test="theadThs !=null and theadThs!=''">
+            AND thead_ths = #{theadThs}
+        </if>
+        <if test="theadThs !=null and theadThs!=''">
+            AND column_show_names = #{columnShowNames}
+        </if>
+        <if test="theadThs !=null and theadThs!=''">
+            AND column_output_names = #{columnOutputNames}
+        </if>
+        ORDER BY CREATE_DATE DESC
+    </select>
+    <!--新增-->
+    <insert id="insert">
+        INSERT INTO sys_domain
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id !=null and id!=''">
+                domain_id,
+            </if>
+            <if test="domainCd !=null and domainCd!=''">
+                domain_cd,
+            </if>
+            <if test="domainDesc !=null and domainDesc!=''">
+                domain_desc,
+            </if>
+            <if test="domainName !=null and domainName!=''">
+                domain_name,
+            </if>
+            <if test="tableName !=null and tableName!=''">
+                `table_name`,
+            </if>
+            <if test="theadThs !=null and theadThs !=''">
+                thead_ths,
+            </if>
+            <if test="theadThs !=null and theadThs!=''">
+                column_show_names,
+            </if>
+            <if test="theadThs !=null and theadThs!=''">
+                column_output_names,
+            </if>
+            <if test="createUser != null" >
+                CREATE_USER,
+            </if>
+            <if test="createDate != null" >
+                CREATE_DATE,
+            </if>
+            <if test="lastUpdateDate != null" >
+                LAST_UPDATE_DATE,
+            </if>
+            <if test="lastUpdateUser != null" >
+                LAST_UPDATE_USER,
+            </if>
+            <if test="delFlag != null" >
+                DEL_FLAG,
+            </if>
+            <if test="remarks != null" >
+                REMARKS
+            </if>
+        </trim>
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+            <if test="id !=null and id!=''">
+                #{id},
+            </if>
+            <if test="domainCd !=null and domainCd!=''">
+                #{domainCd},
+            </if>
+            <if test="domainDesc !=null and domainDesc!=''">
+                #{domainDesc},
+            </if>
+            <if test="domainName !=null and domainName!=''">
+                #{domainName},
+            </if>
+            <if test="tableName !=null and tableName!=''">
+                #{tableName},
+            </if>
+            <if test="theadThs !=null and theadThs !=''">
+                #{theadThs},
+            </if>
+            <if test="theadThs !=null and theadThs!=''">
+                #{columnShowNames},
+            </if>
+            <if test="theadThs !=null and theadThs!=''">
+                #{columnOutputNames},
+            </if>
+            <if test="createUser != null" >
+                #{createUser.id},
+            </if>
+            <if test="createDate != null" >
+                #{createDate},
+            </if>
+            <if test="lastUpdateDate != null" >
+                #{lastUpdateDate},
+            </if>
+            <if test="lastUpdateUser != null" >
+                #{lastUpdateUser.id},
+            </if>
+            <if test="delFlag != null" >
+                #{delFlag},
+            </if>
+            <if test="remarks != null" >
+                #{remarks}
+            </if>
+        </trim>
+    </insert>
+    <select id="getDomainByName" resultType="java.util.Map">
+        SELECT * from #{domainName} WHERE del_flag = '0'
+    </select>
+    <!--修改-->
+    <update id="update">
+        update sys_domain
+        <trim prefix="set" suffixOverrides=",">
+            <if test="id !=null and id!=''">
+                domain_id = #{id},
+            </if>
+            <if test="domainCd !=null and domainCd!=''">
+                domain_cd = #{domainCd},
+            </if>
+            <if test="domainDesc !=null and domainDesc!=''">
+                domain_desc = #{domainDesc},
+            </if>
+            <if test="domainName !=null and domainName!=''">
+                domain_name = #{domainName},
+            </if>
+            <if test="tableName !=null and tableName!=''">
+                table_name = #{tableName},
+            </if>
+            <if test="theadThs !=null and theadThs !=''">
+                thead_ths = #{theadThs},
+            </if>
+            <if test="theadThs !=null and theadThs!=''">
+                column_show_names = #{columnShowNames},
+            </if>
+            <if test="theadThs !=null and theadThs!=''">
+                column_output_names = #{columnOutputNames},
+            </if>
+            <if test="createUser != null" >
+                CREATE_USER=#{createUser.id},
+            </if>
+            <if test="createDate != null" >
+                CREATE_DATE=#{createDate},
+            </if>
+            <if test="lastUpdateDate != null" >
+                LAST_UPDATE_DATE=#{lastUpdateDate},
+            </if>
+            <if test="lastUpdateUser != null" >
+                LAST_UPDATE_USER=#{lastUpdateUser.id},
+            </if>
+            <if test="delFlag != null" >
+                DEL_FLAG=#{delFlag},
+            </if>
+            <if test="remarks != null" >
+                REMARKS=#{remarks}
+            </if>
+        </trim>
+        where domain_id=#{id}
+    </update>
+    <!--逻辑删除-->
+    <update id="delete">
+        update sys_domain
+        SET del_flag = '1',
+        LAST_UPDATE_DATE=#{lastUpdateDate},
+        LAST_UPDATE_USER=#{lastUpdateUser.id}
+        where domain_id=#{id}
+    </update>
+    <!--物理删除-->
+    <delete id="deleteById">
+        DELETE FROM sys_domain WHERE domain_id = #{id}
+    </delete>
+    <!--查询表是否存在-->
+    <select id="isTableExist" resultType="java.lang.String">
+      SELECT
+            t.table_name
+      FROM
+            information_schema.TABLES t
+      WHERE
+            t.TABLE_SCHEMA = "mydb"
+            AND t.TABLE_NAME = #{tableName};
+    </select>
+</mapper>

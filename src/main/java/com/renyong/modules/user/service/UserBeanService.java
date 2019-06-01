@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 public class UserBeanService extends BaseService<UserBeanDao,UserBean>{
+    @Override
     @Transactional(readOnly = false)
     public void insert(UserBean userBean) {
         if(StringUtil.isBlank(userBean.getPassword())){

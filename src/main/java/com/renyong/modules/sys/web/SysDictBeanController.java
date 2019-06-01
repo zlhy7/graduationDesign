@@ -22,30 +22,65 @@ import java.util.List;
 @Controller
 @RequestMapping("/sysDictBean/")
 public class SysDictBeanController extends BaseController<SysDictBeanService>{
+    /**
+     * 字典业务层
+     */
     @Autowired
-    private SysDictBeanService sysDictBeanBeanService;//字典业务层
-    //查询一个
+    private SysDictBeanService sysDictBeanBeanService;
+
+    /**
+     * 查询一个
+     * @param id
+     * @return
+     */
     @ModelAttribute("sysDictBeanBean")
     public SysDictBean get(String id){
-        if(StringUtil.isBlank(id)){//新建
+        if(StringUtil.isBlank(id)){
+            /**
+             * 新建
+             */
             return new SysDictBean();
         }
         return sysDictBeanBeanService.get(id);
     }
-    //去往列表页面
+
+    /**
+     * 去往列表页面
+     * @param sysDictBeanBean
+     * @param model
+     * @return
+     */
     @RequestMapping("list")
     public String list(SysDictBean sysDictBeanBean,Model model){
         PageInfo<SysDictBean> page = sysDictBeanBeanService.findPage(sysDictBeanBean);
-        model.addAttribute("sysDictBeanBean",sysDictBeanBean);//条件
-        model.addAttribute("page",page);//记录行
-        model.addAttribute("pagingBar",getPagingBar(page));//分页栏
+        /**
+         * 条件
+         */
+        model.addAttribute("sysDictBeanBean",sysDictBeanBean);
+        /**
+         * 记录行
+         */
+        model.addAttribute("page",page);
+        /**
+         * 分页栏
+         */
+        model.addAttribute("pagingBar",getPagingBar(page));
         return "modules/sys/sysDictBean/sysDictBean_list";
     }
-    //增加或修改记录行
+
+    /**
+     * 增加或修改记录行
+     * @param sysDictBeanBean
+     * @param redirectAttributes
+     * @return
+     */
     @RequestMapping("save")
     public String save(SysDictBean sysDictBeanBean,RedirectAttributes redirectAttributes){
         String messages = "";
-        if(StringUtil.isBlank(sysDictBeanBean.getId())){//添加
+        if(StringUtil.isBlank(sysDictBeanBean.getId())){
+            /**
+             * 添加
+             */
             String[] keys = sysDictBeanBean.getDictKey().split(",");
             String[] values = sysDictBeanBean.getDictValue().split(",");
             for (int i=0;i<keys.length;i++){
@@ -61,25 +96,48 @@ public class SysDictBeanController extends BaseController<SysDictBeanService>{
         }
         return "redirect:list";
     }
-    //去往表单页面
+
+    /**
+     * 去往表单页面
+     * @param sysDictBeanBean
+     * @param model
+     * @return
+     */
     @RequestMapping("fromconfig")
     public String formCfg(SysDictBean sysDictBeanBean,Model model){
-        if(StringUtil.isBlank(sysDictBeanBean.getDictEnglishName())){//添加
+        if(StringUtil.isBlank(sysDictBeanBean.getDictEnglishName())){
+            /**
+             * 添加
+             */
 
-        }else{//修改
+        }else{
+            /**
+             * 修改
+             */
             List<SysDictBean> sysDictBeanList = sysDictBeanBeanService.findAll(sysDictBeanBean);
             model.addAttribute("key_value_list",sysDictBeanList);
         }
         model.addAttribute("sysDictBean",sysDictBeanBean);
         return "modules/sys/sysDictBean/sysDictBean_form";
     }
-    //删除某记录
+
+    /**
+     * 删除某记录
+     * @param dictEnglishName
+     * @return
+     */
     @RequestMapping("remove")
     public String remove(String dictEnglishName){
         sysDictBeanBeanService.deleteByDictName(dictEnglishName);
         return "redirect:list";
     }
-    //验证英文名唯一
+
+    /**
+     * 验证英文名唯一
+     * @param sysDictBean
+     * @param dictEnglishName2
+     * @param out
+     */
     @RequestMapping("checkDictEnglishName")
     public void checkDictEnglishName(SysDictBean sysDictBean, String dictEnglishName2, PrintWriter out){
         List<SysDictBean> sysDictBeanList = sysDictBeanBeanService.findAll(sysDictBean);

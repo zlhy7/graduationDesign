@@ -13,7 +13,7 @@
         <name>getDictValByKey</name>
         <function-class>com.renyong.base.util.GenerateUtil</function-class>
         <function-signature>java.lang.String getDictValByKey(java.lang.String,java.lang.String)</function-signature>
-        <example>${fns:getDict(type,key)}</example>
+        <example>${fns:getDictValByKey(type,key)}</example>
     </function>
 
     <function>
@@ -22,5 +22,13 @@
         <function-class>com.renyong.base.util.GenerateUtil</function-class>
         <function-signature>java.util.List getDict(java.lang.String)</function-signature>
         <example>${fns:getDict(dictName)}</example>
+    </function>
+
+    <function>
+        <description>获取当前用户</description>
+        <name>getUser</name>
+        <function-class>com.renyong.base.util.UserUtil</function-class>
+        <function-signature>com.renyong.modules.user.model.UserBean getCurrentUserBean()</function-signature>
+        <example>${fns:getUser()}</example>
     </function>
 </taglib>

@@ -4,6 +4,7 @@
          version="3.1" metadata-complete="true">
   <welcome-file-list>
     <welcome-file>/loginController/toLogin</welcome-file>
+    <welcome-file>/WEB-INF/view/modules/login/login.jsp</welcome-file>
   </welcome-file-list>
   <!--监听器 spring-->
   <listener>

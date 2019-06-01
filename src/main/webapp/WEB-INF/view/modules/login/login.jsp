@@ -5,7 +5,15 @@
 		<meta charset="UTF-8">
 		<title>停车管理系统</title>
 		<script>
-            //改变iframe引入
+            /**
+			 * 如果有提示信息就提示
+             */
+			<c:if test="${not empty message}">
+            	layer.msg("没登录吧，请先登录",{time:2500, shift: 6,skin:'demo-class'});
+			</c:if>
+            /**
+			 * 改变iframe引入
+             */
 			function changeIframeSrc(iframeSrc) {
                 $("#showChildModule")[0].src = iframeSrc;
             }

@@ -80,6 +80,9 @@
                                 <a class="nav-link text-center"  href="#" onclick="showContent('${ctx}/sysDictBean/list')">字典配置</a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link text-center"  href="#" onclick="showContent('${ctx}/domainBean/list')">表域配置</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link text-center" href="#">角色管理</a>
                             </li>
                             <li class="nav-item">
