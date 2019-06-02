@@ -1,4 +1,7 @@
-// 列表宽度重设
+/**
+ * 列表宽度重设
+ * @param widths
+ */
 function tableWidthReset(widths){
     $('#contentTable').find("th").each(function(index){
         $(this).css("width",widths[index]);
@@ -6,18 +9,36 @@ function tableWidthReset(widths){
 }
 //全选，反选
 //动态复选框事件
-$(document).on(".chooseOne","click",function(){
-    if($(".chooseOne:checked").length==$(".chooseOne").length){//全部选中时
+$(document).on("click",".chooseOne",function(){
+    if($(".chooseOne:checked").length==$(".chooseOne").length){
+        /**
+         * 全部选中时
+         */
         $(".chooseAll").prop("checked",true);
-    }else if($(".chooseOne:checked").length < $(".chooseOne").length){//选中数量小于可用复选框数量
+    }else if($(".chooseOne:checked").length < $(".chooseOne").length){
+        /**
+         * 选中数量小于可用复选框数量
+         */
         $(".chooseAll").prop("checked",false);
     }
 });
-
-$(document).on(".chooseAll","click",function(){
-    $(".chooseOne").prop("chekced",$(this).prop("checked"));
+$(document).on("click","#contentTable tbody tr",function(){
+    /**
+     * 点击行
+     * 模拟点击，复选框
+     */
+    $(this).find(".chooseOne").click();
 });
-//确认提示框
+$(document).on("click",".chooseAll",function(){
+    $(".chooseOne").prop("checked",$(this).prop("checked"));
+});
+
+/**
+ * 确认提示框
+ * @param msg 提示信息
+ * @param obj 当前对象
+ * @returns {boolean}
+ */
 function confirmx(msg,obj){
     layer.confirm(msg, {
         btn: ['确认','取消'],//按钮

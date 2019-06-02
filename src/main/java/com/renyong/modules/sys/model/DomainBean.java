@@ -48,4 +48,13 @@ public class DomainBean extends BaseEntity<DomainBean>{
      * bean 属性
      */
     private String beanProperty;
+    /**
+     * 条件
+     */
+    private String conditions;
+    /**
+     * 主键
+     */
+    private String primaryKey;
+
 }

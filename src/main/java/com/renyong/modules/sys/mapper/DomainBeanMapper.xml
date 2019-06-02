@@ -10,6 +10,7 @@
         <result column="thead_ths" property="theadThs"/>
         <result column="column_show_names" property="columnShowNames" />
         <result column="column_output_names" property="columnOutputNames" />
+        <result column="primary_key" property="primaryKey" />
         <!--公共属性-->
         <result column="create_user" property="createUser.id" jdbcType="VARCHAR" />
         <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
@@ -50,6 +51,9 @@
         <if test="theadThs !=null and theadThs!=''">
             AND column_output_names = #{columnOutputNames}
         </if>
+        <if test="primaryKey !=null and primaryKey!=''">
+            AND primary_key = #{primaryKey}
+        </if>
         ORDER BY CREATE_DATE DESC
     </select>
     <!--新增-->
@@ -79,6 +83,9 @@
             </if>
             <if test="theadThs !=null and theadThs!=''">
                 column_output_names,
+            </if>
+            <if test="primaryKey !=null and primaryKey!=''">
+                primary_key,
             </if>
             <if test="createUser != null" >
                 CREATE_USER,
@@ -124,6 +131,9 @@
             <if test="theadThs !=null and theadThs!=''">
                 #{columnOutputNames},
             </if>
+            <if test="primaryKey !=null and primaryKey!=''">
+                primary_key,
+            </if>
             <if test="createUser != null" >
                 #{createUser.id},
             </if>
@@ -144,8 +154,11 @@
             </if>
         </trim>
     </insert>
-    <select id="getDomainByName" resultType="java.util.Map">
-        SELECT * from #{domainName} WHERE del_flag = '0'
+    <!--查询表数据-->
+    <select id="getDomainByName" resultType="java.util.Map" statementType="CALLABLE">
+        {
+          call getDomainByName(#{domainName,mode=IN},#{conditions,mode=IN})
+        }
     </select>
     <!--修改-->
     <update id="update">
@@ -174,6 +187,9 @@
             </if>
             <if test="theadThs !=null and theadThs!=''">
                 column_output_names = #{columnOutputNames},
+            </if>
+            <if test="primaryKey !=null and primaryKey!=''">
+                primary_key = #{primaryKey},
             </if>
             <if test="createUser != null" >
                 CREATE_USER=#{createUser.id},
@@ -217,5 +233,15 @@
       WHERE
             t.TABLE_SCHEMA = "mydb"
             AND t.TABLE_NAME = #{tableName};
+    </select>
+    <!--查询这列是否存在-->
+    <select id="isColumnExist" resultType="java.lang.String">
+        SELECT
+	      IF(count(*)>0,'1','0')
+        FROM
+            information_schema.COLUMNS
+        WHERE
+            table_name = #{tableName}
+	    AND column_name = #{primaryKey}
     </select>
 </mapper>

@@ -64,12 +64,18 @@ public class BaseService<D extends BaseDao<T>, T extends BaseEntity<T>> implemen
     }
     public PageInfo findPage(T entity){
         PageHelper.startPage(entity.getPageNum(),10);
-        PageInfo<T> pageInfo1=new PageInfo<T>(this.findAll(entity),6);//设置页码链长度
+        /**
+         * 设置页码链长度
+         */
+        PageInfo<T> pageInfo1=new PageInfo<T>(this.findAll(entity),6);
         return pageInfo1;
     }
     public PageInfo findPage(T entity,List<T> list){
         PageHelper.startPage(entity.getPageNum(),10);
-        PageInfo<T> pageInfo1=new PageInfo<T>(list,6);//设置页码链长度
+        /**
+         * 设置页码链长度
+         */
+        PageInfo<T> pageInfo1=new PageInfo<T>(list,6);
         return pageInfo1;
     }
     public List<String> getProperty(List<T> list,String getMethodName){

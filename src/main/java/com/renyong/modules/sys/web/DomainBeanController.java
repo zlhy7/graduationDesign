@@ -1,6 +1,7 @@
 package com.renyong.modules.sys.web;
 
 import com.alibaba.fastjson.JSONObject;
+import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.renyong.base.util.StringUtil;
 import com.renyong.base.web.BaseController;
@@ -60,9 +61,7 @@ public class DomainBeanController extends BaseController<DomainBeanService>{
         /**
          * 分页栏
          */
-        Map map = service.getMapObj(domainBean);
         model.addAttribute("pagingBar",getPagingBar(page));
-        model.addAttribute("mapObj", JSONObject.toJSONString(map));
         return "modules/sys/domainBean/domainBean_list";
     }
 
@@ -159,6 +158,19 @@ public class DomainBeanController extends BaseController<DomainBeanService>{
     }
 
     /**
+     * 检查字段是否存在
+     * @param domainBean
+     * @param out
+     */
+    @RequestMapping("isColumnExist")
+    public void isColumnExist(DomainBean domainBean, PrintWriter out){
+        boolean flag = service.isColumnExist(domainBean);
+        out.print(flag);
+        out.flush();
+        out.close();
+    }
+
+    /**
      * 引入表域
      * @param domainBean
      * @return
@@ -166,11 +178,39 @@ public class DomainBeanController extends BaseController<DomainBeanService>{
     @RequestMapping("toDomainPage")
     public String toDomainPage(DomainBean domainBean,Model model){
         /**
-         * 数据源
+         * 数据源 假数据
          */
-        Map map = service.getMapObj(domainBean);
+        domainBean = service.findAll(domainBean).get(0);
+        List<Map> mapList = service.getMapObj(domainBean);
+        PageHelper.startPage(domainBean.getPageNum(),6);
+        /**
+         * 设置页码链长度
+         */
+        PageInfo<Map> pageInfo1=new PageInfo<Map>(mapList,6);
+        /**
+         * 条件bean
+         */
         model.addAttribute("domainBean",domainBean);
-        model.addAttribute("mapObj",map);
-        return "modules/sys/domainBean/domainBean_list";
+        /**
+         * 待编辑的集合
+         */
+        model.addAttribute("mapObjs", mapList);
+        /**
+         * 待保存的集合数据源
+         */
+        model.addAttribute("mapJSONArr", JSONObject.toJSONString(mapList));
+        /**
+         * 展示字段
+         */
+        model.addAttribute("columnShowNames", domainBean.getColumnShowNames().toLowerCase().split(","));
+        /**
+         * 记录行
+         */
+        model.addAttribute("page",pageInfo1);
+        /**
+         * 分页栏
+         */
+        model.addAttribute("pagingBar",getPagingBar(pageInfo1));
+        return "modules/sys/domainBean/domainTable_list";
     }
 }

@@ -1,11 +1,11 @@
 package com.renyong.base.model;
-import com.renyong.base.annotation.TableNote;
+
+import com.alibaba.fastjson.annotation.JSONField;
 import com.renyong.base.util.GenerateUtil;
+import com.renyong.base.util.UserUtil;
 import com.renyong.modules.user.model.UserBean;
 
 import java.io.Serializable;
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Date;
@@ -18,14 +18,40 @@ import java.util.Date;
 public abstract class BaseEntity<T> implements Serializable{
     private static final long serialVersionUID = 1L;
     private String CD_NAME = "";
-    protected String id;//主键
-    protected String remarks;//备注
-    protected UserBean createUser;//创建人
-    protected Date createDate;//创建时间
-    protected UserBean lastUpdateUser;//更新人
-    protected Date lastUpdateDate;//最后更新时间
-    protected String delFlag = "0";//删除标记
-    protected int pageNum = 1;//当前页码
+    /**
+     * 主键
+     */
+    protected String id;
+    /**
+     * 备注
+     */
+    protected String remarks;
+    /**
+     * 创建人
+     */
+    protected UserBean createUser;
+    /**
+     * 创建时间
+     */
+    @JSONField(format="yyyy-MM-dd HH:mm:ss")
+    protected Date createDate;
+    /**
+     * 更新人
+     */
+    protected UserBean lastUpdateUser;
+    /**
+     * 最后更新时间
+     */
+    @JSONField(format="yyyy-MM-dd HH:mm:ss")
+    protected Date lastUpdateDate;
+    /**
+     * 删除标记
+     */
+    protected String delFlag = "0";
+    /**
+     * 当前页码
+     */
+    protected int pageNum = 1;
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }
@@ -102,8 +128,14 @@ public abstract class BaseEntity<T> implements Serializable{
         this.delFlag = delFlag;
     }
     public void preInsert(){
-        this.id = GenerateUtil.uuid();//保存id
-        if(!"".equals(this.getCD_NAME())){//如果没传cd则自己生成
+        /**
+         * 保存id
+         */
+        this.id = GenerateUtil.uuid();
+        if(!"".equals(this.getCD_NAME())){
+            /**
+             * 如果没传cd则自己生成
+             */
             Class class1 = this.getClass();
             String cdName = this.getCD_NAME();
             String code = GenerateUtil.getAutoCd(cdName.split(",")[0]);
@@ -118,11 +150,25 @@ public abstract class BaseEntity<T> implements Serializable{
                 e.printStackTrace();
             }
         }
-        this.lastUpdateDate = new Date();//最后更新时间
+        /**
+         * 当前登录用户
+         */
+        this.createUser = UserUtil.getCurrentUserBean();
+        /**
+         * 最后更新时间
+         */
+        this.lastUpdateDate = new Date();
         this.createDate = this.lastUpdateDate;
         this.delFlag = "0";
     }
     public void preUpdate(){
-        this.lastUpdateDate = new Date();//最后更新时间
+        /**
+         * 最后更新时间
+         */
+        this.lastUpdateDate = new Date();
+        /**
+         * 最后更新人
+         */
+        this.lastUpdateUser = UserUtil.getCurrentUserBean();
     }
 }

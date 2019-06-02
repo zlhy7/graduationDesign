@@ -35,6 +35,7 @@
         <th>序号</th>
         <th>表域名</th>
         <th>中文描述</th>
+        <th>对应表</th>
         <th>创建时间</th>
         <th>备注</th>
         <th>操作</th>
@@ -47,6 +48,7 @@
             <td>${status.count}</td>
             <td>${domainBean.domainName}</td>
             <td>${domainBean.domainDesc}</td>
+            <td>${domainBean.tableName}</td>
             <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${domainBean.createDate}"/></td>
             <td>${domainBean.remarks}</td>
             <td>

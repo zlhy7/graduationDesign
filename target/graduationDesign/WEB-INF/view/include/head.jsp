@@ -33,6 +33,8 @@
 <script src="${ctxStatic}/modules/common/js/list.js"></script>
     <%--form页面 js--%>
 <script src="${ctxStatic}/modules/common/js/form.js"></script>
+    <%--工具类 js--%>
+<script src="${ctxStatic}/modules/common/js/util.js"></script>
     <%--引入jqueryUI css--%>
 <link rel="stylesheet" href="${ctxStatic}/jquery-ui-1.12.1/jquery-ui.min.css"/>
     <%--引入jqueryUI js--%>

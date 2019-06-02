@@ -5,6 +5,9 @@
     <meta charset="UTF-8"/>
     <title>停车管理系统</title>
     <link rel="stylesheet" href="${ctxStatic}/modules/welcome/css/welcome.css"/>
+    <link rel="icon" href="${ctx}/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="${ctx}/favicon.ico" type="image/x-icon" />
+    <link rel="bookmark" href="${ctx}/favicon.ico" type="image/x-icon" />
     <script type="text/javascript">
         $(function () {
             <%--layer.alert('登录成功，欢迎你：${userBean.realName}', {icon: 6});--%>
@@ -27,7 +30,7 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                        当前用户:admin
+                        当前用户:${fns:getUser().realName}
                     </a>
                     <div class="dropdown-menu bg-dark">
                         <a class="dropdown-item text-primary" href="#">个人信息</a>
@@ -82,15 +85,12 @@
                             <li class="nav-item">
                                 <a class="nav-link text-center"  href="#" onclick="showContent('${ctx}/domainBean/list')">表域配置</a>
                             </li>
-                            <li class="nav-item">
+                            <%--<li class="nav-item">
                                 <a class="nav-link text-center" href="#">角色管理</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-center" href="#">权限管理</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-center" href="#"></a>
-                            </li>
+                            </li>--%>
                         </ul>
                     </div>
                 </div>
@@ -108,10 +108,10 @@
                                 <a class="nav-link text-center" href="#">关于系统</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-center" href="#">帮助</a>
+                                <a class="nav-link text-center" href="#" onclick="showContent('${ctx}/sysAutoGenerateCoding/exceptionalPage')">打赏</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-center" href="#">联系我们</a>
+                                <a class="nav-link text-center" href="#">联系我</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-center" href="#">GitHub地址</a>

@@ -44,6 +44,22 @@
                     theadThs:{
                         required:true
                     },
+                    primaryKey:{
+                        required:true,
+                        remote: {
+                            scriptCharset: 'UTF-8',
+                            url: "${ctx}/domainBean/isColumnExist",
+                            data: {
+                                tableName: function () {
+                                    return $("#tableName").val();
+                                },
+                                primaryKey: function () {
+                                    return $("#primaryKey").val();
+                                }
+                            },
+                            type: "post"
+                        }
+                    },
                     columnShowNames:{
                         required:true
                     },
@@ -53,7 +69,8 @@
                 },
                 messages: {
                     domainName: {remote: "表域名已被占用"},
-                    tableName:{remote: "表不存在"}
+                    tableName:{remote: "表不存在"},
+                    primaryKey:{remote: "字段不存在"}
                 },
                 submitHandler: function(form){
                     layer.load(0, {shade: [0.8, '#393D49'], time: 3000})
@@ -101,6 +118,13 @@
         <div class="col">
             <label class="control-label">表名：</label>
             <form:input type="text" path="tableName" class="form-control" placeholder="请输入表名"/>
+            <span class="help-inline">*</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label class="control-label">主键：</label>
+            <form:input type="text" path="primaryKey" class="form-control" placeholder="请输入表主键"/>
             <span class="help-inline">*</span>
         </div>
     </div>

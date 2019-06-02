@@ -141,10 +141,10 @@
         </div>
         <div class="col">
             <label class="control-label">是否允许登陆：</label>
-            <form:select path="userSex">
+            <%--<form:select path="isAllow">
                 <form:option value="">请选择</form:option>
                 <form:options items="${fns:getDict('IS_ALLOW')}" itemLabel="dictValue" itemValue="dictKey" htmlEscape="false"/>
-            </form:select>
+            </form:select>--%>
             <span class="help-inline">*</span>
         </div>
     </div>

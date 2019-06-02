@@ -40,3 +40,18 @@ form.list_form{
     font-size: 16px;
     color: red;
 }
+.demo-class .layui-layer-btn{
+    color: black;
+}
+/*确认提示框的取消按钮样式*/
+.demo-class layui-layer-title{
+    background-color:  #ccc;
+}
+/*确认提示框的提示文字样式*/
+.demo-class .layui-layer-dialog .layui-layer-content {
+    background-color:  black;
+}
+/*隐藏改元素*/
+.hidden{
+    display: none;
+}
