@@ -63,7 +63,7 @@
     </script>
 </head>
 <body>
-    <form id="loginForm" action="${ctx}/loginController/dealwithLogin" method="post" name="form1">
+    <form id="loginForm" action="${ctx}/loginController/dealwithLogin" method="post" name="form1" style="padding-left: 8%">
         <div class="p-2 d-flex hang-top">
         </div>
         <div class="p-2 d-flex hang">

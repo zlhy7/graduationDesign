@@ -12,11 +12,11 @@ $.validator.addMethod("checkRealName",function(value,element,params){
 },"姓名必须是中文");
 //去登录
 function toLogin() {
-    top.window.location.href = "/loginController/toLogin";
+    top.window.location.href = ctx+"/loginController/toLogin";
 }
 //去主菜单
 function toMainMenu() {
-    top.window.location.href = "/loginController/toMainMenu";
+    top.window.location.href = ctx+"/loginController/toMainMenu";
 }
 //所有select 渲染成selec2
 $(function () {

@@ -36,9 +36,10 @@ public class LoginInterceptor implements HandlerInterceptor {
              * 拦截后进入登录页面
              * 顶级对象返回登录页
              */
+            String contextPath = request.getContextPath();
             PrintWriter out = response.getWriter();
             out.print("<script type='text/javascript' charset='UTF-8'>" +
-                    "top.window.location.href = \"/loginController/toLogin?message=noLogined\";" +
+                    "top.window.location.href = \""+contextPath+"/loginController/toLogin?message=noLogined\";" +
                     "</script>");
             flag = false;
         } else {

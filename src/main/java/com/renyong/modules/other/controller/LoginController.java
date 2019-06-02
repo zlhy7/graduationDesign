@@ -24,7 +24,7 @@ import java.util.List;
  * @Description: 登录注销相关的控制器
  */
 @Controller
-@RequestMapping("/loginController/")
+@RequestMapping("/loginController")
 public class LoginController extends BaseController<UserBeanService>{
     /**
      * 访问登录界面
