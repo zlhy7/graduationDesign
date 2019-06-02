@@ -18,66 +18,66 @@
                 source: autocompleteData
             });
         });
-        function aaa(title,domainName,obj) {
-            /**
-             * 打开页面的window对象
-             * */
-            var openPageWindow;
-            top.layer.open({
-                type: 2,
-                area: ['700px', '450px'],
-                skin:"demo-class",
-                title:title,
-                btn:['保存','取消'],
-                btn1:function (index) {
-                    /**
-                     * 拿到选中的数据
-                     * */
-                    var resultData = openPageWindow.result();
-                    /**
-                     * 不包含键
-                     * */
-                    var jsonToArr =  openPageWindow.jsonToArr(resultData);
-                    /**
-                     * 给隐藏域赋值
-                     * */
-                    var backKey = $(obj).attr("back_key");
-                    // for (var i in resultData){
-                    //     if (backKey == i){
-                    //         /**
-                    //          * 这个值赋给自己
-                    //          * */
-                    //         $(obj).val(getPropertyArr(jsonToArr,i));
-                    //     } else {
-                    //         /**
-                    //          * 剩下的值赋给同级的兄弟
-                    //          * */
-                    //         $(obj).siblings("[back_key="+i+"]").val(getPropertyArr(jsonToArr,i));
-                    //     }
-                    // }
-                    top.layer.close(index);
-                    return false;
-                },
-                btn2: function(index, layero){//取消
-                    top.layer.close(index);
-                    return false;
-                },
-                success: function(layero, index){
-                    var layer_content = top.document.body.getElementsByClassName("layui-layer-content")[0];
-                    //获取内容页的widow对象
-                    openPageWindow = $(layer_content).find("iframe")[0].contentWindow;
-                    //如果没传多选参数，默认是单选
-                    if(!$(obj).attr("multiSelect")){
-                        openPageWindow.resetEvent();
-                    }
-                    $(obj).siblings('[back_key=user_cd]').val([]);
-                },
-                btnAlign: 'c',//底部按钮居中
-                fixed: false, //不固定
-                content: '${ctx}/domainBean/toDomainPage'
-            });
-            return false;
-        }
+        <%--function aaa(title,domainName,obj) {--%>
+            <%--/**--%>
+             <%--* 打开页面的window对象--%>
+             <%--* */--%>
+            <%--var openPageWindow;--%>
+            <%--top.layer.open({--%>
+                <%--type: 2,--%>
+                <%--area: ['700px', '450px'],--%>
+                <%--skin:"demo-class",--%>
+                <%--title:title,--%>
+                <%--btn:['保存','取消'],--%>
+                <%--btn1:function (index) {--%>
+                    <%--/**--%>
+                     <%--* 拿到选中的数据--%>
+                     <%--* */--%>
+                    <%--var resultData = openPageWindow.result();--%>
+                    <%--/**--%>
+                     <%--* 不包含键--%>
+                     <%--* */--%>
+                    <%--var jsonToArr =  openPageWindow.jsonToArr(resultData);--%>
+                    <%--/**--%>
+                     <%--* 给隐藏域赋值--%>
+                     <%--* */--%>
+                    <%--var backKey = $(obj).attr("back_key");--%>
+                    <%--// for (var i in resultData){--%>
+                    <%--//     if (backKey == i){--%>
+                    <%--//         /**--%>
+                    <%--//          * 这个值赋给自己--%>
+                    <%--//          * */--%>
+                    <%--//         $(obj).val(getPropertyArr(jsonToArr,i));--%>
+                    <%--//     } else {--%>
+                    <%--//         /**--%>
+                    <%--//          * 剩下的值赋给同级的兄弟--%>
+                    <%--//          * */--%>
+                    <%--//         $(obj).siblings("[back_key="+i+"]").val(getPropertyArr(jsonToArr,i));--%>
+                    <%--//     }--%>
+                    <%--// }--%>
+                    <%--top.layer.close(index);--%>
+                    <%--return false;--%>
+                <%--},--%>
+                <%--btn2: function(index, layero){//取消--%>
+                    <%--top.layer.close(index);--%>
+                    <%--return false;--%>
+                <%--},--%>
+                <%--success: function(layero, index){--%>
+                    <%--var layer_content = top.document.body.getElementsByClassName("layui-layer-content")[0];--%>
+                    <%--//获取内容页的widow对象--%>
+                    <%--openPageWindow = $(layer_content).find("iframe")[0].contentWindow;--%>
+                    <%--//如果没传多选参数，默认是单选--%>
+                    <%--if(!$(obj).attr("multiSelect")){--%>
+                        <%--openPageWindow.resetEvent();--%>
+                    <%--}--%>
+                    <%--$(obj).siblings('[back_key=user_cd]').val([]);--%>
+                <%--},--%>
+                <%--btnAlign: 'c',//底部按钮居中--%>
+                <%--fixed: false, //不固定--%>
+                <%--content: '${ctx}/domainBean/toDomainPage'--%>
+            <%--});--%>
+            <%--return false;--%>
+        <%--}--%>
     </script>
 </head>
 <body>
@@ -95,9 +95,9 @@
         <button class="btn btn-primary" onclick="return page('1')"><i class="glyphicon glyphicon-search"></i> 查询</button>
     </div>
 </form:form>
-<input type="hidden" name="userCd" back_key="user_cd"/>
-<input type="hidden" name="id" back_key="user_id"/>
-<input readonly="readonly" back_key="real_name" onclick="aaa('用户选择','SYS_USER',this)" multiSelect="multiSelect">表域</input>
+<%--<input type="hidden" name="userCd" back_key="user_cd"/>--%>
+<%--<input type="hidden" name="id" back_key="user_id"/>--%>
+<%--<input readonly="readonly" back_key="real_name" onclick="aaa('用户选择','SYS_USER',this)" multiSelect="multiSelect">表域</input>--%>
 <table id="contentTable" class="table table-striped table-hover table-dark">
     <thead class="thead-dark">
     <tr>

@@ -9,9 +9,14 @@
     <link rel="shortcut icon" href="${ctx}/favicon.ico" type="image/x-icon" />
     <link rel="bookmark" href="${ctx}/favicon.ico" type="image/x-icon" />
     <script type="text/javascript">
-        $(function () {
-            <%--layer.alert('登录成功，欢迎你：${userBean.realName}', {icon: 6});--%>
-        });
+        function alert2(title,msg) {
+            layer.alert(msg, {
+                title:title,
+                skin: 'layui-layer-lan',
+                closeBtn: 0,
+                anim: 4 //动画类型
+            });
+        }
     </script>
 </head>
 <body>
@@ -105,16 +110,16 @@
                     <div class="bg-dark">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link text-center" href="#">关于系统</a>
+                                <a class="nav-link text-center" href="#" onclick="alert2('关于系统','尚未完成')">关于系统</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-center" href="#" onclick="showContent('${ctx}/sysAutoGenerateCoding/exceptionalPage')">打赏</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-center" href="#">联系我</a>
+                                <a class="nav-link text-center" href="#" onclick="alert2('联系我','qq:1833189645')">联系我</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-center" href="#">GitHub地址</a>
+                                <a class="nav-link text-center" href="#" onclick="alert2('GitHub地址','https://github.com/zlhy7/graduationDesign.git')">GitHub地址</a>
                             </li>
                         </ul>
                     </div>

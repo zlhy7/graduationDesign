@@ -22,6 +22,7 @@
     <form:hidden path="pageNum"/>
     <div class="input-prepend">
         <span class="input-label">品牌：</span>
+        <form:input path="carBrand"/>
     </div>
     <div class="input-btn">
         <button class="btn btn-primary" onclick="return page('1')"><i class="glyphicon glyphicon-search"></i> 查询</button>
