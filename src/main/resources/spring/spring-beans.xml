@@ -14,7 +14,15 @@
   <!-- 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 -->
   <context:component-scan base-package="com.renyong.modules.*" />
   <context:component-scan base-package="com.renyong.base.*" />
-  <context:property-placeholder location="classpath:jdbc.properties" />
+  <!-- 对JDBC配置进行解密  -->
+  <bean id="myPropertyConfigurer" class="com.renyong.base.util.MyPropertyPlaceholderConfigurer">
+    <property name="locations">
+      <list>
+          <value>classpath:jdbc.properties</value>
+      </list>
+    </property>
+  </bean>
+  <!--<context:property-placeholder location="classpath:jdbc.properties" />-->
   <!-- 创建连接池  配置连接池的属性值 -->
   <bean id="ds" class="com.mchange.v2.c3p0.ComboPooledDataSource">
     <property name="driverClass" value="${jdbc.driverClass}"/>
