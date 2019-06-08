@@ -5,8 +5,6 @@ package com.renyong.base.util;
  * @Date: 2019/6/8 22:41
  * @Description:  Java加密解密工具.3DES SHA1 MD5 BASE64编码 AES加密 Title: EnDecryptUtil.java
  */
-import com.sun.org.apache.xml.internal.security.utils.Base64;
-
 import java.lang.reflect.Method;
 import java.security.Key;
 import java.security.MessageDigest;
@@ -20,6 +18,7 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESedeKeySpec;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
+import org.apache.commons.codec.binary.Base64;
 
 public class EnDecryptUtil {
 
@@ -37,6 +36,9 @@ public class EnDecryptUtil {
 //		System.out.println("3DES 解密 ： " + d3esDecode(d3esEncode("arr1")));
 //		System.out.println("AES 加密 ： " + encryptBitAES(arr1, "arr1"));
 //		System.out.println("AES 解密 ： " + decryptBitAES(encryptBitAES(arr1, "arr1"), "arr1"));
+        System.out.println(encodeBASE64("arr1"));
+        System.out.println(decodeBASE64(encodeBASE64("arr1")));
+
     }
 
     /**
@@ -350,7 +352,7 @@ public class EnDecryptUtil {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return Base64.encode(encryptData);
+        return Base64.encodeBase64String(encryptData);
 
     }
 
@@ -375,7 +377,7 @@ public class EnDecryptUtil {
                 IvParameterSpec ips = new IvParameterSpec(iv.getBytes());
                 cipher.init(Cipher.DECRYPT_MODE, deskey, ips);
 
-                decryptData = cipher.doFinal(Base64.decode(encryptText));
+                decryptData = cipher.doFinal(Base64.decodeBase64(encryptText));
                 result = new String(decryptData, encoding);
             } catch (Exception e) {
                 e.printStackTrace();
